@@ -25,7 +25,7 @@ public class LoginHistory implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="LoginID", unique=true, nullable=false, precision=10)
     private int loginId;
-    @Column(name="LoginTime")
+    @Column(name="LoginTime", nullable=false)
     private LocalDateTime loginTime;
     @Column(name="Status", nullable=false, length=255)
     private String status;

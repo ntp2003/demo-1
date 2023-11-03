@@ -27,7 +27,16 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new Exception("Password is not correctly!");
 		}
 		else {
-			throw new Exception("Email is not exist!");
+			throw new Exception("Email is not exists!");
 		}
+	}
+
+	@Override
+	public CustomerAccount registerCustomerAccount(CustomerAccount customerAccount) throws Exception {
+		if(customerRepo.existsCustomerAccountByEmail(customerAccount.getEmail()))
+		{
+			throw new Exception("Email already exists!");
+		}
+		return customerRepo.save(customerAccount);
 	}
 }

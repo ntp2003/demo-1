@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -14,7 +15,7 @@
 	href="assets/css/Navbar-with-menu-and-login-km-Navbar.css">
 </head>
 
-<body>
+<body onload="getMessage()">
 	<div class="container"
 		style="position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
 		<div
@@ -26,27 +27,27 @@
 					<div class="text-center">
 						<h4 class="text-dark mb-4">Create an Account!</h4>
 					</div>
-					<form class="user" action="Register" method="post">
+					<form:form cssClass="user" action="Register" method="post" modelAttribute="newCustomer">
 						<div class="mb-3"></div>
 						<div class="row mb-3">
 							<div class="col-sm-6 col-md-6 mb-3 mb-sm-0">
 								<input class="form-control form-control form-control-user"
-									type="text" placeholder="First Name" required="">
+									type="text" name="firstName" placeholder="First Name" required="">
 							</div>
 							<div class="col-sm-6">
 								<input class="form-control form-control form-control-user"
-									type="text" placeholder="Last Name" required="">
+									type="text" name="lastName" placeholder="Last Name" required="">
 							</div>
 						</div>
 						<div class="mb-3">
-							<input class="form-control form-control form-control-user"
-								type="email" id="email" placeholder="Email Address" required="">
+							<form:input cssClass="form-control form-control form-control-user"
+								type="email" path="email" id="email" placeholder="Email Address" required=""/>
 						</div>
 						<div class="row mb-3">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<input class="form-control form-control form-control-user"
-									type="password" id="password" placeholder="Password"
-									required="">
+								<form:input cssClass="form-control form-control form-control-user"
+									type="password" path="password" id="password" placeholder="Password"
+									required=""/>
 							</div>
 							<div class="col-sm-6">
 								<input class="form-control form-control form-control-user"
@@ -62,7 +63,7 @@
 						<button class="btn btn-primary d-block btn-user w-100"
 							id="submitBtn" type="submit">Register Account</button>
 						<hr>
-					</form>
+					</form:form>
 					<div class="text-center"></div>
 					<div class="text-center">
 						Already have an account? <a href="Login">Login</a>
@@ -77,7 +78,14 @@
 			let submitBtn = document.getElementById("submitBtn")
 			let emailErrorMsg = document.getElementById('emailErrorMsg')
 			let passwordErrorMsg = document.getElementById('passwordErrorMsg')
-
+			
+			function getMessage(){
+				if(${msg != ""}){
+					emailErrorMsg.style.display = "block"
+					emailErrorMsg.innerHTML = ${msg}
+				}
+			}
+			
 			function displayErrorMsg(type, msg) {
 				if (type == "email") {
 					emailErrorMsg.style.display = "block"
@@ -149,6 +157,7 @@
 				else
 					displayErrorMsg("email", "Invalid email")
 			});
+			
 		</script>
 	</div>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>

@@ -32,7 +32,7 @@ public class Feedback implements Serializable {
 
     @Column(name="Review")
     private String review;
-    @Column(name="Time")
+    @Column(name="Time", nullable=false)
     private LocalDateTime time;
     @Column(name="Rating", precision=3)
     private short rating;

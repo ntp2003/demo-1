@@ -13,14 +13,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(indexes={@Index(name="CustomerAccount_PhoneNumber_IX", columnList="PhoneNumber", unique=true)})
 public class CustomerAccount implements Serializable {
 
     /** Primary key. */
@@ -38,10 +35,12 @@ public class CustomerAccount implements Serializable {
     private LocalDate birthDate;
     @Column(name="Address", length=100)
     private String address;
-    @Column(name="PhoneNumber", unique=true, length=10)
+    @Column(name="PhoneNumber", length=10)
     private String phoneNumber;
     @Column(name="Email", nullable=false, length=100)
     private String email;
+    @Column(name="Avatar")
+    private String avatar;
     @ManyToOne
     @JoinColumn(name="WalletID")
     private ElectronicWallet electronicWallet;
@@ -183,6 +182,24 @@ public class CustomerAccount implements Serializable {
      */
     public void setEmail(String aEmail) {
         email = aEmail;
+    }
+
+    /**
+     * Access method for avatar.
+     *
+     * @return the current value of avatar
+     */
+    public String getAvatar() {
+        return avatar;
+    }
+
+    /**
+     * Setter method for avatar.
+     *
+     * @param aAvatar the new value for avatar
+     */
+    public void setAvatar(String aAvatar) {
+        avatar = aAvatar;
     }
 
     /**

@@ -31,7 +31,7 @@ public class PurchaseInvoice implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="InvoiceID", unique=true, nullable=false, precision=10)
     private int invoiceId;
-    @Column(name="CreatedTime")
+    @Column(name="CreatedTime", nullable=false)
     private LocalDateTime createdTime;
     @Column(name="Address", nullable=false, length=100)
     private String address;

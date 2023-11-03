@@ -9,4 +9,6 @@ import com.example.demo.model.CustomerAccount;
 @Service
 public interface CustomerService {
 	public CustomerAccount validateLoginInfo(String email, String password) throws Exception;
+	
+	public CustomerAccount  registerCustomerAccount(CustomerAccount customerAccount) throws Exception;
 }

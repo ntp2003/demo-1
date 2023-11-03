@@ -11,4 +11,5 @@ import com.example.demo.model.*;
 public interface CustomerRepo extends JpaRepository<CustomerAccount, Integer>{
 	Optional<CustomerAccount> findOptionalByEmail(String email);
 	
+	boolean existsCustomerAccountByEmail(String email);
 }
