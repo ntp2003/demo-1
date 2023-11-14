@@ -27,7 +27,7 @@ public class CustomerAccount implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="AccountID", unique=true, nullable=false, precision=10)
     private int accountId;
-    @Column(name="Password", nullable=false, length=30)
+    @Column(name="Password", nullable=false, length=500)
     private String password;
     @Column(name="CustomerName", nullable=false, length=50)
     private String customerName;

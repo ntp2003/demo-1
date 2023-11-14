@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.CustomerAccount;
+import com.example.demo.dto.CustomerAccount;
 import com.example.demo.service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,9 +28,7 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/Register")
-	public String register(ModelMap model, HttpSession session,@ModelAttribute("newCustomer")CustomerAccount newCustomer, 
-			@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
-		newCustomer.setCustomerName(firstName + " " + lastName);
+	public String register(ModelMap model, HttpSession session,@ModelAttribute("newCustomer")CustomerAccount newCustomer) {
 		CustomerAccount customer;
 		try {
 			customer = customerService.registerCustomerAccount(newCustomer);

@@ -16,32 +16,59 @@ import com.example.demo.service.CustomerService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/Login")
 public class LoginController {
 	@Autowired
 	public CustomerService customerService;
-	
-	@GetMapping
-    public String loginPage(HttpSession session) {
-		if(session.getAttribute("customer") != null) {
-			return "redirect:/Home";
-		}
-        return "login";
-    }
-	
-	@PostMapping
-	public String loginCustomerAccount(ModelMap model,HttpSession session ,@RequestParam("email") String email, @RequestParam("password") String password) {
-		try {
-			CustomerAccount customer = customerService.validateLoginInfo(email, password);
-			session.setAttribute("customer", customer);
-			model.addAttribute("messagelogin", "");
-			return "redirect:/Home";
-		} catch (Exception e) {
-			String message = e.getMessage();
-			
-			model.addAttribute("messagelogin", message);
-			
-			return "login";
-		}
+
+	@GetMapping(value = {"/Login","/customer/Login"})
+	public String loginPage(HttpSession session) {
+//		if (session.getAttribute("customer") != null) {
+//			return "redirect:/Home";
+//		}
+		return "login";
 	}
+	
+	@GetMapping("/admin/Login")
+	public String loginAdminPage(HttpSession session) {
+//		if (session.getAttribute("customer") != null) {
+//			return "redirect:/Home";
+//		}
+		return "admin/login";
+	}
+	
+	@PostMapping("/login_success_handler")
+	public String loginSuccessHandler() {
+		// perform audit action
+		return "home";
+	}
+
+	@PostMapping("/login_failure_handler")
+	public String loginFailureHandler() {
+		// perform audit action
+		System.out.println("Fail");
+		return "login";
+	}
+	
+	@PostMapping("/admin/login_failure_handler")
+	public String loginAdminFailureHandler() {
+		// perform audit action
+		System.out.println("Fail");
+		return "admin/login";
+	}
+	
+//	@PostMapping
+//	public String loginCustomerAccount(ModelMap model,HttpSession session ,@RequestParam("email") String email, @RequestParam("password") String password) {
+//		try {
+//			CustomerAccount customer = customerService.validateLoginInfo(email, password);
+//			session.setAttribute("customer", customer);
+//			model.addAttribute("messagelogin", "");
+//			return "redirect:/Home";
+//		} catch (Exception e) {
+//			String message = e.getMessage();
+//			
+//			model.addAttribute("messagelogin", message);
+//			
+//			return "login";
+//		}
+//	}
 }

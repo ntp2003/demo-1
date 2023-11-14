@@ -33,13 +33,13 @@
 						<div class="mb-3"></div>
 						<div class="row mb-3">
 							<div class="col-sm-6 col-md-6 mb-3 mb-sm-0">
-								<input class="form-control form-control form-control-user"
-									type="text" name="firstName" placeholder="First Name"
-									required="">
+								<form:input class="form-control form-control form-control-user"
+									type="text" path="firstName" placeholder="First Name"
+									required=""/>
 							</div>
 							<div class="col-sm-6">
-								<input class="form-control form-control form-control-user"
-									type="text" name="lastName" placeholder="Last Name" required="">
+								<form:input class="form-control form-control form-control-user"
+									type="text" path="lastName" placeholder="Last Name" required=""/>
 							</div>
 						</div>
 						<div class="mb-3">

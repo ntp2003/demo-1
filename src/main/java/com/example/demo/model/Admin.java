@@ -24,7 +24,7 @@ public class Admin implements Serializable {
     @Id
     @Column(name="Username", unique=true, nullable=false, length=100)
     private String username;
-    @Column(name="Password", nullable=false, length=100)
+    @Column(name="Password", nullable=false, length=500)
     private String password;
     @Column(name="FullName", nullable=false, length=100)
     private String fullName;

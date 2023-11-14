@@ -8,7 +8,7 @@ import com.example.demo.model.CustomerAccount;
 
 @Service
 public interface CustomerService {
-	public CustomerAccount validateLoginInfo(String email, String password) throws Exception;
+	public com.example.demo.dto.CustomerAccount validateLoginInfo(String email, String password) throws Exception;
 	
-	public CustomerAccount  registerCustomerAccount(CustomerAccount customerAccount) throws Exception;
+	public com.example.demo.dto.CustomerAccount  registerCustomerAccount(com.example.demo.dto.CustomerAccount customerAccount) throws Exception;
 }
