@@ -1,0 +1,15 @@
+#ban-chay-nu, #balo {
+  display: none;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  /*background-color: #f8f9fa;*/
+  color: #007bff;
+}
+
+.navbar-nav .nav-item .nav-link.active:hover {
+  background-color: #1d5287;
+  /*color: #030e1a;*/
+  font-weight: bold;
+}
+

@@ -9,12 +9,17 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <title>Untitled</title>
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/Login-Form-Basic-icons.css">
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+    <style>
+	    .bg-opacity-10 {
+	  --bs-bg-opacity: 0.75;
+	}
+    </style>
 </head>
 
-<body>
-	<section class="position-relative py-4 py-xl-5">
+<body  style="background-color:rgb(231, 238, 243);">
+	<section class="position-relative py-4 py-xl-5" style="margin-top: 50px;">
 		<div class="container">
 			<div class="row mb-5">
 				<div class="col-md-8 col-xl-6 text-center mx-auto">

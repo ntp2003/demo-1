@@ -15,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import com.example.demo.handler.CustomLogoutSuccessHandler;
 import com.example.demo.service.AdminUserDetailsService;
 import com.example.demo.service.CustomerUserDetailsService;
 
@@ -23,7 +24,6 @@ import jakarta.servlet.DispatcherType;
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
 public class CustomerSecurityConfig {
 	@Bean
 	public PasswordEncoder customerPasswordEncoder() {
@@ -50,18 +50,19 @@ public class CustomerSecurityConfig {
 	}
 
 	@Bean
+	@Order(2)
 	public SecurityFilterChain customerSecurityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
 		http.authenticationProvider(customerAuthenticationProvider());
 		
 		http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(
 				auth -> auth.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-						.requestMatchers(mvc.pattern("/customer/**")).authenticated()
+						.requestMatchers(mvc.pattern("/customer/**")).hasRole("CUSTOMER")
 						.requestMatchers(mvc.pattern("/**")).permitAll())
 				.formLogin((form) -> form.loginPage("/Login").usernameParameter("email").passwordParameter("password")
 						.loginProcessingUrl("/Login").successForwardUrl("/login_success_handler")
 						.failureForwardUrl("/login_failure_handler").permitAll())
-				.logout((logout) -> logout.invalidateHttpSession(true).clearAuthentication(true)
-						.deleteCookies("JSESSIONID").permitAll());
+				.logout((logout) -> logout.logoutUrl("/customer/logout").invalidateHttpSession(true).clearAuthentication(true)
+						.deleteCookies("JSESSIONID").logoutSuccessHandler(new CustomLogoutSuccessHandler()).permitAll());
 
 		return http.build();
 	}

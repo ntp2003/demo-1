@@ -1,12 +1,12 @@
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ProductType.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\PurchaseInvoice.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\Payment.java
-C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\security\WebSecurityConfig.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\Payment.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ProductLotDetails.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ProductLot.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\controller\RegisterController.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\ShoppingCart.java
+C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\controller\ShoppingCartController.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\PurchaseInvoice.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\security\userdetails\CustomerUserDetails.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\CustomerAccount.java
@@ -21,6 +21,7 @@ C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\Feedback.
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ElectronicWallet.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\ProductCategory.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\LoginHistory.java
+C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\controller\LogoutController.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\Promotion.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\Size.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ProductCatalog.java
@@ -30,10 +31,12 @@ C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\LoginHi
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\ElectronicWallet.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\PurchaseHistory.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\ProductCatalog.java
+C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\config\Configuration.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\repository\LoginHistoryRepo.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\ProductLot.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\controller\HomeController.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\service\CustomerServiceImpl.java
+C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\controller\CheckoutController.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\Demo1Application.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ShoppingCart.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\InvoiceDetail.java
@@ -46,6 +49,7 @@ C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\Admin.jav
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\service\CustomerService.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\dto\ImageProduct.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\security\CustomerSecurityConfig.java
+C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\controller\ProductListController.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\repository\CustomerRepo.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\Feedback.java
 C:\Users\phatn\Desktop\LTWEB\demo-1\src\main\java\com\example\demo\model\Promotion.java

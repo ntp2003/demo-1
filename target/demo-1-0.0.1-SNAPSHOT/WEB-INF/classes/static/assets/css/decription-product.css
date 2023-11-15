@@ -1,0 +1,41 @@
+.tab-content p {
+  margin-bottom: 5px;
+}
+
+#tabs-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+#tabs-nav li {
+  /*display: flex;*/
+}
+
+#tabs-nav a {
+  display: block;
+  padding: 10px 20px;
+  background-color: #eee;
+  text-decoration: none;
+  color: #333;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 0 0;
+}
+
+#tabs-content .tab-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0 0 5px 5px;
+}
+
+#tabs-content .tab-content:first-child {
+  display: block;
+}
+
+#tabs-nav {
+  margin-left: 30px;
+}
+

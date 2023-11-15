@@ -5,8 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +23,6 @@ import jakarta.servlet.DispatcherType;
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
 public class AdminSecurityConfig {
 	
 	@Bean
@@ -39,11 +40,11 @@ public class AdminSecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(adminUserDetailsService());
         authProvider.setPasswordEncoder(adminPasswordEncoder());
- 
         return authProvider;
     }
 	
 	@Bean
+	@Order(1)
 	public SecurityFilterChain adminSecurityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
 		http.authenticationProvider(adminAuthenticationProvider());
 		
@@ -51,16 +52,18 @@ public class AdminSecurityConfig {
 				.authorizeHttpRequests(
 						auth -> auth
 						.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-						.anyRequest().authenticated())
+						.anyRequest().hasRole("ADMIN"))
 						//.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 						//.requestMatchers(mvc.pattern("/admin/**")).authenticated()//)
 						//.requestMatchers(mvc.pattern("/**")).permitAll())
 				.formLogin((form) -> form.loginPage("/admin/Login")
 						.loginProcessingUrl("/admin/Login")
-						.successForwardUrl("/login_success_handler")
+						.successForwardUrl("/admin/login_success_handler")
 						.failureForwardUrl("/admin/login_failure_handler")
 						.permitAll())
-				.logout((logout) -> logout.invalidateHttpSession(true).clearAuthentication(true).deleteCookies("JSESSIONID").permitAll());
+				.logout((logout) -> logout.invalidateHttpSession(true).clearAuthentication(true).deleteCookies("JSESSIONID").permitAll())
+				;//.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
+				///.httpBasic(Customizer.withDefaults());
 
 		return http.build();
 	}

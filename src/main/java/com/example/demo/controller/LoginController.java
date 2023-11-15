@@ -37,16 +37,22 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login_success_handler")
-	public String loginSuccessHandler() {
+	public String loginCustomerSuccessHandler() {
 		// perform audit action
-		return "home";
+		return "redirect:/Home";
+	}
+	
+	@PostMapping("/admin/login_success_handler")
+	public String loginAdminSuccessHandler() {
+		// perform audit action
+		return "redirect:/admin/Register";
 	}
 
 	@PostMapping("/login_failure_handler")
 	public String loginFailureHandler() {
 		// perform audit action
 		System.out.println("Fail");
-		return "login";
+		return "redirect:/Login";
 	}
 	
 	@PostMapping("/admin/login_failure_handler")

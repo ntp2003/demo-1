@@ -27,6 +27,11 @@ public class RegisterController {
 		return new ModelAndView("register", "newCustomer", new CustomerAccount());
 	}
 	
+	@GetMapping("/admin/Register")
+	public String adminRegisterPage(HttpSession session) {
+		return "admin/register";
+	}
+	
 	@PostMapping("/Register")
 	public String register(ModelMap model, HttpSession session,@ModelAttribute("newCustomer")CustomerAccount newCustomer) {
 		CustomerAccount customer;

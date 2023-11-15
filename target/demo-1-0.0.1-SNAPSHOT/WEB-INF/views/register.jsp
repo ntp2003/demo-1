@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -14,11 +12,16 @@
 <link rel="stylesheet" href="assets/css/Login-Form-Basic-icons.css">
 <link rel="stylesheet"
 	href="assets/css/Navbar-with-menu-and-login-km-Navbar.css">
+	
+	    <style>
+	    .bg-opacity-10 {
+	  --bs-bg-opacity: 0.75;
+	}
+    </style>
 </head>
 
-<body>
-	<div class="container"
-		style="position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+<body style="background-color:rgb(231, 238, 243);">
+	<div class="container" style="margin-top: 150px;margin-bottom: 100px;">
 		<div
 			class="row d-flex d-xl-flex justify-content-center justify-content-xl-center">
 			<div
@@ -28,32 +31,27 @@
 					<div class="text-center">
 						<h4 class="text-dark mb-4">Create an Account!</h4>
 					</div>
-					<form:form cssClass="user" action="Register" method="post"
-						modelAttribute="newCustomer">
+					<form class="user" action="Register" method="post">
 						<div class="mb-3"></div>
 						<div class="row mb-3">
 							<div class="col-sm-6 col-md-6 mb-3 mb-sm-0">
-								<form:input class="form-control form-control form-control-user"
-									type="text" path="firstName" placeholder="First Name"
-									required=""/>
+								<input class="form-control form-control form-control-user"
+									type="text" placeholder="First Name" required="">
 							</div>
 							<div class="col-sm-6">
-								<form:input class="form-control form-control form-control-user"
-									type="text" path="lastName" placeholder="Last Name" required=""/>
+								<input class="form-control form-control form-control-user"
+									type="text" placeholder="Last Name" required="">
 							</div>
 						</div>
 						<div class="mb-3">
-							<form:input
-								cssClass="form-control form-control form-control-user"
-								type="email" path="email" id="email" placeholder="Email Address"
-								required="" />
+							<input class="form-control form-control form-control-user"
+								type="email" id="email" placeholder="Email Address" required="">
 						</div>
 						<div class="row mb-3">
 							<div class="col-sm-6 mb-3 mb-sm-0">
-								<form:input
-									cssClass="form-control form-control form-control-user"
-									type="password" path="password" id="password"
-									placeholder="Password" required="" />
+								<input class="form-control form-control form-control-user"
+									type="password" id="password" placeholder="Password"
+									required="">
 							</div>
 							<div class="col-sm-6">
 								<input class="form-control form-control form-control-user"
@@ -65,15 +63,11 @@
 							<p id="emailErrorMsg" class="text-danger" style="display: none;">Paragraph</p>
 							<p id="passwordErrorMsg" class="text-danger"
 								style="display: none;">Paragraph</p>
-							<p class="text-danger">${msg}</p>
-							<c:if test="${msg != \"\"}">
-								<c:set var="msg" value="${\"\"}" />
-							</c:if>
 						</div>
 						<button class="btn btn-primary d-block btn-user w-100"
 							id="submitBtn" type="submit">Register Account</button>
 						<hr>
-					</form:form>
+					</form>
 					<div class="text-center"></div>
 					<div class="text-center">
 						Already have an account? <a href="Login">Login</a>
