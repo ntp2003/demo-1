@@ -28,11 +28,11 @@ public class Size implements Serializable {
     private short sizeId;
     @Column(name="SizeName", nullable=false, length=255)
     private String sizeName;
-    @OneToMany(mappedBy="size")
-    private Set<ProductCategory> productCategory;
     @ManyToOne(optional=false)
     @JoinColumn(name="ProductTypeID", nullable=false)
     private ProductType productType;
+    @OneToMany(mappedBy="size")
+    private Set<StockDetails> stockDetails;
 
     /** Default constructor. */
     public Size() {
@@ -76,24 +76,6 @@ public class Size implements Serializable {
     }
 
     /**
-     * Access method for productCategory.
-     *
-     * @return the current value of productCategory
-     */
-    public Set<ProductCategory> getProductCategory() {
-        return productCategory;
-    }
-
-    /**
-     * Setter method for productCategory.
-     *
-     * @param aProductCategory the new value for productCategory
-     */
-    public void setProductCategory(Set<ProductCategory> aProductCategory) {
-        productCategory = aProductCategory;
-    }
-
-    /**
      * Access method for productType.
      *
      * @return the current value of productType
@@ -109,6 +91,24 @@ public class Size implements Serializable {
      */
     public void setProductType(ProductType aProductType) {
         productType = aProductType;
+    }
+
+    /**
+     * Access method for stockDetails.
+     *
+     * @return the current value of stockDetails
+     */
+    public Set<StockDetails> getStockDetails() {
+        return stockDetails;
+    }
+
+    /**
+     * Setter method for stockDetails.
+     *
+     * @param aStockDetails the new value for stockDetails
+     */
+    public void setStockDetails(Set<StockDetails> aStockDetails) {
+        stockDetails = aStockDetails;
     }
 
     /**

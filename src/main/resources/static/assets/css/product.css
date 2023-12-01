@@ -1,0 +1,87 @@
+.custom-btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #858796;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .35rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  border: 1px solid #e3e6f0;
+  width: 60px;
+  color: #3a3b45;
+  border-color: #cbd3e9;
+  padding: .25rem .5rem;
+  border-radius: .2rem;
+  margin-left: 5px;
+}
+
+.custom-btn .light-btn:hover {
+  color: #3a3b45;
+  background-color: #dde2f1;
+  border-color: #d4daed;
+}
+
+.custom-btn .light-btn:focus {
+  box-shadow: 0 0 0 .2rem rgba(220,221,225,.5);
+}
+
+.carousel {
+  position: relative;
+}
+
+.carousel-item img {
+  object-fit: cover;
+}
+
+#carousel-thumbs {
+  background: rgba(255,255,255,.3);
+  bottom: 0;
+  left: 0;
+  padding: 0 50px;
+  right: 0;
+}
+
+#carousel-thumbs img {
+  border: 5px solid transparent;
+  cursor: pointer;
+}
+
+#carousel-thumbs img:hover {
+  border-color: rgba(255,255,255,.3);
+}
+
+#carousel-thumbs .selected img {
+  border-color: #fff;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 50px;
+}
+
+@media all and (max-width: 767px) {
+  .carousel-container #carousel-thumbs img {
+    border-width: 3px;
+  }
+}
+
+@media all and (min-width: 576px) {
+  .carousel-container #carousel-thumbs {
+    position: absolute;
+  }
+}
+
+@media all and (max-width: 576px) {
+  .carousel-container #carousel-thumbs {
+    background: #ccccce;
+  }
+}
+

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/Features-Image-images.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark-Multi-Column-icons.css">
     <link rel="stylesheet" href="assets/css/Ludens-Client---Login-Dropdown.css">
-    <link
+    <!-- <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
       rel="stylesheet"
-    />
+    /> -->

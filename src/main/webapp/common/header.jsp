@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
+
 <header>
 	<div>
 		<nav
@@ -65,7 +65,7 @@
 									<a	class="dropdown-item link-danger" href="/customer/logout">Logout</a>
 								</div>
 							</div> --%>
-							<div class="dropdown">
+							<!-- <div class="dropdown">
 								<a
 									class="dropdown-toggle d-flex align-items-center hidden-arrow"
 									href="#" id="navbarDropdownMenuAvatar" role="button"
@@ -80,6 +80,22 @@
 									<li><a class="dropdown-item" href="/customer/logout">Logout</a>
 									</li>
 								</ul>
+							</div> -->
+							<div class="dropdown">
+								<a style="text-decoration: none" class="dropdown-toggle"
+									href="#" role="button" id="dropdownMenuAvatar"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <img
+									src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+									class="rounded-circle" height="30"
+									alt="Black and White Portrait of a Man" loading="lazy">
+								</a>
+								<ul class="dropdown-menu dropdown-menu-end"
+									aria-labelledby="dropdownMenuAvatar"
+									style = "margin-top: 10px;">
+									<li><a class="dropdown-item" href="#">My profile</a></li>
+									<li><a class="dropdown-item" href="/customer/logout">Logout</a></li>
+								</ul>
 							</div>
 						</sec:authorize>
 
@@ -90,9 +106,8 @@
 			</div>
 		</nav>
 	</div>
-	
-    <script
+	<!-- <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"
-    ></script>
+    ></script> -->
 </header>

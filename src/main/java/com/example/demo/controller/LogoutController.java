@@ -16,14 +16,6 @@ import com.example.demo.service.CustomerService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/Logout")
 public class LogoutController {
-	@Autowired
-	public CustomerService customerService;
-	
-	@GetMapping
-    public String loginPage(HttpSession session) {
-		session.removeAttribute("customer");
-		return "redirect:/Home";
-    }
+    
 }

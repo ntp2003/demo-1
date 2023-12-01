@@ -29,8 +29,6 @@ public class ProductCategory implements Serializable {
     private int productCategoryId;
     @Column(name="Color", nullable=false, length=100)
     private String color;
-    @Column(name="Stock", precision=10)
-    private int stock;
     @Column(name="Price", precision=19, scale=4)
     private BigDecimal price;
     @OneToMany(mappedBy="productCategory")
@@ -42,13 +40,10 @@ public class ProductCategory implements Serializable {
     @ManyToOne(optional=false)
     @JoinColumn(name="ProductID", nullable=false)
     private ProductCatalog productCatalog;
-    @ManyToOne(optional=false)
-    @JoinColumn(name="SizeID", nullable=false)
-    private Size size;
-    @OneToMany(mappedBy="productCategory")
-    private Set<ProductLotDetails> productLotDetails;
     @OneToMany(mappedBy="productCategory")
     private Set<ShoppingCart> shoppingCart;
+    @OneToMany(mappedBy="productCategory")
+    private Set<StockDetails> stockDetails;
 
     /** Default constructor. */
     public ProductCategory() {
@@ -89,24 +84,6 @@ public class ProductCategory implements Serializable {
      */
     public void setColor(String aColor) {
         color = aColor;
-    }
-
-    /**
-     * Access method for stock.
-     *
-     * @return the current value of stock
-     */
-    public int getStock() {
-        return stock;
-    }
-
-    /**
-     * Setter method for stock.
-     *
-     * @param aStock the new value for stock
-     */
-    public void setStock(int aStock) {
-        stock = aStock;
     }
 
     /**
@@ -200,42 +177,6 @@ public class ProductCategory implements Serializable {
     }
 
     /**
-     * Access method for size.
-     *
-     * @return the current value of size
-     */
-    public Size getSize() {
-        return size;
-    }
-
-    /**
-     * Setter method for size.
-     *
-     * @param aSize the new value for size
-     */
-    public void setSize(Size aSize) {
-        size = aSize;
-    }
-
-    /**
-     * Access method for productLotDetails.
-     *
-     * @return the current value of productLotDetails
-     */
-    public Set<ProductLotDetails> getProductLotDetails() {
-        return productLotDetails;
-    }
-
-    /**
-     * Setter method for productLotDetails.
-     *
-     * @param aProductLotDetails the new value for productLotDetails
-     */
-    public void setProductLotDetails(Set<ProductLotDetails> aProductLotDetails) {
-        productLotDetails = aProductLotDetails;
-    }
-
-    /**
      * Access method for shoppingCart.
      *
      * @return the current value of shoppingCart
@@ -251,6 +192,24 @@ public class ProductCategory implements Serializable {
      */
     public void setShoppingCart(Set<ShoppingCart> aShoppingCart) {
         shoppingCart = aShoppingCart;
+    }
+
+    /**
+     * Access method for stockDetails.
+     *
+     * @return the current value of stockDetails
+     */
+    public Set<StockDetails> getStockDetails() {
+        return stockDetails;
+    }
+
+    /**
+     * Setter method for stockDetails.
+     *
+     * @param aStockDetails the new value for stockDetails
+     */
+    public void setStockDetails(Set<StockDetails> aStockDetails) {
+        stockDetails = aStockDetails;
     }
 
     /**

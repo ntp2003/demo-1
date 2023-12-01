@@ -21,60 +21,19 @@ public class LoginController {
 	public CustomerService customerService;
 
 	@GetMapping(value = {"/Login","/customer/Login"})
-	public String loginPage(HttpSession session) {
-//		if (session.getAttribute("customer") != null) {
-//			return "redirect:/Home";
-//		}
+	public String loginPage() {
 		return "login";
 	}
 	
-	@GetMapping("/admin/Login")
-	public String loginAdminPage(HttpSession session) {
-//		if (session.getAttribute("customer") != null) {
-//			return "redirect:/Home";
-//		}
-		return "admin/login";
-	}
-	
 	@PostMapping("/login_success_handler")
-	public String loginCustomerSuccessHandler() {
-		// perform audit action
+	public String loginCustomerSuccessHandler() throws Exception {
+		customerService.recordSuccessLog();
 		return "redirect:/Home";
-	}
-	
-	@PostMapping("/admin/login_success_handler")
-	public String loginAdminSuccessHandler() {
-		// perform audit action
-		return "redirect:/admin/Register";
 	}
 
 	@PostMapping("/login_failure_handler")
 	public String loginFailureHandler() {
-		// perform audit action
 		System.out.println("Fail");
 		return "redirect:/Login";
 	}
-	
-	@PostMapping("/admin/login_failure_handler")
-	public String loginAdminFailureHandler() {
-		// perform audit action
-		System.out.println("Fail");
-		return "admin/login";
-	}
-	
-//	@PostMapping
-//	public String loginCustomerAccount(ModelMap model,HttpSession session ,@RequestParam("email") String email, @RequestParam("password") String password) {
-//		try {
-//			CustomerAccount customer = customerService.validateLoginInfo(email, password);
-//			session.setAttribute("customer", customer);
-//			model.addAttribute("messagelogin", "");
-//			return "redirect:/Home";
-//		} catch (Exception e) {
-//			String message = e.getMessage();
-//			
-//			model.addAttribute("messagelogin", message);
-//			
-//			return "login";
-//		}
-//	}
 }

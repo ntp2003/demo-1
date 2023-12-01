@@ -15,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
+import com.example.demo.handler.CustomAccessDeniedHandler;
 import com.example.demo.handler.CustomLogoutSuccessHandler;
 import com.example.demo.service.AdminUserDetailsService;
 import com.example.demo.service.CustomerUserDetailsService;
@@ -62,7 +63,8 @@ public class CustomerSecurityConfig {
 						.loginProcessingUrl("/Login").successForwardUrl("/login_success_handler")
 						.failureForwardUrl("/login_failure_handler").permitAll())
 				.logout((logout) -> logout.logoutUrl("/customer/logout").invalidateHttpSession(true).clearAuthentication(true)
-						.deleteCookies("JSESSIONID").logoutSuccessHandler(new CustomLogoutSuccessHandler()).permitAll());
+						.deleteCookies("JSESSIONID").logoutSuccessHandler(new CustomLogoutSuccessHandler()).permitAll())
+				.exceptionHandling(ex -> ex.accessDeniedHandler(new CustomAccessDeniedHandler("/Login")));
 
 		return http.build();
 	}

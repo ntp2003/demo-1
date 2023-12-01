@@ -49,15 +49,6 @@
 
 </head>
 <body>
-	<sec:authorize access="!isAuthenticated()">
-  <div>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-</sec:authorize>
-<sec:authorize access="hasRole('ADMIN')">
-   <div>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</div>
-</sec:authorize>
-<sec:authorize access="hasRole('CUSTOMER')">
-    authenticated as <sec:authentication property="principal.customerAccount.password" />  aaabb
-</sec:authorize>
 	<%@ include file="/common/header.jsp" %>
 	<sitemesh:write property='body'></sitemesh:write>
 	<%@ include file="/common/footer.jsp" %>

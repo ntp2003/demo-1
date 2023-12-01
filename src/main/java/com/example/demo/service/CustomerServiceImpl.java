@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,41 +15,49 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.CustomerAccount;
+import com.example.demo.model.LoginHistory;
 import com.example.demo.repository.CustomerRepo;
+import com.example.demo.repository.LoginHistoryRepo;
+import com.example.demo.security.userdetails.CustomerUserDetails;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private PasswordEncoder customerPasswordEncoder;
 	@Autowired
 	private CustomerRepo customerRepo;
-	
+	@Autowired
+	private LoginHistoryRepo loginHistoryRepo;
+
 	@Override
-	public com.example.demo.dto.CustomerAccount validateLoginInfo(String email, String password) throws Exception, UsernameNotFoundException {
-		Optional<CustomerAccount> customerOptional = customerRepo.findOptionalByEmail(email);
-		
-		if(customerOptional.isPresent()) {
-			CustomerAccount customer = customerOptional.get();
-			
-			if(customer.getPassword().equals(password)) {
-				return new com.example.demo.dto.CustomerAccount(customer);
-			}
-			
-			throw new Exception("Password is not correctly!");
+	public com.example.demo.dto.CustomerAccount registerCustomerAccount(
+			com.example.demo.dto.CustomerAccount customerAccount) throws Exception {
+		if (emailNotExists(customerAccount.getEmail())) {
+			CustomerAccount newCustomer = customerAccount.toModel();
+			newCustomer.setPassword(customerPasswordEncoder.encode(customerAccount.getPassword()));
+			return new com.example.demo.dto.CustomerAccount(customerRepo.save(newCustomer));
 		}
-		else {
-			throw new UsernameNotFoundException("Email is not exists!");
-		}
+		throw new Exception("Email already exists!");
 	}
 
 	@Override
-	public com.example.demo.dto.CustomerAccount registerCustomerAccount(com.example.demo.dto.CustomerAccount customerAccount) throws Exception {
-		if(customerRepo.existsCustomerAccountByEmail(customerAccount.getEmail()))
-		{
-			throw new Exception("Email already exists!");
+	public boolean emailNotExists(String email) {
+		return !customerRepo.existsCustomerAccountByEmail(email);
+	}
+
+	@Override
+	public void recordSuccessLog() throws Exception{
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			CustomerUserDetails customerUserDetails = (CustomerUserDetails) authentication.getPrincipal();
+			LoginHistory dataHistory = new LoginHistory();
+			dataHistory.setCustomerAccount(customerUserDetails.getCustomerAccount().toModel());
+			dataHistory.setStatus("Success");
+			dataHistory.setLoginTime(LocalDateTime.now());
+			loginHistoryRepo.save(dataHistory);
 		}
-		CustomerAccount newCustomer = customerAccount.toModel();
-		newCustomer.setPassword(customerPasswordEncoder.encode(customerAccount.getPassword()));
-		return new com.example.demo.dto.CustomerAccount(customerRepo.save(newCustomer));
+		else {
+			throw new Exception("Not have user information");
+		}
 	}
 }
