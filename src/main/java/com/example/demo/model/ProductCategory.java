@@ -32,16 +32,10 @@ public class ProductCategory implements Serializable {
     @Column(name="Price", precision=19, scale=4)
     private BigDecimal price;
     @OneToMany(mappedBy="productCategory")
-    private Set<Feedback> feedback;
-    @OneToMany(mappedBy="productCategory")
     private Set<ImageProduct> imageProduct;
-    @OneToMany(mappedBy="productCategory")
-    private Set<InvoiceDetail> invoiceDetail;
     @ManyToOne(optional=false)
     @JoinColumn(name="ProductID", nullable=false)
     private ProductCatalog productCatalog;
-    @OneToMany(mappedBy="productCategory")
-    private Set<ShoppingCart> shoppingCart;
     @OneToMany(mappedBy="productCategory")
     private Set<StockDetails> stockDetails;
 
@@ -105,24 +99,6 @@ public class ProductCategory implements Serializable {
     }
 
     /**
-     * Access method for feedback.
-     *
-     * @return the current value of feedback
-     */
-    public Set<Feedback> getFeedback() {
-        return feedback;
-    }
-
-    /**
-     * Setter method for feedback.
-     *
-     * @param aFeedback the new value for feedback
-     */
-    public void setFeedback(Set<Feedback> aFeedback) {
-        feedback = aFeedback;
-    }
-
-    /**
      * Access method for imageProduct.
      *
      * @return the current value of imageProduct
@@ -141,24 +117,6 @@ public class ProductCategory implements Serializable {
     }
 
     /**
-     * Access method for invoiceDetail.
-     *
-     * @return the current value of invoiceDetail
-     */
-    public Set<InvoiceDetail> getInvoiceDetail() {
-        return invoiceDetail;
-    }
-
-    /**
-     * Setter method for invoiceDetail.
-     *
-     * @param aInvoiceDetail the new value for invoiceDetail
-     */
-    public void setInvoiceDetail(Set<InvoiceDetail> aInvoiceDetail) {
-        invoiceDetail = aInvoiceDetail;
-    }
-
-    /**
      * Access method for productCatalog.
      *
      * @return the current value of productCatalog
@@ -174,24 +132,6 @@ public class ProductCategory implements Serializable {
      */
     public void setProductCatalog(ProductCatalog aProductCatalog) {
         productCatalog = aProductCatalog;
-    }
-
-    /**
-     * Access method for shoppingCart.
-     *
-     * @return the current value of shoppingCart
-     */
-    public Set<ShoppingCart> getShoppingCart() {
-        return shoppingCart;
-    }
-
-    /**
-     * Setter method for shoppingCart.
-     *
-     * @param aShoppingCart the new value for shoppingCart
-     */
-    public void setShoppingCart(Set<ShoppingCart> aShoppingCart) {
-        shoppingCart = aShoppingCart;
     }
 
     /**

@@ -29,7 +29,13 @@ public class StockDetails implements Serializable {
     @Column(name="Stock", nullable=false, precision=10)
     private int stock;
     @OneToMany(mappedBy="stockDetails")
+    private Set<Feedback> feedback;
+    @OneToMany(mappedBy="stockDetails")
+    private Set<InvoiceDetail> invoiceDetail;
+    @OneToMany(mappedBy="stockDetails")
     private Set<ProductLotDetails> productLotDetails;
+    @OneToMany(mappedBy="stockDetails")
+    private Set<ShoppingCart> shoppingCart;
     @ManyToOne(optional=false)
     @JoinColumn(name="ProductCategoryID", nullable=false)
     private ProductCategory productCategory;
@@ -79,6 +85,42 @@ public class StockDetails implements Serializable {
     }
 
     /**
+     * Access method for feedback.
+     *
+     * @return the current value of feedback
+     */
+    public Set<Feedback> getFeedback() {
+        return feedback;
+    }
+
+    /**
+     * Setter method for feedback.
+     *
+     * @param aFeedback the new value for feedback
+     */
+    public void setFeedback(Set<Feedback> aFeedback) {
+        feedback = aFeedback;
+    }
+
+    /**
+     * Access method for invoiceDetail.
+     *
+     * @return the current value of invoiceDetail
+     */
+    public Set<InvoiceDetail> getInvoiceDetail() {
+        return invoiceDetail;
+    }
+
+    /**
+     * Setter method for invoiceDetail.
+     *
+     * @param aInvoiceDetail the new value for invoiceDetail
+     */
+    public void setInvoiceDetail(Set<InvoiceDetail> aInvoiceDetail) {
+        invoiceDetail = aInvoiceDetail;
+    }
+
+    /**
      * Access method for productLotDetails.
      *
      * @return the current value of productLotDetails
@@ -94,6 +136,24 @@ public class StockDetails implements Serializable {
      */
     public void setProductLotDetails(Set<ProductLotDetails> aProductLotDetails) {
         productLotDetails = aProductLotDetails;
+    }
+
+    /**
+     * Access method for shoppingCart.
+     *
+     * @return the current value of shoppingCart
+     */
+    public Set<ShoppingCart> getShoppingCart() {
+        return shoppingCart;
+    }
+
+    /**
+     * Setter method for shoppingCart.
+     *
+     * @param aShoppingCart the new value for shoppingCart
+     */
+    public void setShoppingCart(Set<ShoppingCart> aShoppingCart) {
+        shoppingCart = aShoppingCart;
     }
 
     /**

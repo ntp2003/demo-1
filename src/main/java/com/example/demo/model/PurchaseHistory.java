@@ -5,6 +5,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class PurchaseHistory implements Serializable {
@@ -26,6 +28,8 @@ public class PurchaseHistory implements Serializable {
     private int purchaseId;
     @Column(name="Status", nullable=false, length=10)
     private String status;
+    @OneToMany(mappedBy="purchaseHistory")
+    private Set<Feedback> feedback;
     @ManyToOne(optional=false)
     @JoinColumn(name="AccountID", nullable=false)
     private CustomerAccount customerAccount;
@@ -72,6 +76,24 @@ public class PurchaseHistory implements Serializable {
      */
     public void setStatus(String aStatus) {
         status = aStatus;
+    }
+
+    /**
+     * Access method for feedback.
+     *
+     * @return the current value of feedback
+     */
+    public Set<Feedback> getFeedback() {
+        return feedback;
+    }
+
+    /**
+     * Setter method for feedback.
+     *
+     * @param aFeedback the new value for feedback
+     */
+    public void setFeedback(Set<Feedback> aFeedback) {
+        feedback = aFeedback;
     }
 
     /**

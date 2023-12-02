@@ -45,8 +45,6 @@ public class CustomerAccount implements Serializable {
     @JoinColumn(name="WalletID")
     private ElectronicWallet electronicWallet;
     @OneToMany(mappedBy="customerAccount")
-    private Set<Feedback> feedback;
-    @OneToMany(mappedBy="customerAccount")
     private Set<LoginHistory> loginHistory;
     @OneToMany(mappedBy="customerAccount")
     private Set<PurchaseHistory> purchaseHistory;
@@ -218,24 +216,6 @@ public class CustomerAccount implements Serializable {
      */
     public void setElectronicWallet(ElectronicWallet aElectronicWallet) {
         electronicWallet = aElectronicWallet;
-    }
-
-    /**
-     * Access method for feedback.
-     *
-     * @return the current value of feedback
-     */
-    public Set<Feedback> getFeedback() {
-        return feedback;
-    }
-
-    /**
-     * Setter method for feedback.
-     *
-     * @param aFeedback the new value for feedback
-     */
-    public void setFeedback(Set<Feedback> aFeedback) {
-        feedback = aFeedback;
     }
 
     /**

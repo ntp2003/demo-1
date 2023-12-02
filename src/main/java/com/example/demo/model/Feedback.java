@@ -22,13 +22,12 @@ public class Feedback implements Serializable {
      * IdClass for primary key when using JPA annotations
      */
     public class FeedbackId implements Serializable {
-        CustomerAccount customerAccount;
-        PurchaseInvoice purchaseInvoice;
-        ProductCategory productCategory;
+        PurchaseHistory purchaseHistory;
+        StockDetails stockDetails;
     }
 
     /** Primary key. */
-    protected static final String PK = "FeedbackPkFeedback";
+    protected static final String PK = "FeedbackPkFeedback1";
 
     @Column(name="Review")
     private String review;
@@ -38,16 +37,12 @@ public class Feedback implements Serializable {
     private short rating;
     @ManyToOne(optional=false)
     @Id
-    @JoinColumn(name="AccountID", nullable=false)
-    private CustomerAccount customerAccount;
+    @JoinColumn(name="PurchaseID", nullable=false)
+    private PurchaseHistory purchaseHistory;
     @ManyToOne(optional=false)
     @Id
-    @JoinColumn(name="InvoiceID", nullable=false)
-    private PurchaseInvoice purchaseInvoice;
-    @ManyToOne(optional=false)
-    @Id
-    @JoinColumn(name="ProductCategoryID", nullable=false)
-    private ProductCategory productCategory;
+    @JoinColumn(name="StockInventoryID", nullable=false)
+    private StockDetails stockDetails;
 
     /** Default constructor. */
     public Feedback() {
@@ -109,161 +104,108 @@ public class Feedback implements Serializable {
     }
 
     /**
-     * Access method for customerAccount.
+     * Access method for purchaseHistory.
      *
-     * @return the current value of customerAccount
+     * @return the current value of purchaseHistory
      */
-    public CustomerAccount getCustomerAccount() {
-        return customerAccount;
+    public PurchaseHistory getPurchaseHistory() {
+        return purchaseHistory;
     }
 
     /**
-     * Setter method for customerAccount.
+     * Setter method for purchaseHistory.
      *
-     * @param aCustomerAccount the new value for customerAccount
+     * @param aPurchaseHistory the new value for purchaseHistory
      */
-    public void setCustomerAccount(CustomerAccount aCustomerAccount) {
-        customerAccount = aCustomerAccount;
+    public void setPurchaseHistory(PurchaseHistory aPurchaseHistory) {
+        purchaseHistory = aPurchaseHistory;
     }
 
     /**
-     * Access method for purchaseInvoice.
+     * Access method for stockDetails.
      *
-     * @return the current value of purchaseInvoice
+     * @return the current value of stockDetails
      */
-    public PurchaseInvoice getPurchaseInvoice() {
-        return purchaseInvoice;
+    public StockDetails getStockDetails() {
+        return stockDetails;
     }
 
     /**
-     * Setter method for purchaseInvoice.
+     * Setter method for stockDetails.
      *
-     * @param aPurchaseInvoice the new value for purchaseInvoice
+     * @param aStockDetails the new value for stockDetails
      */
-    public void setPurchaseInvoice(PurchaseInvoice aPurchaseInvoice) {
-        purchaseInvoice = aPurchaseInvoice;
+    public void setStockDetails(StockDetails aStockDetails) {
+        stockDetails = aStockDetails;
     }
 
-    /**
-     * Access method for productCategory.
-     *
-     * @return the current value of productCategory
-     */
-    public ProductCategory getProductCategory() {
-        return productCategory;
-    }
+    /** Temporary value holder for group key fragment purchaseHistoryPurchaseId */
+    private transient int tempPurchaseHistoryPurchaseId;
 
     /**
-     * Setter method for productCategory.
-     *
-     * @param aProductCategory the new value for productCategory
-     */
-    public void setProductCategory(ProductCategory aProductCategory) {
-        productCategory = aProductCategory;
-    }
-
-    /** Temporary value holder for group key fragment customerAccountAccountId */
-    private transient int tempCustomerAccountAccountId;
-
-    /**
-     * Gets the key fragment accountId for member customerAccount.
-     * If this.customerAccount is null, a temporary stored value for the key
-     * fragment will be returned. The temporary value is set by setCustomerAccountAccountId.
+     * Gets the key fragment purchaseId for member purchaseHistory.
+     * If this.purchaseHistory is null, a temporary stored value for the key
+     * fragment will be returned. The temporary value is set by setPurchaseHistoryPurchaseId.
      * This behavior is required by some persistence libraries to allow
      * fetching of objects in arbitrary order.
      *
      * @return Current (or temporary) value of the key fragment
-     * @see CustomerAccount
+     * @see PurchaseHistory
      */
-    public int getCustomerAccountAccountId() {
-        return (getCustomerAccount() == null ? tempCustomerAccountAccountId : getCustomerAccount().getAccountId());
+    public int getPurchaseHistoryPurchaseId() {
+        return (getPurchaseHistory() == null ? tempPurchaseHistoryPurchaseId : getPurchaseHistory().getPurchaseId());
     }
 
     /**
-     * Sets the key fragment accountId from member customerAccount.
-     * If this.customerAccount is null, the passed value will be temporary
-     * stored, and returned by subsequent calls to getCustomerAccountAccountId.
+     * Sets the key fragment purchaseId from member purchaseHistory.
+     * If this.purchaseHistory is null, the passed value will be temporary
+     * stored, and returned by subsequent calls to getPurchaseHistoryPurchaseId.
      * This behaviour is required by some persistence libraries to allow
      * fetching of objects in arbitrary order.
      *
-     * @param aAccountId New value for the key fragment
-     * @see CustomerAccount
+     * @param aPurchaseId New value for the key fragment
+     * @see PurchaseHistory
      */
-    public void setCustomerAccountAccountId(int aAccountId) {
-        if (getCustomerAccount() == null) {
-            tempCustomerAccountAccountId = aAccountId;
+    public void setPurchaseHistoryPurchaseId(int aPurchaseId) {
+        if (getPurchaseHistory() == null) {
+            tempPurchaseHistoryPurchaseId = aPurchaseId;
         } else {
-            getCustomerAccount().setAccountId(aAccountId);
+            getPurchaseHistory().setPurchaseId(aPurchaseId);
         }
     }
 
-    /** Temporary value holder for group key fragment purchaseInvoiceInvoiceId */
-    private transient int tempPurchaseInvoiceInvoiceId;
+    /** Temporary value holder for group key fragment stockDetailsStockInventoryId */
+    private transient int tempStockDetailsStockInventoryId;
 
     /**
-     * Gets the key fragment invoiceId for member purchaseInvoice.
-     * If this.purchaseInvoice is null, a temporary stored value for the key
-     * fragment will be returned. The temporary value is set by setPurchaseInvoiceInvoiceId.
+     * Gets the key fragment stockInventoryId for member stockDetails.
+     * If this.stockDetails is null, a temporary stored value for the key
+     * fragment will be returned. The temporary value is set by setStockDetailsStockInventoryId.
      * This behavior is required by some persistence libraries to allow
      * fetching of objects in arbitrary order.
      *
      * @return Current (or temporary) value of the key fragment
-     * @see PurchaseInvoice
+     * @see StockDetails
      */
-    public int getPurchaseInvoiceInvoiceId() {
-        return (getPurchaseInvoice() == null ? tempPurchaseInvoiceInvoiceId : getPurchaseInvoice().getInvoiceId());
+    public int getStockDetailsStockInventoryId() {
+        return (getStockDetails() == null ? tempStockDetailsStockInventoryId : getStockDetails().getStockInventoryId());
     }
 
     /**
-     * Sets the key fragment invoiceId from member purchaseInvoice.
-     * If this.purchaseInvoice is null, the passed value will be temporary
-     * stored, and returned by subsequent calls to getPurchaseInvoiceInvoiceId.
+     * Sets the key fragment stockInventoryId from member stockDetails.
+     * If this.stockDetails is null, the passed value will be temporary
+     * stored, and returned by subsequent calls to getStockDetailsStockInventoryId.
      * This behaviour is required by some persistence libraries to allow
      * fetching of objects in arbitrary order.
      *
-     * @param aInvoiceId New value for the key fragment
-     * @see PurchaseInvoice
+     * @param aStockInventoryId New value for the key fragment
+     * @see StockDetails
      */
-    public void setPurchaseInvoiceInvoiceId(int aInvoiceId) {
-        if (getPurchaseInvoice() == null) {
-            tempPurchaseInvoiceInvoiceId = aInvoiceId;
+    public void setStockDetailsStockInventoryId(int aStockInventoryId) {
+        if (getStockDetails() == null) {
+            tempStockDetailsStockInventoryId = aStockInventoryId;
         } else {
-            getPurchaseInvoice().setInvoiceId(aInvoiceId);
-        }
-    }
-
-    /** Temporary value holder for group key fragment productCategoryProductCategoryId */
-    private transient int tempProductCategoryProductCategoryId;
-
-    /**
-     * Gets the key fragment productCategoryId for member productCategory.
-     * If this.productCategory is null, a temporary stored value for the key
-     * fragment will be returned. The temporary value is set by setProductCategoryProductCategoryId.
-     * This behavior is required by some persistence libraries to allow
-     * fetching of objects in arbitrary order.
-     *
-     * @return Current (or temporary) value of the key fragment
-     * @see ProductCategory
-     */
-    public int getProductCategoryProductCategoryId() {
-        return (getProductCategory() == null ? tempProductCategoryProductCategoryId : getProductCategory().getProductCategoryId());
-    }
-
-    /**
-     * Sets the key fragment productCategoryId from member productCategory.
-     * If this.productCategory is null, the passed value will be temporary
-     * stored, and returned by subsequent calls to getProductCategoryProductCategoryId.
-     * This behaviour is required by some persistence libraries to allow
-     * fetching of objects in arbitrary order.
-     *
-     * @param aProductCategoryId New value for the key fragment
-     * @see ProductCategory
-     */
-    public void setProductCategoryProductCategoryId(int aProductCategoryId) {
-        if (getProductCategory() == null) {
-            tempProductCategoryProductCategoryId = aProductCategoryId;
-        } else {
-            getProductCategory().setProductCategoryId(aProductCategoryId);
+            getStockDetails().setStockInventoryId(aStockInventoryId);
         }
     }
 
@@ -281,13 +223,10 @@ public class Feedback implements Serializable {
             return false;
         }
         Feedback that = (Feedback) other;
-        if (this.getCustomerAccountAccountId() != that.getCustomerAccountAccountId()) {
+        if (this.getPurchaseHistoryPurchaseId() != that.getPurchaseHistoryPurchaseId()) {
             return false;
         }
-        if (this.getPurchaseInvoiceInvoiceId() != that.getPurchaseInvoiceInvoiceId()) {
-            return false;
-        }
-        if (this.getProductCategoryProductCategoryId() != that.getProductCategoryProductCategoryId()) {
+        if (this.getStockDetailsStockInventoryId() != that.getStockDetailsStockInventoryId()) {
             return false;
         }
         return true;
@@ -314,11 +253,9 @@ public class Feedback implements Serializable {
     public int hashCode() {
         int i;
         int result = 17;
-        i = getCustomerAccountAccountId();
+        i = getPurchaseHistoryPurchaseId();
         result = 37*result + i;
-        i = getPurchaseInvoiceInvoiceId();
-        result = 37*result + i;
-        i = getProductCategoryProductCategoryId();
+        i = getStockDetailsStockInventoryId();
         result = 37*result + i;
         return result;
     }
@@ -331,9 +268,8 @@ public class Feedback implements Serializable {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer("[Feedback |");
-        sb.append(" customerAccountAccountId=").append(getCustomerAccountAccountId());
-        sb.append(" purchaseInvoiceInvoiceId=").append(getPurchaseInvoiceInvoiceId());
-        sb.append(" productCategoryProductCategoryId=").append(getProductCategoryProductCategoryId());
+        sb.append(" purchaseHistoryPurchaseId=").append(getPurchaseHistoryPurchaseId());
+        sb.append(" stockDetailsStockInventoryId=").append(getStockDetailsStockInventoryId());
         sb.append("]");
         return sb.toString();
     }
@@ -345,9 +281,8 @@ public class Feedback implements Serializable {
      */
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
-        ret.put("customerAccountAccountId", Integer.valueOf(getCustomerAccountAccountId()));
-        ret.put("purchaseInvoiceInvoiceId", Integer.valueOf(getPurchaseInvoiceInvoiceId()));
-        ret.put("productCategoryProductCategoryId", Integer.valueOf(getProductCategoryProductCategoryId()));
+        ret.put("purchaseHistoryPurchaseId", Integer.valueOf(getPurchaseHistoryPurchaseId()));
+        ret.put("stockDetailsStockInventoryId", Integer.valueOf(getStockDetailsStockInventoryId()));
         return ret;
     }
 

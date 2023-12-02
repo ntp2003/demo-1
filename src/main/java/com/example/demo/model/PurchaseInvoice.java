@@ -48,8 +48,6 @@ public class PurchaseInvoice implements Serializable {
     @Column(name="CompletedTime")
     private LocalDateTime completedTime;
     @OneToMany(mappedBy="purchaseInvoice")
-    private Set<Feedback> feedback;
-    @OneToMany(mappedBy="purchaseInvoice")
     private Set<InvoiceDetail> invoiceDetail;
     @OneToMany(mappedBy="purchaseInvoice")
     private Set<PurchaseHistory> purchaseHistory;
@@ -222,24 +220,6 @@ public class PurchaseInvoice implements Serializable {
      */
     public void setCompletedTime(LocalDateTime aCompletedTime) {
         completedTime = aCompletedTime;
-    }
-
-    /**
-     * Access method for feedback.
-     *
-     * @return the current value of feedback
-     */
-    public Set<Feedback> getFeedback() {
-        return feedback;
-    }
-
-    /**
-     * Setter method for feedback.
-     *
-     * @param aFeedback the new value for feedback
-     */
-    public void setFeedback(Set<Feedback> aFeedback) {
-        feedback = aFeedback;
     }
 
     /**

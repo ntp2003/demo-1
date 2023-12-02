@@ -22,7 +22,7 @@ public class ShoppingCart implements Serializable {
      */
     public class ShoppingCartId implements Serializable {
         CustomerAccount customerAccount;
-        ProductCategory productCategory;
+        StockDetails stockDetails;
     }
 
     /** Primary key. */
@@ -36,8 +36,8 @@ public class ShoppingCart implements Serializable {
     private CustomerAccount customerAccount;
     @ManyToOne(optional=false)
     @Id
-    @JoinColumn(name="ProductCategoryID", nullable=false)
-    private ProductCategory productCategory;
+    @JoinColumn(name="StockInventoryID", nullable=false)
+    private StockDetails stockDetails;
 
     /** Default constructor. */
     public ShoppingCart() {
@@ -81,21 +81,21 @@ public class ShoppingCart implements Serializable {
     }
 
     /**
-     * Access method for productCategory.
+     * Access method for stockDetails.
      *
-     * @return the current value of productCategory
+     * @return the current value of stockDetails
      */
-    public ProductCategory getProductCategory() {
-        return productCategory;
+    public StockDetails getStockDetails() {
+        return stockDetails;
     }
 
     /**
-     * Setter method for productCategory.
+     * Setter method for stockDetails.
      *
-     * @param aProductCategory the new value for productCategory
+     * @param aStockDetails the new value for stockDetails
      */
-    public void setProductCategory(ProductCategory aProductCategory) {
-        productCategory = aProductCategory;
+    public void setStockDetails(StockDetails aStockDetails) {
+        stockDetails = aStockDetails;
     }
 
     /** Temporary value holder for group key fragment customerAccountAccountId */
@@ -133,38 +133,38 @@ public class ShoppingCart implements Serializable {
         }
     }
 
-    /** Temporary value holder for group key fragment productCategoryProductCategoryId */
-    private transient int tempProductCategoryProductCategoryId;
+    /** Temporary value holder for group key fragment stockDetailsStockInventoryId */
+    private transient int tempStockDetailsStockInventoryId;
 
     /**
-     * Gets the key fragment productCategoryId for member productCategory.
-     * If this.productCategory is null, a temporary stored value for the key
-     * fragment will be returned. The temporary value is set by setProductCategoryProductCategoryId.
+     * Gets the key fragment stockInventoryId for member stockDetails.
+     * If this.stockDetails is null, a temporary stored value for the key
+     * fragment will be returned. The temporary value is set by setStockDetailsStockInventoryId.
      * This behavior is required by some persistence libraries to allow
      * fetching of objects in arbitrary order.
      *
      * @return Current (or temporary) value of the key fragment
-     * @see ProductCategory
+     * @see StockDetails
      */
-    public int getProductCategoryProductCategoryId() {
-        return (getProductCategory() == null ? tempProductCategoryProductCategoryId : getProductCategory().getProductCategoryId());
+    public int getStockDetailsStockInventoryId() {
+        return (getStockDetails() == null ? tempStockDetailsStockInventoryId : getStockDetails().getStockInventoryId());
     }
 
     /**
-     * Sets the key fragment productCategoryId from member productCategory.
-     * If this.productCategory is null, the passed value will be temporary
-     * stored, and returned by subsequent calls to getProductCategoryProductCategoryId.
+     * Sets the key fragment stockInventoryId from member stockDetails.
+     * If this.stockDetails is null, the passed value will be temporary
+     * stored, and returned by subsequent calls to getStockDetailsStockInventoryId.
      * This behaviour is required by some persistence libraries to allow
      * fetching of objects in arbitrary order.
      *
-     * @param aProductCategoryId New value for the key fragment
-     * @see ProductCategory
+     * @param aStockInventoryId New value for the key fragment
+     * @see StockDetails
      */
-    public void setProductCategoryProductCategoryId(int aProductCategoryId) {
-        if (getProductCategory() == null) {
-            tempProductCategoryProductCategoryId = aProductCategoryId;
+    public void setStockDetailsStockInventoryId(int aStockInventoryId) {
+        if (getStockDetails() == null) {
+            tempStockDetailsStockInventoryId = aStockInventoryId;
         } else {
-            getProductCategory().setProductCategoryId(aProductCategoryId);
+            getStockDetails().setStockInventoryId(aStockInventoryId);
         }
     }
 
@@ -185,7 +185,7 @@ public class ShoppingCart implements Serializable {
         if (this.getCustomerAccountAccountId() != that.getCustomerAccountAccountId()) {
             return false;
         }
-        if (this.getProductCategoryProductCategoryId() != that.getProductCategoryProductCategoryId()) {
+        if (this.getStockDetailsStockInventoryId() != that.getStockDetailsStockInventoryId()) {
             return false;
         }
         return true;
@@ -214,7 +214,7 @@ public class ShoppingCart implements Serializable {
         int result = 17;
         i = getCustomerAccountAccountId();
         result = 37*result + i;
-        i = getProductCategoryProductCategoryId();
+        i = getStockDetailsStockInventoryId();
         result = 37*result + i;
         return result;
     }
@@ -228,7 +228,7 @@ public class ShoppingCart implements Serializable {
     public String toString() {
         StringBuffer sb = new StringBuffer("[ShoppingCart |");
         sb.append(" customerAccountAccountId=").append(getCustomerAccountAccountId());
-        sb.append(" productCategoryProductCategoryId=").append(getProductCategoryProductCategoryId());
+        sb.append(" stockDetailsStockInventoryId=").append(getStockDetailsStockInventoryId());
         sb.append("]");
         return sb.toString();
     }
@@ -241,7 +241,7 @@ public class ShoppingCart implements Serializable {
     public Map<String, Object> getPrimaryKey() {
         Map<String, Object> ret = new LinkedHashMap<String, Object>(6);
         ret.put("customerAccountAccountId", Integer.valueOf(getCustomerAccountAccountId()));
-        ret.put("productCategoryProductCategoryId", Integer.valueOf(getProductCategoryProductCategoryId()));
+        ret.put("stockDetailsStockInventoryId", Integer.valueOf(getStockDetailsStockInventoryId()));
         return ret;
     }
 
