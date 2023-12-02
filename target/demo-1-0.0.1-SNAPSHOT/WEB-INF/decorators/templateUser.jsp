@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ include file="/common/taglib.jsp" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	<sitemesh:write property=head></sitemesh:write>
 <link rel="stylesheet" href="assets/css/newBootrapMin.css">
 
-	<%
+	<%-- <%
 	// Kiểm tra sự tồn tại của session "customer"
 	if (session.getAttribute("customer") != null) {
 	    // Session "customer" đã tồn tại
@@ -39,10 +40,7 @@
 	    </style>
 	<%
 	}
-	%>
-
-
-
+	%> --%>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js" data-reflow-store="408435610"></script>
     <script src="assets/js/bs-init.js"></script>
@@ -51,7 +49,6 @@
 
 </head>
 <body>
-
 	<%@ include file="/common/header.jsp" %>
 	<sitemesh:write property='body'></sitemesh:write>
 	<%@ include file="/common/footer.jsp" %>

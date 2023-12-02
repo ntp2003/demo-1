@@ -33,7 +33,7 @@ $(document).ready(function() {
 			fileIconElement.classList.add("far", "fa-file-alt");
 			fileAttachmentElement.appendChild(fileIconElement);
 		}
-		// File details
+
 		const fileDetailElement = document.createElement("div");
 		fileDetailElement.classList.add("file-detail");
 
@@ -107,7 +107,7 @@ $(document).ready(function() {
 	const LoadProductType = () => {
 		$.getJSON('/admin/product-type', function(json) {
 			var x = $('#productType');
-			const options = json.map(x => `<option value=${JSON.stringify(x)}>${x.typeName}</option>`);
+			const options = json.map(i => `<option value='${JSON.stringify(i)}'>${i.typeName}</option>`);
 			x.append(options);
 			x.children(":first").attr("selected");
 		});
@@ -116,9 +116,10 @@ $(document).ready(function() {
 
 	$("#addProductForm").submit(function(event) {
 		event.preventDefault();
+		console.log($('#productType option:selected').val());
 		var formData = {
 			'productName': $('#productName').val(),
-			'productType': JSON.parse($('#productType').val()),
+			'productType': JSON.parse($('#productType option:selected').val()),
 			'origin': $('#origin').val(),
 			'brand': $('#brand').val(),
 			'releaseDate': $('#releaseDate').val(),
@@ -133,16 +134,20 @@ $(document).ready(function() {
 			cache: false,
 			success: function(result) {
 				$.notify("Thêm sản phẩm thành công!", "success");
+				document.getElementById('addProductForm').reset();
+				$('#add-product-modal').modal('hide');
+				LoadProductCatalog();
 			},
 			error: function() {
 				$.notify("Thêm sản phẩm thất bại!", "danger");
 			}
 		});
 	});
-
-	const LoadProductCatalog = () => {
-		$.getJSON('/admin/product-list', function(json) {
+	
+	function LoadProductCatalog(page = 0, size = 10, sort = 'productName,asc'){
+		$.getJSON(`/admin/product-list?page=${page}&size=${size}&sort=${sort}`, function(json) {
 			var pCatalogList = json.content;
+			console.log(json);
 			$("#productCatalogsTable tbody").html('');
 			pCatalogList.forEach((i) => {
 				$("#productCatalogsTable tbody").append(
@@ -172,9 +177,56 @@ $(document).ready(function() {
                       </tr>`
 				)
 			});
+			let pagination = $('#pagination-box .pagination');
+			pagination.html('');
+			pagination.append(`<li class=""><button class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></button></li>
+							<li class=""><button class="page-link" aria-label="Next"><span aria-hidden="true">»</span></button></li>`)
+			let firstPage = pagination.children(':first-child');
+			let lastPage = pagination.children(':last-child');
+			if (json.first) {
+				firstPage.attr('class', 'page-item disabled');
+			}
+			else {
+				firstPage.attr('class', 'page-item');
+				firstPage.children('button').click(function() { LoadProductCatalog(0,$('#page-size option:selected').val(), $('#sort-option').attr('value'))});
+			}
+
+			if (json.last) {
+				lastPage.attr('class', 'page-item disabled');
+			}
+			else {
+				lastPage.attr('class', 'page-item');
+				lastPage.children('button').click(function() { LoadProductCatalog(json.totalPages - 1,$('#page-size option:selected').val(), $('#sort-option').attr('value'))});
+			}
+			if(!json.empty){
+				let count = 0;
+				firstPage.after(`<li class="page-item active"><a class="page-link">${json.number + 1}</a></li>`);
+				for(let i = 1; (i < 3 || (json.totalPages < i + json.number + 1 && json.totalPages + i - json.number - 1 < 5) ) && (json.number + 1 - i) > 0; i++){
+					count ++;
+					let newElement = $(`<li class="page-item"><button class="page-link">${json.number + 1 - i}</button></li>`);
+					firstPage.after(newElement);
+					newElement.click(function() { LoadProductCatalog(json.number - i,$('#page-size option:selected').val(), $('#sort-option').attr('value'))});
+				}
+				for(let i = 1; count < 4 && (json.number + i) < json.totalPages; i++){
+					count ++;
+					let newElement = $(`<li class="page-item"><button class="page-link">${json.number + 1 + i}</button></li>`);
+					lastPage.before(newElement);
+					newElement.click(function() { LoadProductCatalog(json.number + i,$('#page-size option:selected').val(), $('#sort-option').attr('value'))});
+				}
+			}
+			$('#p-catalog-dt-info').html(`Showing ${json.pageable.offset + 1} to ${json.pageable.offset + json.numberOfElements} of ${json.totalElements}`);
 		});
 	};
-
+	
+	$('#sort-option .dropdown-item').click(function(){
+		$(this).parent().attr('value',$(this).attr('value'));
+		LoadProductCatalog(0,$('#page-size option:selected').val(), $(this).attr('value'));
+	});
+	
+	$('#page-size').change(function(){
+		LoadProductCatalog(0,$(this).val(), $('#sort-option').attr('value'));
+	});
+	
 	LoadProductCatalog();
 	$("[id^=carousel-selector-]").click(function() {
 		var id_selector = $(this).attr("id");
