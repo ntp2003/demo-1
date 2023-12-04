@@ -26,11 +26,11 @@ public interface AdminProductService {
 	
 	public ProductCategory saveProductCategory(ProductCategory productCategory);
 	
-	public boolean deleteProductCatagory(int productCatagoryId);
+	public boolean deleteProductCategory(int productCategoryId);
 	
-	public boolean uploadImages(int productCatagoryId, List<String> dataURLs);
+	public boolean uploadImages(int productCategoryId, String dataURLs);
 	
-	public List<ImageProduct> getProductImages(int productCatagoryId);
+	public List<ImageProduct> getProductImages(int productCategoryId);
 	
 	public boolean deleteImage(ImageProduct imageProduct);
 }

@@ -67,7 +67,8 @@ public class AdminProductControler {
 
 	@GetMapping("/product-category-list")
 	@ResponseBody
-	public ResponseEntity<List<ProductCategory>> findProductCategories(short productId) {
+	public ResponseEntity<List<ProductCategory>> findProductCategories(@RequestParam("productId") short productId) {
+		System.out.println(productId);
 		return ResponseEntity.ok(adminProductService.findProductCategories(productId));
 	}
 	
@@ -84,8 +85,8 @@ public class AdminProductControler {
 	
 	@DeleteMapping("/delete-product-category")
 	@ResponseBody
-	public ResponseEntity<Void> deleteProductCategory(@RequestParam("productCatagoryId") int productCatagoryId){
-		if(adminProductService.deleteProductCatagory(productCatagoryId)) {
+	public ResponseEntity<Void> deleteProductCategory(@RequestParam("productCategoryId") int productCategoryId){
+		if(adminProductService.deleteProductCategory(productCategoryId)) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
@@ -94,8 +95,8 @@ public class AdminProductControler {
 	@PostMapping("/upload-images")
 	@ResponseBody
 	public ResponseEntity<Void> uploadImages
-	(@RequestParam("productCatagoryId") int productCatagoryId, @RequestParam("dataURLs") List<String> dataURLs){
-		if(adminProductService.uploadImages(productCatagoryId, dataURLs)) {
+	(@RequestParam("productCategoryId") int productCategoryId, @RequestParam("dataURL") String dataURL){
+		if(adminProductService.uploadImages(productCategoryId, dataURL)) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
@@ -103,8 +104,8 @@ public class AdminProductControler {
 	
 	@GetMapping("/get-images")
 	@ResponseBody
-	public ResponseEntity<List<ImageProduct>> getProductImages(int productCatagoryId) {
-		return ResponseEntity.ok(adminProductService.getProductImages(productCatagoryId));
+	public ResponseEntity<List<ImageProduct>> getProductImages(@RequestParam("productCategoryId") int productCategoryId) {
+		return ResponseEntity.ok(adminProductService.getProductImages(productCategoryId));
 	}
 	
 	@DeleteMapping("/delete-image")

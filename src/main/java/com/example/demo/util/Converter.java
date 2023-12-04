@@ -14,6 +14,7 @@ import org.eclipse.tags.shaded.org.apache.bcel.generic.NEW;
 
 public class Converter {
 	public static File DataURLImagetoFile(String dataURL) throws IOException {
+		System.out.print(dataURL);
 		File file = File.createTempFile(generateUniqueFileName(), "png");
 		byte[] data = java.util.Base64.getDecoder().decode(dataURL.substring(dataURL.indexOf(",") + 1));
 		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(data));
