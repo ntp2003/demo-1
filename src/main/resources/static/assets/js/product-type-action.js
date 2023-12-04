@@ -278,7 +278,8 @@ $(document).ready(function() {
                       </tr>`);
 				$("#product-category-dt tbody").append(p);
 				p.find('.add-images').click(function() {
-					$("#add-images").data('info', p.data('info'))
+					$("#add-images").data('info', p.data('info'));
+					$("#show-type").modal('hide');
 					$("#add-images").modal("show");
 				});
 			});
@@ -320,7 +321,6 @@ $(document).ready(function() {
 					$("#show-type").data('info', p.data('info'))
 					$("#show-type").modal("show");
 				});
-
 			});
 			let pagination = $('#pagination-box .pagination');
 			pagination.html('');

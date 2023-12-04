@@ -330,8 +330,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade" role="dialog" tabindex="-1" id="show-type"
-				aria-labelledby="exampleModalLabel">
+			<div class="modal fade" role="dialog" tabindex="-1" id="show-type">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
