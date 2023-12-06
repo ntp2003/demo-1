@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
+
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -19,6 +20,14 @@
 <link rel="stylesheet" href="/assets/css/colorPick.css" />
 <link rel="stylesheet" href="/assets/css/product.css" />
 <link rel="stylesheet" href="/assets/css/product.compiled.css" />
+<style>
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+</style>
+
 </head>
 
 <body>
@@ -28,12 +37,14 @@
 			<div class="container-fluid p-0">
 				<a
 					class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
-					href="#"><div class="sidebar-brand-icon rotate-n-15">
+					href="#">
+					<div class="sidebar-brand-icon rotate-n-15">
 						<i class="fas fa-laugh-wink"></i>
 					</div>
 					<div class="sidebar-brand-text mx-3">
 						<span>Brand</span>
-					</div></a>
+					</div>
+				</a>
 				<hr class="sidebar-divider my-0" />
 				<ul class="navbar-nav text-light" id="accordionSidebar">
 					<li class="nav-item"><a class="nav-link" href="index.html"><i
@@ -112,8 +123,8 @@
 									class="col-md-6 col-xl-5 text-nowrap d-flex justify-content-start align-items-xl-center column-gap-3">
 									<div>
 										<label class="form-label" style="margin: 0px">Show&nbsp;
-										</label><select class="form-select-sm d-inline-block form-select" id="page-size"
-											style="width: 100px">
+										</label><select class="form-select-sm d-inline-block form-select"
+											id="page-size" style="width: 100px">
 											<option value="10" selected="">10</option>
 											<option value="25">25</option>
 											<option value="50">50</option>
@@ -126,11 +137,13 @@
 												aria-expanded="false" data-bs-toggle="dropdown"
 												style="color: rgb(255, 255, 255)" type="button">
 												Sort By</button>
-											<div class="dropdown-menu" id="sort-option" value="productName,asc">
-												<a class="dropdown-item" value="productName,asc">ProductName: A -&gt;
-													Z</a> <a class="dropdown-item" value="productName,desc">ProductName: Z
-													-&gt; A</a> <a class="dropdown-item" value="purchaseCount,asc">PuchaseCount:
-													increases</a> <a class="dropdown-item" value="purchaseCount,desc">PuchaseCount:
+											<div class="dropdown-menu" id="sort-option"
+												value="productName,asc">
+												<a class="dropdown-item" value="productName,asc">ProductName:
+													A -&gt; Z</a> <a class="dropdown-item" value="productName,desc">ProductName:
+													Z -&gt; A</a> <a class="dropdown-item"
+													value="purchaseCount,asc">PuchaseCount: increases</a> <a
+													class="dropdown-item" value="purchaseCount,desc">PuchaseCount:
 													decreases</a>
 											</div>
 										</div>
@@ -145,10 +158,10 @@
 											<svg xmlns="http://www.w3.org/2000/svg" width="1em"
 												height="1em" viewbox="0 0 24 24" fill="none"
 												style="color: var(--bs-btn-hover-color); background: var(--bs-green); border-color: var(--bs-form-valid-color); position: static; display: inline-grid;">
-                          <path
+													<path
 													d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
 													fill="currentColor"></path>
-                        </svg>
+												</svg>
 											Add Product
 										</button>
 									</div>
@@ -343,17 +356,20 @@
 								<div class="container">
 									<div class="row">
 										<div class="col-md-12">
-											<label class="col-form-label" id="product-id-lbl">Mã sản phẩm :</label>
+											<label class="col-form-label" id="product-id-lbl">Mã
+												sản phẩm :</label>
 										</div>
 									</div>
 								</div>
 								<div class="container">
 									<div class="row">
 										<div class="col-md-6">
-											<label class="col-form-label" id="product-brand-lbl">Thương hiệu :</label>
+											<label class="col-form-label" id="product-brand-lbl">Thương
+												hiệu :</label>
 										</div>
 										<div class="col-md-6">
-											<label class="col-form-label" id="product-re-date-lbl">Ngày phát hành :</label>
+											<label class="col-form-label" id="product-re-date-lbl">Ngày
+												phát hành :</label>
 										</div>
 									</div>
 								</div>
@@ -369,20 +385,18 @@
 											class="col-md-12 d-lg-flex justify-content-lg-end align-items-lg-center"
 											style="display: flex; padding-bottom: 0px; margin-bottom: 2px; width: auto;">
 											<div class="mail-custom-btn">
-												<a class="custom-btn light-btn" href="#" role="button"
+												<a class="custom-btn light-btn" role="button"
 													style="background: #1eb53a; color: var(--bs-body-bg);"
 													data-bs-target="#add-type" data-bs-toggle="modal"><i
 													class="fas fa-plus"
 													style="font-size: 21px; padding-bottom: 0px; padding-right: 0px; padding-left: 0px; transform: translateY(2px);"></i>
-												</a>
-												<a  id = "delete-p-categories"
-													class="custom-btn light-btn" role="button"
+												</a> <a id="delete-p-categories" class="custom-btn light-btn"
+													role="button"
 													style="background: #e84c3d; color: var(--bs-body-bg);"><i
 													class="fa fa-trash"
-													style="font-size: 22px; transform: translateY(2px);"></i>
-												</a>
-												<a
-													class="custom-btn light-btn" href="#" role="button"
+													style="font-size: 22px; transform: translateY(2px);"></i> </a>
+												<a id="refresh-categories" class="custom-btn light-btn"
+													role="button"
 													style="background: #3299dc; color: var(--bs-body-bg);"><i
 													class="fas fa-refresh"
 													style="font-size: 21px; padding-bottom: 0px; padding-right: 0px; padding-left: 0px; transform: translateY(2px);"></i></a>
@@ -406,7 +420,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													
+
 												</tbody>
 											</table>
 										</div>
@@ -441,7 +455,7 @@
 											<label class="form-label">Color :</label>
 										</div>
 										<div>
-											<div  class="picker"></div>
+											<div class="picker"></div>
 										</div>
 									</div>
 									<div class="d-flex mt-2">
@@ -449,8 +463,9 @@
 											<label class="form-label">Price:</label>
 										</div>
 										<div>
-											<input class="form-control form-control-sm" type="text" id="price-input"
-												onkeypress="return isNumber(event)" onpaste="return false;" required/>
+											<input class="form-control form-control-sm" type="text"
+												id="price-input" onkeypress="return isNumber(event)"
+												onpaste="return false;" required />
 										</div>
 									</div>
 								</div>
@@ -472,199 +487,42 @@
 							<button class="btn-close" aria-label="Close"
 								data-bs-dismiss="modal" type="button"></button>
 						</div>
-						<div class="modal-body mt-0">
+						<div class="modal-body mt-0 mb-2">
 							<div class="d-flex justify-content-lg-end">
-								<button class="btn btn-danger" type="button"
+								<button id="clear-images-btn" class="btn btn-danger" type="button"
 									style="font-weight: bold; padding: 3px 12px">
 									<i class="fas fa-trash"
-										style="padding-right: 0px; margin-right: 7px"></i>Delete
+										style="padding-right: 0px; margin-right: 7px"></i>Clear
 								</button>
 							</div>
-							<div class="container mt-2">
+							<div class="container mt-2 mb-3">
 								<div class="row carousel-container position-relative">
-									<div id="myCarousel" class="carousel slide"
-										data-bs-ride="carousel">
-										<div class="carousel-inner">
-											<div class="carousel-item active" data-slide-number="0">
-												<img src="https://source.unsplash.com/Pn6iimgM-wo/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/Pn6iimgM-wo/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="1">
-												<img src="https://source.unsplash.com/tXqVe7oO-go/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/tXqVe7oO-go/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="2">
-												<img src="https://source.unsplash.com/qlYQb7B9vog/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/qlYQb7B9vog/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="3">
-												<img src="https://source.unsplash.com/QfEfkWk1Uhk/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/QfEfkWk1Uhk/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="4">
-												<img src="https://source.unsplash.com/CSIcgaLiFO0/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/CSIcgaLiFO0/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="5">
-												<img src="https://source.unsplash.com/a_xa7RUKzdc/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/a_xa7RUKzdc/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="6">
-												<img src="https://source.unsplash.com/uanoYn1AmPs/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/uanoYn1AmPs/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="7">
-												<img src="https://source.unsplash.com/_snqARKTgoc/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/_snqARKTgoc/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="8">
-												<img src="https://source.unsplash.com/M9F8VR0jEPM/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/M9F8VR0jEPM/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
-											<div class="carousel-item" data-slide-number="9">
-												<img src="https://source.unsplash.com/Q1p7bh3SHj8/1600x900/"
-													class="d-block w-100" alt="..."
-													data-remote="https://source.unsplash.com/Q1p7bh3SHj8/"
-													data-type="image" data-bs-toggle="lightbox"
-													data-bs-gallery="example-gallery" />
-											</div>
+
+									<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+											<div class="carousel-inner"></div>
 										</div>
-									</div>
-									<div id="carousel-thumbs" class="carousel slide"
-										data-bs-ride="carousel">
-										<div class="carousel-inner">
-											<div class="carousel-item active">
-												<div class="row mx-0">
-													<div id="carousel-selector-0"
-														class="thumb col-4 col-sm-2 px-1 py-2 selected"
-														data-bs-target="#myCarousel" data-bs-slide-to="0">
-														<img
-															src="https://source.unsplash.com/Pn6iimgM-wo/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-1"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="1">
-														<img
-															src="https://source.unsplash.com/tXqVe7oO-go/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-2"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="2">
-														<img
-															src="https://source.unsplash.com/qlYQb7B9vog/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-3"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="3">
-														<img
-															src="https://source.unsplash.com/QfEfkWk1Uhk/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-4"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="4">
-														<img
-															src="https://source.unsplash.com/CSIcgaLiFO0/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-5"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="5">
-														<img
-															src="https://source.unsplash.com/a_xa7RUKzdc/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-												</div>
-											</div>
-											<div class="carousel-item">
-												<div class="row mx-0">
-													<div id="carousel-selector-6"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="6">
-														<img
-															src="https://source.unsplash.com/uanoYn1AmPs/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-7"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="7">
-														<img
-															src="https://source.unsplash.com/_snqARKTgoc/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-8"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="8">
-														<img
-															src="https://source.unsplash.com/M9F8VR0jEPM/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div id="carousel-selector-9"
-														class="thumb col-4 col-sm-2 px-1 py-2"
-														data-bs-target="#myCarousel" data-bs-slide-to="9">
-														<img
-															src="https://source.unsplash.com/Q1p7bh3SHj8/600x400/"
-															class="img-fluid" alt="..." />
-													</div>
-													<div class="col-2 px-1 py-2"></div>
-													<div class="col-2 px-1 py-2"></div>
-												</div>
-											</div>
+										<div id="carousel-thumbs" class="carousel slide" data-bs-interval="false">
+											<div class="carousel-inner"></div>
+											<a class="carousel-control-prev" href="#carousel-thumbs" role="button"
+												data-bs-slide="prev"> <span class="carousel-control-prev-icon"
+													aria-hidden="true"></span>
+												<span class="sr-only">Previous</span>
+											</a> <a class="carousel-control-next" href="#carousel-thumbs" role="button"
+												data-bs-slide="next"> <span class="carousel-control-next-icon"
+													aria-hidden="true"></span>
+												<span class="sr-only">Next</span>
+											</a>
 										</div>
-										<a class="carousel-control-prev" href="#carousel-thumbs"
-											role="button" data-bs-slide="prev"> <span
-											class="carousel-control-prev-icon" aria-hidden="true"></span>
-											<span class="sr-only">Previous</span>
-										</a> <a class="carousel-control-next" href="#carousel-thumbs"
-											role="button" data-bs-slide="next"> <span
-											class="carousel-control-next-icon" aria-hidden="true"></span>
-											<span class="sr-only">Next</span>
-										</a>
-									</div>
 								</div>
 							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-light" data-bs-dismiss="modal"
-								type="button">Close</button>
-							<button class="btn btn-primary" type="button">Save</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<a class="d-inline border rounded scroll-to-top" href="#page-top"><i
-			class="fas fa-angle-up"></i></a>
+	</div>
+	<a class="d-inline border rounded scroll-to-top" href="#page-top"><i
+		class="fas fa-angle-up"></i></a>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -684,4 +542,5 @@
 	<script src="/assets/js/theme.js"></script>
 	<script src="/assets/js/notify.js"></script>
 </body>
+
 </html>

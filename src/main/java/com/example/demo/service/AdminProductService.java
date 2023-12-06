@@ -18,6 +18,8 @@ public interface AdminProductService {
 	
 	public Page<ProductCatalog> findProductCatalog(Pageable pageable);
 	
+	public Page<ProductCatalog> findProductCatalog(String containing, Pageable pageable);
+	
 	public ProductCatalog saveProductCatalog(ProductCatalog productCatalog);
 	
 	public boolean deleteProductCatalog(short productId);
@@ -32,5 +34,5 @@ public interface AdminProductService {
 	
 	public List<ImageProduct> getProductImages(int productCategoryId);
 	
-	public boolean deleteImage(ImageProduct imageProduct);
+	public boolean deleteImage(int productCategoryId);
 }

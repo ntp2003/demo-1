@@ -14,11 +14,11 @@ import org.eclipse.tags.shaded.org.apache.bcel.generic.NEW;
 
 public class Converter {
 	public static File DataURLImagetoFile(String dataURL) throws IOException {
-		System.out.print(dataURL);
-		File file = File.createTempFile(generateUniqueFileName(), "png");
+		String extension = dataURL.substring(dataURL.indexOf("/") + 1,  dataURL.indexOf(";"));
+		File file = File.createTempFile(generateUniqueFileName(), extension);
 		byte[] data = java.util.Base64.getDecoder().decode(dataURL.substring(dataURL.indexOf(",") + 1));
 		BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(data));
-		ImageIO.write(bufferedImage, "png", file);
+		ImageIO.write(bufferedImage, extension, file);
 		return file;
 	}
 	

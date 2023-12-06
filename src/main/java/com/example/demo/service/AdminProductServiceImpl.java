@@ -44,6 +44,11 @@ public class AdminProductServiceImpl implements AdminProductService {
 	public Page<ProductCatalog> findProductCatalog(Pageable pageable) {
 		return productCatalogRepo.findAll(pageable).map(i -> new ProductCatalog(i));
 	}
+	
+	@Override
+	public Page<ProductCatalog> findProductCatalog(String containing, Pageable pageable) {
+		return productCatalogRepo.findByProductNameContaining(containing ,pageable).map(i -> new ProductCatalog(i));
+	}
 
 	@Override
 	public ProductCatalog saveProductCatalog(ProductCatalog productCatalog) {
@@ -137,10 +142,15 @@ public class AdminProductServiceImpl implements AdminProductService {
 	}
 
 	@Override
-	public boolean deleteImage(ImageProduct imageProduct) {
+	public boolean deleteImage(int productCategoryId) {
 		try {
-			imageProductRepo.deleteById(imageProduct.getImageId());
-			FirebaseUtil.Delete(imageProduct.getImage());
+			com.example.demo.model.ProductCategory pCategory = new com.example.demo.model.ProductCategory();
+			pCategory.setProductCategoryId(productCategoryId);
+			List<com.example.demo.model.ImageProduct> imageProducts = imageProductRepo.findImageProductsByProductCategory(pCategory);
+			for (com.example.demo.model.ImageProduct imageProduct : imageProducts) {
+				imageProductRepo.deleteById(imageProduct.getImageId());
+				FirebaseUtil.Delete(imageProduct.getImage());
+			}
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

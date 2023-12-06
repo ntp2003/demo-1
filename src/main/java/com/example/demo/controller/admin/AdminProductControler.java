@@ -40,8 +40,11 @@ public class AdminProductControler {
 	@GetMapping("/product-list")
 	@ResponseBody
 	public ResponseEntity<Page<ProductCatalog>> findProductCatalog(
-			@PageableDefault(page = 0, size = 10, sort = { "productName"}, direction = Direction.ASC) Pageable pageable) {
-		return ResponseEntity.ok(adminProductService.findProductCatalog(pageable));
+			@PageableDefault(page = 0, size = 10, sort = { "productName"}, direction = Direction.ASC) Pageable pageable,
+			@RequestParam(name =  "containing", defaultValue = "") String containing) {
+		if(containing.isEmpty())
+			return ResponseEntity.ok(adminProductService.findProductCatalog(pageable));
+		return ResponseEntity.ok(adminProductService.findProductCatalog(containing, pageable));
 	}
 
 	@PostMapping("/add-product")
@@ -68,7 +71,6 @@ public class AdminProductControler {
 	@GetMapping("/product-category-list")
 	@ResponseBody
 	public ResponseEntity<List<ProductCategory>> findProductCategories(@RequestParam("productId") short productId) {
-		System.out.println(productId);
 		return ResponseEntity.ok(adminProductService.findProductCategories(productId));
 	}
 	
@@ -108,10 +110,10 @@ public class AdminProductControler {
 		return ResponseEntity.ok(adminProductService.getProductImages(productCategoryId));
 	}
 	
-	@DeleteMapping("/delete-image")
+	@DeleteMapping("/delete-images")
 	@ResponseBody
-	public ResponseEntity<Void> deleteImage(@RequestBody ImageProduct imageProduct) {
-		if(adminProductService.deleteImage(imageProduct)) {
+	public ResponseEntity<Void> deleteImage(@RequestParam("productCategoryId") int productCategoryId) {
+		if(adminProductService.deleteImage(productCategoryId)) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);

@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(indexes={@Index(name="Admin_PhoneNumber_IX", columnList="PhoneNumber", unique=true), @Index(name="Admin_Email_IX", columnList="Email", unique=true), @Index(name="Admin_CCCD_IX", columnList="CCCD", unique=true)})
