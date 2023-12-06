@@ -39,17 +39,17 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 		BooleanExpression predicate = qProductCatalog.productCategory.isNotEmpty();
 
 		if (productFilter.getColors() != null) {
-			predicate.and(qProductCatalog.productCategory.any().color.in(productFilter.getColors()));
+			predicate = predicate.and(qProductCatalog.productCategory.any().color.in(productFilter.getColors()));
 		}
 		if (productFilter.getProductTypes() != null) {
-			predicate.and(qProductCatalog.productType
+			predicate = predicate.and(qProductCatalog.productType
 					.in(productFilter.getProductTypes().stream().map(i -> new ProductType(i)).toList()));
 		}
 		if (productFilter.getMinPrice() != null) {
-			predicate.and(qProductCatalog.productCategory.any().price.goe(productFilter.getMinPrice()));
+			predicate = predicate.and(qProductCatalog.productCategory.any().price.goe(productFilter.getMinPrice()));
 		}
 		if (productFilter.getMaxPrice() != null) {
-			predicate.and(qProductCatalog.productCategory.any().price.loe(productFilter.getMaxPrice()));
+			predicate = predicate.and(qProductCatalog.productCategory.any().price.loe(productFilter.getMaxPrice()));
 		}
 
 		return productCatalogRepo.findAll(predicate, pageable).map(i -> new ProductViewItem(i));
