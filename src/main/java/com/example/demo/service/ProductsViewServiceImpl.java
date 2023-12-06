@@ -36,7 +36,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 	@Override
 	public Page<ProductViewItem> findFilteredProduct(ProductFilter productFilter, Pageable pageable) {
 		QProductCatalog qProductCatalog = QProductCatalog.productCatalog;
-		BooleanExpression predicate = Expressions.asBoolean(true).isTrue();
+		BooleanExpression predicate = qProductCatalog.productCategory.isNotEmpty();
 
 		if (productFilter.getColors() != null) {
 			predicate.and(qProductCatalog.productCategory.any().color.in(productFilter.getColors()));
