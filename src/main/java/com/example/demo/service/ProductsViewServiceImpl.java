@@ -9,8 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ProductViewItem;
+import com.example.demo.model.ProductType;
 import com.example.demo.model.QProductCatalog;
 import com.example.demo.repository.ProductCatalogRepo;
+import com.example.demo.repository.ProductCategoryRepo;
+import com.example.demo.repository.ProductTypeRepo;
 import com.google.gson.annotations.Since;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
@@ -19,20 +23,45 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 
 @Service
-public class ProductsViewServiceImpl implements ProductsViewService{
+public class ProductsViewServiceImpl implements ProductsViewService {
 	@Autowired
 	ProductCatalogRepo productCatalogRepo;
+
+	@Autowired
+	ProductCategoryRepo productCategoryRepo;
+	
+	@Autowired
+	ProductTypeRepo productTypeRepo;
 	
 	@Override
-	public Page<?> findFilteredProduct(ProductFilter productFilter, Pageable pageable) {
+	public Page<ProductViewItem> findFilteredProduct(ProductFilter productFilter, Pageable pageable) {
 		QProductCatalog qProductCatalog = QProductCatalog.productCatalog;
-		BooleanExpression colorFilter = Expressions.asBoolean(true).isTrue();
-		Predicate predicate = new BooleanBuilder();
-		if(!productFilter.getColors().isEmpty()) {
-			for (String color : productFilter.getColors()) {
-				colorFilter.and(qProductCatalog.productCategory.any().productCategory.color.eq(color));
-			}
+		BooleanExpression predicate = Expressions.asBoolean(true).isTrue();
+
+		if (productFilter.getColors() != null) {
+			predicate.and(qProductCatalog.productCategory.any().color.in(productFilter.getColors()));
 		}
-		return productCatalogRepo.findAll(predicate, pageable);
+		if (productFilter.getProductTypes() != null) {
+			predicate.and(qProductCatalog.productType
+					.in(productFilter.getProductTypes().stream().map(i -> new ProductType(i)).toList()));
+		}
+		if (productFilter.getMinPrice() != null) {
+			predicate.and(qProductCatalog.productCategory.any().price.goe(productFilter.getMinPrice()));
+		}
+		if (productFilter.getMaxPrice() != null) {
+			predicate.and(qProductCatalog.productCategory.any().price.loe(productFilter.getMaxPrice()));
+		}
+
+		return productCatalogRepo.findAll(predicate, pageable).map(i -> new ProductViewItem(i));
+	}
+
+	@Override
+	public List<com.example.demo.dto.ProductType> productTypes() {
+		return productTypeRepo.findAll().stream().map(i -> new com.example.demo.dto.ProductType(i)).toList();
+	}
+
+	@Override
+	public List<String> colors() {
+		return productCategoryRepo.findDistinctColor();
 	}
 }

@@ -19,7 +19,7 @@ import lombok.Setter;
 public class ProductType implements Serializable {
 	private short productTypeId;
 	private String typeName;
-
+	
 	public ProductType(com.example.demo.model.ProductType productType) {
 		this.productTypeId = productType.getProductTypeId();
 		this.typeName = productType.getTypeName();

@@ -35,7 +35,11 @@ public class ProductType implements Serializable {
     public ProductType() {
         super();
     }
-
+    
+    public ProductType(short productTypeId) {
+		super();
+		this.productTypeId = productTypeId;
+	}
     /**
      * Access method for productTypeId.
      *
