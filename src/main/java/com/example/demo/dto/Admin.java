@@ -22,6 +22,7 @@ public class Admin implements Serializable {
 	private String phoneNumber;
 	private String email;
 	private String cccd;
+	private boolean creator;
 
 	public Admin(com.example.demo.model.Admin admin) {
 		this.username = admin.getUsername();
@@ -36,6 +37,7 @@ public class Admin implements Serializable {
 		this.phoneNumber = admin.getPhoneNumber();
 		this.email = admin.getEmail();
 		this.cccd = admin.getCccd();
+		this.creator = admin.getCreator();
 	}
 	
 	public com.example.demo.model.Admin toModel() {
@@ -46,7 +48,7 @@ public class Admin implements Serializable {
 		admin.setPhoneNumber(phoneNumber);
 		admin.setEmail(email);
 		admin.setCccd(cccd);
-		
+		admin.setCreator(creator);
 		return admin;
 	}
 }

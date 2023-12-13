@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,7 @@ import com.example.demo.service.ProductsViewService;
 import com.example.demo.service.ProductsViewService.ProductFilter;
 
 @Controller
-public class ProductListController {
+public class ProductsViewController {
 	@Autowired
 	ProductsViewService productsViewService;
 	
@@ -49,7 +50,7 @@ public class ProductListController {
     	return  ResponseEntity.ok(productsViewService.productTypes());
     }
     
-    @GetMapping("/product/filter")
+    @PostMapping("/product/filter")
     @ResponseBody
     public ResponseEntity<Page<ProductViewItem>> getFilteredProducts
     (@PageableDefault(page = 0, size = 10, sort = { "productName"}, direction = Direction.ASC) Pageable pageable,

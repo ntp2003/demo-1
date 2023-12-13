@@ -43,7 +43,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 		}
 		if (productFilter.getProductTypes() != null) {
 			predicate = predicate.and(qProductCatalog.productType
-					.in(productFilter.getProductTypes().stream().map(i -> new ProductType(i)).toList()));
+					.in(productFilter.getProductTypes().stream().map(i -> ProductType.builder().productTypeId(i).build()).toList()));
 		}
 		if (productFilter.getMinPrice() != null) {
 			predicate = predicate.and(qProductCatalog.productCategory.any().price.goe(productFilter.getMinPrice()));

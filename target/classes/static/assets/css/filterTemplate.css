@@ -1,7 +1,8 @@
 .filter-button {
   font-size: 18px;
-  border: 1px solid #752fb3;
-  border-radius: 5px;
+  font-weight: 600;
+  border: 2px solid #85929E;
+  border-radius: 8px;
   text-align: center;
   color: black;
   margin-bottom: 30px;
@@ -22,15 +23,12 @@
 */}
 
 .filter-container {
-  width: 200px; /* Điều chỉnh chiều rộng của bộ lọc */
+  width: 250px; /* Điều chỉnh chiều rộng của bộ lọc */
   float: left; /* Hiển thị bộ lọc bên trái */
   padding: 10px;
-  background-color: #f0f0f0;
+  background-color: #EAF2F8 ;
 }
 
-/*input[type="checkbox"] {
-  display: none;
-}*/
 input[type="checkbox"]:not(.custom-control-input) {
   display: none;
 }
@@ -38,6 +36,7 @@ input[type="checkbox"]:not(.custom-control-input) {
 label.bg-color {
   display: inline-block;
   padding: 10px;
+  margin-left: 5px;
   border: 2px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
@@ -47,8 +46,9 @@ label.bg-color {
 }
 
 label.active {
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
+
 
 /*.push {
     height: 100px;
@@ -60,7 +60,9 @@ label.active {
 .custom-control {
 	display:flex;
 }
-
+.card-header,.card-body {
+	padding-left: 20px;
+}
 
 
 

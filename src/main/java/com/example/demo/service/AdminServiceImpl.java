@@ -1,34 +1,51 @@
 package com.example.demo.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.Admin;
+import com.example.demo.repository.AdminRepo;
 
 @Service
 public class AdminServiceImpl implements AdminService{
-
+	@Autowired
+	@Qualifier("adminPasswordEncoder")
+	PasswordEncoder adminPasswordEncoder;
+	
+	@Autowired
+	AdminRepo adminRepo;
+	
 	@Override
-	public Admin registerAdminAccount(Admin admin) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean registerAdminAccount(Admin admin){
+		try {
+			adminRepo.save(admin.toModel());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean emailNotExists(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return !adminRepo.existsAdminByEmail(email);
 	}
 
 	@Override
 	public boolean phoneNumberNotExists(String phoneNumber) {
-		// TODO Auto-generated method stub
-		return false;
+		return !adminRepo.existsAdminByPhoneNumber(phoneNumber);
 	}
 
 	@Override
 	public boolean cccdNotExists(String cccd) {
-		// TODO Auto-generated method stub
-		return false;
+		return !adminRepo.existsAdminByCccd(cccd);
+	}
+
+	@Override
+	public boolean userNameNotExists(String userName) {
+		return !adminRepo.existsById(userName);
 	}
 	
 }

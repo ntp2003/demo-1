@@ -13,8 +13,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Entity
+@Builder
+@AllArgsConstructor
 public class ProductType implements Serializable {
 
     /** Primary key. */
@@ -35,11 +39,7 @@ public class ProductType implements Serializable {
     public ProductType() {
         super();
     }
-    
-    public ProductType(short productTypeId) {
-		super();
-		this.productTypeId = productTypeId;
-	}
+
     /**
      * Access method for productTypeId.
      *

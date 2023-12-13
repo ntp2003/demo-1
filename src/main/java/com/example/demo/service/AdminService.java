@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface AdminService {
-	public com.example.demo.dto.Admin  registerAdminAccount(com.example.demo.dto.Admin admin) throws Exception;
+	public boolean  registerAdminAccount(com.example.demo.dto.Admin admin);
+	
+	public boolean userNameNotExists(String userName);
 	
 	public boolean emailNotExists(String email);
 	

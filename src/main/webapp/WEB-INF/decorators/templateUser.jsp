@@ -11,41 +11,44 @@
 	<sitemesh:write property=head></sitemesh:write>
 <link rel="stylesheet" href="assets/css/newBootrapMin.css">
 
-	<%-- <%
-	// Kiểm tra sự tồn tại của session "customer"
-	if (session.getAttribute("customer") != null) {
-	    // Session "customer" đã tồn tại
-	    // Ẩn button Login
-	%>
-	    <style>
-	        #loginButton {
-	            display: none;
-	        }
-	        .dropdownHeader {
-	        display:block;
-	        }
-	    </style>
-	<%
-	} else {
-	    // Session "customer" chưa tồn tại
-	    // Hiển thị button Login
-	%>
-	    <style>
-	        #loginButton {
-	            display: block;
-	        }
-	       	.dropdownHeader {
-	        display:none;
-	        }
-	    </style>
-	<%
-	}
-	%> --%>
+<style>
+.cart-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.product-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: red;
+  padding: 4px;
+  font-size: 12px;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.product-count {
+  animation: bounce 1s infinite;
+}
+
+</style>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.reflowhq.com/v2/toolkit.min.js" data-reflow-store="408435610"></script>
     <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/grayscale.js"></script>
-    <script src="assets/js/decription-product.js"></script>
+<!--     <script src="assets/js/grayscale.js"></script>
+ -->    <script src="assets/js/decription-product.js"></script>
 
 </head>
 <body>

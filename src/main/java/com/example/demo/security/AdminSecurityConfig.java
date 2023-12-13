@@ -52,10 +52,8 @@ public class AdminSecurityConfig {
 				.authorizeHttpRequests(
 						auth -> auth
 						.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+						.requestMatchers(mvc.pattern("/admin/creator/**")).hasRole("CREATOR")
 						.anyRequest().hasRole("ADMIN"))
-						//.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-						//.requestMatchers(mvc.pattern("/admin/**")).authenticated()//)
-						//.requestMatchers(mvc.pattern("/**")).permitAll())
 				.formLogin((form) -> form.loginPage("/admin/Login")
 						.loginProcessingUrl("/admin/Login")
 						.successForwardUrl("/admin/login_success_handler")

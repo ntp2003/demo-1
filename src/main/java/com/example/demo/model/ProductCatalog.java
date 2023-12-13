@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -302,4 +301,5 @@ public class ProductCatalog implements Serializable {
         ret.put("productId", Short.valueOf(getProductId()));
         return ret;
     }
+
 }

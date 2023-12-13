@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 @Entity
 @Table(indexes={@Index(name="Admin_PhoneNumber_IX", columnList="PhoneNumber", unique=true), @Index(name="Admin_Email_IX", columnList="Email", unique=true), @Index(name="Admin_CCCD_IX", columnList="CCCD", unique=true)})
@@ -35,6 +34,8 @@ public class Admin implements Serializable {
     private String email;
     @Column(name="CCCD", unique=true, nullable=false, length=12)
     private String cccd;
+    @Column(name="Creator", nullable=false, length=1)
+    private boolean creator;
     @OneToMany(mappedBy="admin")
     private Set<ProductLot> productLot;
 
@@ -149,6 +150,24 @@ public class Admin implements Serializable {
      */
     public void setCccd(String aCccd) {
         cccd = aCccd;
+    }
+
+    /**
+     * Access method for creator.
+     *
+     * @return true if and only if creator is currently true
+     */
+    public boolean getCreator() {
+        return creator;
+    }
+
+    /**
+     * Setter method for creator.
+     *
+     * @param aCreator the new value for creator
+     */
+    public void setCreator(boolean aCreator) {
+        creator = aCreator;
     }
 
     /**

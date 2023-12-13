@@ -2,11 +2,13 @@ package com.example.demo.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AdminProfileControler {
-	@GetMapping("/admin/Profile")
+@RequestMapping("/admin")
+public class AdminDashboardController {
+	@GetMapping({"","/Dashboard"})
 	public String loginAdminPage() {
-		return "admin/profile";
+		return "admin/dashboard";
 	}
 }

@@ -28,7 +28,7 @@ import com.example.demo.service.AdminProductService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminProductControler {
+public class AdminProductController {
 	@Autowired
 	AdminProductService adminProductService;
 

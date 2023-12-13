@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,7 @@ import com.example.demo.security.userdetails.CustomerUserDetails;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	@Autowired
+	@Qualifier("customerPasswordEncoder")
 	private PasswordEncoder customerPasswordEncoder;
 	@Autowired
 	private CustomerRepo customerRepo;

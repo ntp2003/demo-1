@@ -1,4 +1,3 @@
-var x;
 import shortid from "https://cdn.skypack.dev/shortid@2.2.16";
 $(document).ready(function() {
 	$("#show-view, #add-type, #add-images").on("hidden.bs.modal", function() {
@@ -130,13 +129,13 @@ $(document).ready(function() {
 			data: JSON.stringify(formData),
 			cache: false,
 			success: function() {
-				$.notify("Thêm sản phẩm thành công!", "success", 3000);
+				$.notify("Thêm sản phẩm thành công!", "success", 9999);
 				document.getElementById('addProductForm').reset();
 				$('#add-product-modal').modal('hide');
 				LoadProductCatalog();
 			},
 			error: function() {
-				$.notify("Thêm sản phẩm thất bại!", "danger", 3000);
+				$.notify("Thêm sản phẩm thất bại!", "danger", 9999);
 			}
 		});
 	});
@@ -156,12 +155,12 @@ $(document).ready(function() {
 			data: JSON.stringify(formData),
 			cache: false,
 			success: function() {
-				$.notify("Thêm loại sản phẩm mới thành công!", "success", 3000);
+				$.notify("Thêm loại sản phẩm mới thành công!", "success", 9999);
 				document.getElementById('add-type-form').reset();
 				$('#add-type').modal('hide');
 			},
 			error: function() {
-				$.notify("Thêm loại sản phẩm mới thất bại!", "danger", 3000);
+				$.notify("Thêm loại sản phẩm mới thất bại!", "danger", 9999);
 			}
 		});
 	});
@@ -189,10 +188,10 @@ $(document).ready(function() {
 									productCategoryId: formData.productCategoryId
 								},
 								success: function() {
-									$.notify("Tải ảnh lên thành công!", "success", 3000);
+									$.notify("Tải ảnh lên thành công!", "success", 9999);
 								},
 								error: function() {
-									$.notify("Tải ảnh lên thất bại!", "danger", 3000);
+									$.notify("Tải ảnh lên thất bại!", "danger", 9999);
 								}
 							});
 						};
@@ -223,11 +222,11 @@ $(document).ready(function() {
 			cache: false,
 			data: { productId: productId },
 			success: function() {
-				$.notify("Xóa sản phẩm thành công!", "success", 3000);
+				$.notify("Xóa sản phẩm thành công!", "success", 9999);
 				LoadProductCatalog(page, $('#page-size option:selected').val(), $('#sort-option').attr('value'))
 			},
 			error: function() {
-				$.notify("Xóa sản phẩm thất bại!", "danger", 3000);
+				$.notify("Xóa sản phẩm thất bại!", "danger", 9999);
 			}
 		});
 	};
@@ -267,6 +266,7 @@ $(document).ready(function() {
 			});
 		});
 	});
+	
 	$("#delete-p-categories").click(function() {
 		$("#show-type").find('input:checked.form-check-input').each(function() {
 			let tr = $(this).parent().parent();
@@ -277,15 +277,16 @@ $(document).ready(function() {
 				cache: false,
 				data: { productCategoryId: productCategoryId },
 				success: function() {
-					$.notify(`Xóa loại sản phẩm ${productCategoryId} thành công!`, "success", 3000);
+					$.notify(`Xóa loại sản phẩm ${productCategoryId} thành công!`, "success", 9999);
 					tr.remove();
 				},
 				error: function() {
-					$.notify(`Xóa loại sản phẩm ${productCategoryId} thất bại!`, "danger", 3000);
+					$.notify(`Xóa loại sản phẩm ${productCategoryId} thất bại!`, "danger", 9999);
 				}
 			})
 		});
 	});
+	
 	$("#show-type").on('show.bs.modal', function() {
 		$(this).find('.modal-header h5').html($(this).data('info').productName);
 		$('#product-id-lbl').html('Mã sản phẩm : ' + $(this).data('info').productId);
@@ -361,11 +362,11 @@ $(document).ready(function() {
 						cache: false,
 						data: { productCategoryId: productCategoryId },
 						success: function() {
-							$.notify(`Xóa hình ảnh sản phẩm ${productCategoryId} thành công!`, "success", 3000);
+							$.notify(`Xóa hình ảnh sản phẩm ${productCategoryId} thành công!`, "success", 9999);
 							$("#show-view").modal('hide');
 						},
 						error: function() {
-							$.notify(`Xóa hình ảnh sản phẩm ${productCategoryId} thất bại!`, "danger", 3000);
+							$.notify(`Xóa hình ảnh sản phẩm ${productCategoryId} thất bại!`, "danger", 9999);
 						}
 					})
 				});

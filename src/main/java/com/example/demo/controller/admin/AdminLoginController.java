@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class AdminLoginControler {
+public class AdminLoginController {
 	@GetMapping("/admin/Login")
 	public String loginAdminPage() {
 		return "admin/login";
@@ -15,15 +15,13 @@ public class AdminLoginControler {
 	
 	@PostMapping("/admin/login_success_handler")
 	public String loginAdminSuccessHandler() {
-		// perform audit action
-		return "redirect:/admin/Register";
+		return "redirect:/admin/Dashboard";
 	}
 	
 
 	
 	@PostMapping("/admin/login_failure_handler")
 	public String loginAdminFailureHandler() {
-		// perform audit action
 		System.out.println("Fail");
 		return "admin/login";
 	}
