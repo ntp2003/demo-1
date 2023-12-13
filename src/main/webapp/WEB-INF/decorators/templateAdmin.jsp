@@ -37,7 +37,8 @@ ul, li {
 	justify-content: center;
 }
 </style>
-<sitemesh:write property=head></sitemesh:write>
+<sitemesh:write property='head'></sitemesh:write>
+<title><sitemesh:write property='title'/></title>
 </head>
 <body id="page-top">
 	<div id="wrapper">

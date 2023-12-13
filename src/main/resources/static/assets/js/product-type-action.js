@@ -385,6 +385,7 @@ $(document).ready(function() {
 			$("#productCatalogsTable tbody").html('');
 			pCatalogList.forEach((i) => {
 				let p = $(`<tr data-info='${JSON.stringify(i)}'>
+                        <td>${i.productId}</td>
                         <td>${i.productName}</td>
                         <td>${i.productType.typeName}</td>
                         <td>${i.origin}</td>

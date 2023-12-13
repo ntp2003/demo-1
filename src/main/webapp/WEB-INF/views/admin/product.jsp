@@ -76,7 +76,8 @@
 					<table class="table my-0 align-middle" id="productCatalogsTable">
 						<thead>
 							<tr>
-								<th>ProductName</th>
+								<th>ProductID</th>
+								<th>Product Name</th>
 								<th>Product Type</th>
 								<th>Origin</th>
 								<th>Brand</th>

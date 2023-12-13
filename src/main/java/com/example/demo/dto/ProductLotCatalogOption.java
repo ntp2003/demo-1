@@ -13,6 +13,7 @@ import lombok.Data;
 @Data
 public class ProductLotCatalogOption {
 	private short productId;
+	private String productName;
 	private Map<String, Map<String, Object> > optionMap;
 	
 	public ProductLotCatalogOption(ProductCatalog pCatalog) {
@@ -30,6 +31,7 @@ public class ProductLotCatalogOption {
 			resultMap.put(String.valueOf(pCategory.getProductCategoryId()), categoryMap);
 		}
 		this.optionMap = resultMap;
+		this.productName = pCatalog.getProductName();
 		this.productId = pCatalog.getProductId();
 	}
 }

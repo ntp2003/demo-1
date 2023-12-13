@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<%@ include file="/common/hrefsheet.jsp" %>	
 	<sitemesh:write property=head></sitemesh:write>
+	<title><sitemesh:write property='title'/></title>
 <link rel="stylesheet" href="assets/css/newBootrapMin.css">
 
 <style>
