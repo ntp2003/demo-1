@@ -20,17 +20,17 @@ import com.example.demo.dto.CustomerAccount;
 import com.example.demo.service.AdminService;
 
 @Controller
-@RequestMapping("/admin/creator/Register")
+@RequestMapping("/admin")
 public class AdminRegisterController {
 	@Autowired
 	AdminService adminService;
 	
-	@GetMapping("")
+	@GetMapping("/creator/Register")
 	public ModelAndView adminRegisterPage() {
 		return new ModelAndView("admin/register", "newAccount", new Admin());
 	}
 	
-	@PostMapping("")
+	@PostMapping("/creator/Register")
 	@ResponseBody
 	public ResponseEntity<Void> registerAdmin(@RequestBody Admin newAccount) {
 		if(adminService.registerAdminAccount(newAccount))

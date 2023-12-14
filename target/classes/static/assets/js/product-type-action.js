@@ -1,4 +1,5 @@
 import shortid from "https://cdn.skypack.dev/shortid@2.2.16";
+
 $(document).ready(function() {
 	$("#show-view, #add-type, #add-images").on("hidden.bs.modal", function() {
 		$("#show-type").modal("show");

@@ -18,7 +18,7 @@ public class ProductLotImportItemDetails {
 	private int quantity;
 	
 	public ProductLotImportItemDetails(ProductLotDetails productLotDetails) {
-		StockDetails stockDetails = productLotDetails.getStockDetails();
+		StockDetails stockDetails = productLotDetails.getProductLotDetailsId().getStockDetails();
 		ProductCategory productCategory = stockDetails.getProductCategory();
 		ProductCatalog productCatalog = productCategory.getProductCatalog();
 		

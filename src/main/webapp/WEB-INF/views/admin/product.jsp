@@ -417,6 +417,9 @@
 	<a class="d-inline border rounded scroll-to-top" href="#page-top"><i
 		class="fas fa-angle-up"></i></a>
 	</div>
+	
+	
+	<script src="/assets/js/product-type-action.js" type="module"></script>
 </body>
 
 </html>

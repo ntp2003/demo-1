@@ -18,8 +18,6 @@ public class AdminLoginController {
 		return "redirect:/admin/Dashboard";
 	}
 	
-
-	
 	@PostMapping("/admin/login_failure_handler")
 	public String loginAdminFailureHandler() {
 		System.out.println("Fail");

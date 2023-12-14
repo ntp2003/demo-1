@@ -41,6 +41,16 @@ ul, li {
 <title><sitemesh:write property='title'/></title>
 </head>
 <body id="page-top">
+	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/js/numberinput.js"></script>
+	<script src="/assets/js/theme.js"></script>
+	<script src="/assets/js/jquery-3.1.1.min.js"></script>
+	<script src="/assets/js/notify.js"></script>
+	<script src="/assets/js/colorPick.js"></script>
 	<div id="wrapper">
 		<nav
 			class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark"
@@ -103,15 +113,9 @@ ul, li {
 										src="assets/img/avatars/avatar1.jpeg"></a>
 									<div
 										class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-										<a class="dropdown-item" href="#"><i
-											class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
-											class="dropdown-item" href="#"><i
-											class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a
-											class="dropdown-item" href="#"><i
-											class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity
-											log</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#"><i
+										<a class="dropdown-item" href="/admin/Profile"><i
+											class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+										<a class="dropdown-item" href="/admin/logout"><i
 											class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
 									</div>
 								</div>
@@ -133,22 +137,5 @@ ul, li {
 		<a class="border rounded d-inline scroll-to-top" href="#page-top"><i
 			class="fas fa-angle-up"></i></a>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"
-		integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A=="
-		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/assets/js/jquery-3.1.1.min.js"></script>
-	<script src="/assets/js/colorPick.js"></script>
-	<script src="/assets/js/numberinput.js"></script>
-	<script src="/assets/js/product-type-action.js" type="module"></script>
-	<script src="/assets/js/theme.js"></script>
-	<script src="/assets/js/notify.js"></script>
 </body>
 </html>

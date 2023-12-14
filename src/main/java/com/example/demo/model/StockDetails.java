@@ -32,7 +32,7 @@ public class StockDetails implements Serializable {
     private Set<Feedback> feedback;
     @OneToMany(mappedBy="stockDetails")
     private Set<InvoiceDetail> invoiceDetail;
-    @OneToMany(mappedBy="stockDetails")
+    @OneToMany(mappedBy="productLotDetailsId.stockDetails")
     private Set<ProductLotDetails> productLotDetails;
     @OneToMany(mappedBy="stockDetails")
     private Set<ShoppingCart> shoppingCart;

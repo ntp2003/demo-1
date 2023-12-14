@@ -49,36 +49,6 @@
 							</form>
 						</sec:authorize>
 						<sec:authorize access="hasRole('CUSTOMER')">
-							<%-- <div class="dropdownHeader">
-								<a class="btn btn-success dropdown-toggle" href="#"
-									role="button" id="dropdownMenuLink" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> <span
-									id="userName" class="user-name"><i class="fa fa-user"></i>
-										<sec:authentication property="principal.customerAccount.firstName" />
-										<sec:authentication property="principal.customerAccount.lastName" /></span>
-								</a>
-
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<a class="dropdown-item" href="#">Profile</a> 
-									<a	class="dropdown-item link-danger" href="/customer/logout">Logout</a>
-								</div>
-							</div> --%>
-							<!-- <div class="dropdown">
-								<a
-									class="dropdown-toggle d-flex align-items-center hidden-arrow"
-									href="#" id="navbarDropdownMenuAvatar" role="button"
-									data-mdb-toggle="dropdown" aria-expanded="false">
-									<img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-									class="rounded-circle" height="30"
-									alt="Black and White Portrait of a Man" loading="lazy" />
-								</a>
-								<ul class="dropdown-menu dropdown-menu-end"
-									aria-labelledby="navbarDropdownMenuAvatar">
-									<li><a class="dropdown-item" href="#">My profile</a></li>
-									<li><a class="dropdown-item" href="/customer/logout">Logout</a>
-									</li>
-								</ul>
-							</div> -->
 							<div class="dropdown">
 								<a style="text-decoration: none" class="dropdown-toggle"
 									href="#" role="button" id="dropdownMenuAvatar"

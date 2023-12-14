@@ -14,7 +14,7 @@
 				<p class="fw-bold text-primary m-0">Product Lot Infomation</p>
 			</div>
 			<div class="card-body">
-				<div class="row d-flex justify-content-between">
+				<div class="row d-flex justify-content-between" id="filter-data">
 					<div
 						class="col d-flex justify-content-start align-items-center flex-wrap gap-2">
 						<div class="d-flex gap-2">
@@ -22,7 +22,7 @@
 								<label class="form-label mb-0">From Day:&nbsp;</label>
 							</div>
 							<div>
-								<input class="form-control-sm form-control" type="date">
+								<input id="from-day" class="form-control-sm form-control" type="date">
 							</div>
 						</div>
 						<div class="d-flex gap-2">
@@ -30,7 +30,7 @@
 								<label class="form-label mb-0">To Day:&nbsp;</label>
 							</div>
 							<div>
-								<input class="form-control-sm form-control" type="date">
+								<input id="to-day" class="form-control-sm form-control" type="date">
 							</div>
 						</div>
 					</div>
@@ -45,10 +45,10 @@
 						</div>
 						<div class="d-flex flex-wrap gap-2">
 							<div class="d-flex align-items-center">
-								<select class="form-select-sm d-inline-block form-select">
-									<option value="" selected="">Name</option>
-									<option value="">Phone number</option>
-									<option value="">Email</option>
+								<select id="search-option" class="form-select-sm d-inline-block form-select">
+									<option value="0" selected="selected">Name</option>
+									<option value="1">Phone number</option>
+									<option value="2">Email</option>
 								</select>
 							</div>
 							<div class="d-flex align-items-center">
@@ -59,9 +59,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="table-responsive table mt-2" id="producttable"
+				<div class="table-responsive table mt-2"
 					role="grid" aria-describedby="dataTable_info">
-					<table class="table my-0 align-middle table-hover" id="dataTable">
+					<table class="table my-0 align-middle table-hover" id="product-lot-table">
 						<thead>
 							<tr>
 								<th>Lot ID</th>
@@ -73,7 +73,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<!-- <tr>
 								<td>1</td>
 								<td>20/11/2023</td>
 								<td>Nguyen Tan Phat</td>
@@ -81,31 +81,7 @@
 								<td>pdjapjdajlkdjlakdklajkldjakl</td>
 								<td><a role="button" href="#"
 									data-bs-target="#lot-details-modal" data-bs-toggle="modal">View</a></td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>20/11/2023</td>
-								<td>Nguyen Tan Phat</td>
-								<td>0777166027</td>
-								<td>nkadlkajlkdjlkajdlkaslkjdalkj</td>
-								<td><a role="button" href="#">View</a></td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>20/11/2023</td>
-								<td>Nguyen Tan Phat</td>
-								<td>0777166027</td>
-								<td>aklkdlkajdklajlkdlkajlkdjkajlk</td>
-								<td><a role="button" href="#">View</a></td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>20/11/2023</td>
-								<td>Nguyen Tan Phat</td>
-								<td>0777166027</td>
-								<td>jkahjdhjadljalkdjklajdklajkldj</td>
-								<td><a role="button" href="#">View</a></td>
-							</tr>
+							</tr> -->
 						</tbody>
 					</table>
 				</div>
@@ -113,7 +89,7 @@
 					<div class="col-md-6 col-xl-2 text-nowrap"
 						style="max-width: 130px;">
 						<label class="form-label" style="margin: 0px;">Show&nbsp;
-						</label><select class="form-select-sm d-inline-block form-select"
+						</label><select id="page-size" class="form-select-sm d-inline-block form-select"
 							style="width: 70px;">
 							<option value="10" selected="">10</option>
 							<option value="25">25</option>
@@ -123,7 +99,7 @@
 					</div>
 					<div class="col-md-6 col-xl-4 col-xxl-2 d-flex"
 						style="margin-top: 4px;">
-						<p id="dataTable_info" class="dataTables_info" role="status"
+						<p id="dataTable-info" class="dataTables_info" role="status"
 							aria-live="polite">Showing 1 to 10 of 27</p>
 					</div>
 					<div class="col">
@@ -147,86 +123,46 @@
 	</div>
 	<div class="modal fade" role="dialog" tabindex="-1" id="add-lot-modal"
 		aria-labelledby="exampleModalLabel">
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4>Add Lot</h4>
 					<button class="btn-close" type="button" aria-label="Close"
 						data-bs-dismiss="modal"></button>
 				</div>
-				<div class="modal-body">
-					<div class="col" style="text-align: right;">
-						<div></div>
-						<a class="btn btn-success btn-sm text-white me-2" role="button"
-							id="add-category"><i class="fas fa-plus"></i>&nbsp;Add
-							Category</a>
+					<div class="modal-body">
+						<div class="col" style="text-align: right;">
+							<div></div>
+							<a class="btn btn-success btn-sm text-white me-2" role="button"
+								id="add-category"><i class="fas fa-plus"></i>&nbsp;Add
+								Category</a>
+						</div>
+						<div class="table-responsive table mt-2 px-2" id="type-table"
+							role="grid" aria-describedby="dataTable_info"
+							style="border-radius: 5px; display: block; height: 300px; text-align: center;">
+							<table
+								class="table table-hover table-bordered my-0 table-bordered align-middle"
+								id="category-table-add">
+								<thead class="table-dark">
+									<tr>
+										<th>Product ID</th>
+										<th>Product Name</th>
+										<th>Color</th>
+										<th>Size</th>
+										<th>Quantity</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>		
+				<form id="add-lot-form" >
+					<div class="modal-footer">
+						<button class="btn btn-primary me-2" type="submit">Submit</button>
 					</div>
-					<div class="table-responsive table mt-2 px-2" id="type-table"
-						role="grid" aria-describedby="dataTable_info"
-						style="border-radius: 5px; display: block; height: 300px; text-align: center;">
-						<table
-							class="table table-hover table-bordered my-0 table-bordered align-middle"
-							id="category-table-add">
-							<thead class="table-dark">
-								<tr>
-									<th>Product ID</th>
-									<th>Product Name</th>
-									<th>Color</th>
-									<th>Size</th>
-									<th>Quantity</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Airi Satou</td>
-									<td class="text-break col-md-4">Balo msmsmmsmsmmssms</td>
-									<td>
-										<div class="dropdown">
-											<button class="btn btn-sm" aria-expanded="false"
-												data-bs-toggle="dropdown" type="button"
-												style="background: #a33232; width: 50px; height: 30px; padding: 0px; border-radius: 0px;"></button>
-											<div class="dropdown-menu"
-												style="padding: 5px; margin: 0px; margin-left: 13px; min-width: 55px; max-width: 55px;">
-												<a class="dropdown-item"
-													style="width: 43px; height: 30px; background: #358742; padding: 0px;"
-													role="button"></a><a class="dropdown-item"
-													style="width: 43px; height: 30px; background: #172fac; padding: 0px;"
-													role="button"></a><a class="dropdown-item"
-													style="width: 43px; height: 30px; background: #850e79; padding: 0px;"
-													role="button"></a>
-											</div>
-										</div>
-									</td>
-									<td><select class="form-select-sm form-control">
-											<option value="12" selected="">XL</option>
-											<option value="13">XXL</option>
-											<option value="14">M</option>
-									</select></td>
-									<td><input class="focus-ring form-control-sm form-control"
-										type="text" required="" style="width: 70px;"></td>
-									<td><a class="btn btn-danger btn-circle ms-1"
-										role="button"><i class="fas fa-trash text-white"></i></a></td>
-								</tr>
-								<!-- <tr>
-									<td><input
-										class="focus-ring form-control-sm w-75 form-control"
-										type="search" style="margin: 0px auto;"></td>
-									<td class="text-break col-md-4"><label
-										class="form-label text-danger mb-0">Not Found Product</label></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td><a class="btn btn-danger btn-circle ms-1"
-										role="button"><i class="fas fa-trash text-white"></i></a></td>
-								</tr> -->
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-primary me-2" type="button">Submit</button>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -245,17 +181,17 @@
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12">
-									<label class="col-form-label">Lot ID :</label>
+									<label id="lotId-lbl" class="col-form-label">Lot ID :</label>
 								</div>
 							</div>
 						</div>
 						<div class="container">
 							<div class="row">
 								<div class="col-md-6">
-									<label class="col-form-label">Confirmer :</label>
+									<label id="confirmer-lbl" class="col-form-label">Confirmer :</label>
 								</div>
 								<div class="col-md-6">
-									<label class="col-form-label">Import Date :&nbsp;</label>
+									<label id="importDate-lbl" class="col-form-label">Import Date :&nbsp;</label>
 								</div>
 							</div>
 						</div>
@@ -276,16 +212,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Airi Satou</td>
-									<td class="text-break col-md-4">Balo msmsmmsmsmmssms</td>
-									<td>
-										<div
-											style="background: #e11b1b; width: 50px; height: 30px; margin: 0px auto;"></div>
-									</td>
-									<td>XL</td>
-									<td>111</td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>

@@ -32,7 +32,7 @@ public class ProductLot implements Serializable {
     @ManyToOne(optional=false)
     @JoinColumn(name="Confirmer", nullable=false)
     private Admin admin;
-    @OneToMany(mappedBy="productLot")
+    @OneToMany(mappedBy="productLotDetailsId.productLot")
     private Set<ProductLotDetails> productLotDetails;
 
     /** Default constructor. */

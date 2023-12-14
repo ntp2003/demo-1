@@ -20,6 +20,7 @@ import com.example.demo.dto.ProductLotImportItemDetails;
 import com.example.demo.model.ProductLotDetails;
 import com.example.demo.model.QProductLot;
 import com.example.demo.model.StockDetails;
+import com.example.demo.model.IdClass.ProductLotDetailsId;
 import com.example.demo.repository.ProductCatalogRepo;
 import com.example.demo.repository.ProductLotDetailsRepo;
 import com.example.demo.repository.ProductLotRepo;
@@ -79,7 +80,7 @@ public class AdminProductLotServiceImpl implements AdminProductLotService{
 	public List<ProductLotImportItemDetails> findLotImportItemDetails(int lotId) {
 		com.example.demo.model.ProductLot pLot = new com.example.demo.model.ProductLot();
 		pLot.setLotId(lotId);
-		return productLotDetailsRepo.findByProductLot(pLot).stream().map(ProductLotImportItemDetails::new).toList();
+		return productLotDetailsRepo.findByProductLotDetailsIdProductLot(pLot).stream().map(ProductLotImportItemDetails::new).toList();
 	}
 
 	@Override
@@ -102,18 +103,18 @@ public class AdminProductLotServiceImpl implements AdminProductLotService{
 		
 		for (ProductLotImportItem productLotImportItem : pImportItems) {
 			ProductLotDetails productLotDetails = new ProductLotDetails();
-			
-			productLotDetails.setProductLot(productLot);
-			productLotDetails.setStockDetailsStockInventoryId(productLotImportItem.getStockInventoryID());
+			StockDetails stockDetails = new StockDetails();
+			stockDetails.setStockInventoryId(productLotImportItem.getStockInventoryID());
+			ProductLotDetailsId productLotDetailsId = new ProductLotDetailsId(productLot, stockDetails);
+			productLotDetails.setProductLotDetailsId(productLotDetailsId);
 			productLotDetails.setQuantity(productLotImportItem.getQuantity());
 			
 			try {
 				ProductLotDetails pLotDetails = productLotDetailsRepo.save(productLotDetails);
-				StockDetails stockDetails = pLotDetails.getStockDetails();
+				StockDetails sDetails = stockDetailsRepo.findById(pLotDetails.getProductLotDetailsId().getStockDetails().getStockInventoryId()).get();
 				
-				stockDetails.setStock(stockDetails.getStock() + pLotDetails.getQuantity());
-				
-				stockDetailsRepo.save(stockDetails);
+				sDetails.setStock(stockDetails.getStock() + pLotDetails.getQuantity());
+				stockDetailsRepo.save(sDetails);
 			} catch (DataAccessException dae) {
 				dae.printStackTrace();
 				return false;

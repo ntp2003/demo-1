@@ -18,6 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import com.example.demo.handler.CustomAccessDeniedHandler;
+import com.example.demo.handler.CustomLogoutSuccessHandler;
 import com.example.demo.service.AdminUserDetailsService;
 
 import jakarta.servlet.DispatcherType;
@@ -59,10 +60,10 @@ public class AdminSecurityConfig {
 						.successForwardUrl("/admin/login_success_handler")
 						.failureForwardUrl("/admin/login_failure_handler")
 						.permitAll())
-				.logout((logout) -> logout.invalidateHttpSession(true).clearAuthentication(true).deleteCookies("JSESSIONID").permitAll())
+				.logout((logout) -> logout.logoutUrl("/admin/logout").invalidateHttpSession(true).clearAuthentication(true)
+						.deleteCookies("JSESSIONID").logoutSuccessHandler(new CustomLogoutSuccessHandler()).permitAll())
 				.exceptionHandling(ex -> ex.accessDeniedHandler(new CustomAccessDeniedHandler("/admin/Login")))
-				;//.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
-				///.httpBasic(Customizer.withDefaults());
+				;
 
 		return http.build();
 	}
