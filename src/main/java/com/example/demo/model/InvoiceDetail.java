@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @IdClass(InvoiceDetail.InvoiceDetailId.class)
@@ -21,9 +23,14 @@ public class InvoiceDetail implements Serializable {
     /**
      * IdClass for primary key when using JPA annotations
      */
+	@Data
     public class InvoiceDetailId implements Serializable {
         PurchaseInvoice purchaseInvoice;
         StockDetails stockDetails;
+        
+        public InvoiceDetailId() {
+        	super();
+        }
     }
 
     /** Primary key. */

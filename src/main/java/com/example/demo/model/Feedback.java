@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @IdClass(Feedback.FeedbackId.class)
@@ -21,9 +23,13 @@ public class Feedback implements Serializable {
     /**
      * IdClass for primary key when using JPA annotations
      */
+	@Data
     public class FeedbackId implements Serializable {
         PurchaseHistory purchaseHistory;
         StockDetails stockDetails;
+        
+        public FeedbackId() {
+        }
     }
 
     /** Primary key. */

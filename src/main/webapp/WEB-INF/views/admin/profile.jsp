@@ -38,7 +38,7 @@
 						</div>
 						<div class="d-flex justify-content-xl-end mb-3">
 							<button class="btn btn-primary" type="button"
-								data-bs-toggle="modal" data-bs-target="#passwordModal">
+								data-bs-toggle="modal" data-bs-target="#changePasswordModal">
 								Change Password</button>
 						</div>
 					</div>
@@ -112,23 +112,23 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" role="dialog" tabindex="-1" id="passwordModal"
+		<div class="modal fade" role="dialog" tabindex="-1" id="changePasswordModal"
 			aria-labelledby="passwordModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="passwordModalLabel">Change
+						<h5 class="modal-title">Change
 							Password</h5>
 						<button class="btn-close" aria-label="Close"
 							data-bs-dismiss="modal" type="button"></button>
 					</div>
-					<form id="passwordForm" class="ms-1">
+					<form id="change-password-form" class="ms-1">
 						<div class="modal-body" style="padding-bottom: 0">
 							<div class="mb-3 row ms-2">
 								<label class="form-label col-form-label col-sm-4"
 									for="oldPassword">Old Password</label>
 								<div class="col-lg-7 col-sm-7">
-									<input class="form-control" type="password" id="oldPassword"
+									<input class="form-control" type="password" name="oldPassword" id="oldPassword"
 										placeholder="Enter old password" />
 								</div>
 							</div>
@@ -136,7 +136,7 @@
 								<label class="form-label col-form-label col-sm-4"
 									for="newPassword">New Password</label>
 								<div class="col col-sm-7">
-									<input class="form-control" type="password" id="newPassword"
+									<input class="form-control" type="password" name="newPassword" id="newPassword"
 										placeholder="Enter new password" />
 								</div>
 							</div>
@@ -145,7 +145,7 @@
 									for="confirmPassword">Confirm Password</label>
 								<div class="col col-sm-7">
 									<input class="form-control" type="password"
-										id="confirmPassword"
+										id="confirmPassword" name="confirmPassword"
 										placeholder="Repeat new password" />
 								</div>
 							</div>
@@ -153,7 +153,7 @@
 						<div
 							class="modal-footer d-flex justify-content-end pt-0 pe-4 pb-3"
 							style="border-style: none">
-							<button class="btn btn-primary" form="passwordForm"
+							<button class="btn btn-primary"
 								id="updateButton" type="submit">Update</button>
 						</div>
 					</form>
@@ -166,6 +166,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+	<script src="/assets/js/validatormethod.js"></script>
 	<script src="/assets/js/adminprofile.js"></script>
 </body>
 </html>

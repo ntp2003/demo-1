@@ -22,11 +22,9 @@ public class QPromotionDetail extends EntityPathBase<PromotionDetail> {
 
     public static final QPromotionDetail promotionDetail = new QPromotionDetail("promotionDetail");
 
-    public final NumberPath<java.math.BigDecimal> discountRate = createNumber("discountRate", java.math.BigDecimal.class);
+    public final NumberPath<Short> discountRate = createNumber("discountRate", Short.class);
 
-    public final QProductCatalog productCatalog;
-
-    public final QPromotion promotion;
+    public final com.example.demo.model.IdClass.QPromotionDetailId promotionDetailId;
 
     public QPromotionDetail(String variable) {
         this(PromotionDetail.class, forVariable(variable), INITS);
@@ -46,8 +44,7 @@ public class QPromotionDetail extends EntityPathBase<PromotionDetail> {
 
     public QPromotionDetail(Class<? extends PromotionDetail> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.productCatalog = inits.isInitialized("productCatalog") ? new QProductCatalog(forProperty("productCatalog"), inits.get("productCatalog")) : null;
-        this.promotion = inits.isInitialized("promotion") ? new QPromotion(forProperty("promotion")) : null;
+        this.promotionDetailId = inits.isInitialized("promotionDetailId") ? new com.example.demo.model.IdClass.QPromotionDetailId(forProperty("promotionDetailId"), inits.get("promotionDetailId")) : null;
     }
 
 }

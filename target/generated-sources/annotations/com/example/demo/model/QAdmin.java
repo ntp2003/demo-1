@@ -22,6 +22,8 @@ public class QAdmin extends EntityPathBase<Admin> {
 
     public final StringPath cccd = createString("cccd");
 
+    public final BooleanPath creator = createBoolean("creator");
+
     public final StringPath email = createString("email");
 
     public final StringPath fullName = createString("fullName");

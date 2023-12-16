@@ -23,7 +23,7 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 
 	@Override
 	public boolean chekcPassword(String password, Admin current) {
-		return adminPasswordEncoder.encode(password).equals(current.getPassword());
+		return adminPasswordEncoder.matches(password, current.getPassword());
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class AdminProfileServiceImpl implements AdminProfileService {
 	@Override
 	public AdminUserDetails updatePassword(String newPassword, String username) {
 		return adminRepo.findById(username).map(i -> {
-			i.setPassword(newPassword);
+			i.setPassword(adminPasswordEncoder.encode(newPassword));
 			return new AdminUserDetails(adminRepo.save(i));
 		}).orElseThrow(() -> new UsernameNotFoundException("user not found: " + username));
 	}

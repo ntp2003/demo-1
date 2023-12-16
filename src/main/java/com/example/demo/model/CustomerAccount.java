@@ -48,7 +48,7 @@ public class CustomerAccount implements Serializable {
     private Set<LoginHistory> loginHistory;
     @OneToMany(mappedBy="customerAccount")
     private Set<PurchaseHistory> purchaseHistory;
-    @OneToMany(mappedBy="customerAccount")
+    @OneToMany(mappedBy="shoppingCartId.customerAccount")
     private Set<ShoppingCart> shoppingCart;
 
     /** Default constructor. */

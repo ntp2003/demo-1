@@ -22,7 +22,7 @@ public class QPromotion extends EntityPathBase<Promotion> {
 
     public final StringPath banner = createString("banner");
 
-    public final DateTimePath<java.time.LocalDateTime> endTime = createDateTime("endTime", java.time.LocalDateTime.class);
+    public final DatePath<java.time.LocalDate> endTime = createDate("endTime", java.time.LocalDate.class);
 
     public final SetPath<PromotionDetail, QPromotionDetail> promotionDetail = this.<PromotionDetail, QPromotionDetail>createSet("promotionDetail", PromotionDetail.class, QPromotionDetail.class, PathInits.DIRECT2);
 
@@ -30,7 +30,7 @@ public class QPromotion extends EntityPathBase<Promotion> {
 
     public final StringPath promotionName = createString("promotionName");
 
-    public final DateTimePath<java.time.LocalDateTime> startTime = createDateTime("startTime", java.time.LocalDateTime.class);
+    public final DatePath<java.time.LocalDate> startTime = createDate("startTime", java.time.LocalDate.class);
 
     public QPromotion(String variable) {
         super(Promotion.class, forVariable(variable));

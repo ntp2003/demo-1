@@ -3,6 +3,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -28,12 +29,12 @@ public class Promotion implements Serializable {
     @Column(name="PromotionName", nullable=false, length=100)
     private String promotionName;
     @Column(name="StartTime", nullable=false)
-    private LocalDateTime startTime;
+    private LocalDate startTime;
     @Column(name="EndTime", nullable=false)
-    private LocalDateTime endTime;
+    private LocalDate endTime;
     @Column(name="Banner", nullable=false)
     private String banner;
-    @OneToMany(mappedBy="promotion")
+    @OneToMany(mappedBy="promotionDetailId.promotion")
     private Set<PromotionDetail> promotionDetail;
 
     /** Default constructor. */
@@ -82,7 +83,7 @@ public class Promotion implements Serializable {
      *
      * @return the current value of startTime
      */
-    public LocalDateTime getStartTime() {
+    public LocalDate getStartTime() {
         return startTime;
     }
 
@@ -91,7 +92,7 @@ public class Promotion implements Serializable {
      *
      * @param aStartTime the new value for startTime
      */
-    public void setStartTime(LocalDateTime aStartTime) {
+    public void setStartTime(LocalDate aStartTime) {
         startTime = aStartTime;
     }
 
@@ -100,7 +101,7 @@ public class Promotion implements Serializable {
      *
      * @return the current value of endTime
      */
-    public LocalDateTime getEndTime() {
+    public LocalDate getEndTime() {
         return endTime;
     }
 
@@ -109,7 +110,7 @@ public class Promotion implements Serializable {
      *
      * @param aEndTime the new value for endTime
      */
-    public void setEndTime(LocalDateTime aEndTime) {
+    public void setEndTime(LocalDate aEndTime) {
         endTime = aEndTime;
     }
 

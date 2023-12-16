@@ -44,12 +44,16 @@ public class ProductCatalog implements Serializable {
     private ProductType productType;
     @OneToMany(mappedBy="productCatalog")
     private Set<ProductCategory> productCategory;
-    @OneToMany(mappedBy="productCatalog")
+    @OneToMany(mappedBy="promotionDetailId.productCatalog")
     private Set<PromotionDetail> promotionDetail;
 
     /** Default constructor. */
     public ProductCatalog() {
         super();
+    }
+    public ProductCatalog(short productId) {
+        super();
+        this.productId = productId;
     }
 
     /**

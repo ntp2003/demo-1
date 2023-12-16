@@ -22,11 +22,9 @@ public class QProductLotDetails extends EntityPathBase<ProductLotDetails> {
 
     public static final QProductLotDetails productLotDetails = new QProductLotDetails("productLotDetails");
 
-    public final QProductLot productLot;
+    public final com.example.demo.model.IdClass.QProductLotDetailsId productLotDetailsId;
 
     public final NumberPath<Integer> quantity = createNumber("quantity", Integer.class);
-
-    public final QStockDetails stockDetails;
 
     public QProductLotDetails(String variable) {
         this(ProductLotDetails.class, forVariable(variable), INITS);
@@ -46,8 +44,7 @@ public class QProductLotDetails extends EntityPathBase<ProductLotDetails> {
 
     public QProductLotDetails(Class<? extends ProductLotDetails> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.productLot = inits.isInitialized("productLot") ? new QProductLot(forProperty("productLot"), inits.get("productLot")) : null;
-        this.stockDetails = inits.isInitialized("stockDetails") ? new QStockDetails(forProperty("stockDetails"), inits.get("stockDetails")) : null;
+        this.productLotDetailsId = inits.isInitialized("productLotDetailsId") ? new com.example.demo.model.IdClass.QProductLotDetailsId(forProperty("productLotDetailsId"), inits.get("productLotDetailsId")) : null;
     }
 
 }

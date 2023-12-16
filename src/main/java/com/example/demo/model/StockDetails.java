@@ -34,7 +34,7 @@ public class StockDetails implements Serializable {
     private Set<InvoiceDetail> invoiceDetail;
     @OneToMany(mappedBy="productLotDetailsId.stockDetails")
     private Set<ProductLotDetails> productLotDetails;
-    @OneToMany(mappedBy="stockDetails")
+    @OneToMany(mappedBy="shoppingCartId.stockDetails")
     private Set<ShoppingCart> shoppingCart;
     @ManyToOne(optional=false)
     @JoinColumn(name="ProductCategoryID", nullable=false)
