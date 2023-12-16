@@ -172,7 +172,7 @@ $(document).ready(function() {
 			productCategoryId: $("#add-images").data('info').productCategoryId,
 			dataURLs: selectedfile.map(i => i.fileimage)
 		};
-
+		$.LoadingOverlay("show");
 		let p = new Promise(function(resolve, reject) {
 			try {
 				formData.dataURLs.forEach((data, i) => {
@@ -190,9 +190,15 @@ $(document).ready(function() {
 								},
 								success: function() {
 									$.notify("Tải ảnh lên thành công!", "success", 9999);
+
+									if (i == formData.dataURLs.length - 1)
+										$.LoadingOverlay("hide");
 								},
 								error: function() {
 									$.notify("Tải ảnh lên thất bại!", "danger", 9999);
+
+									if (i == formData.dataURLs.length - 1)
+										$.LoadingOverlay("hide");
 								}
 							});
 						};
@@ -267,9 +273,10 @@ $(document).ready(function() {
 			});
 		});
 	});
-	
+
 	$("#delete-p-categories").click(function() {
 		$("#show-type").find('input:checked.form-check-input').each(function() {
+			$.LoadingOverlay("show");
 			let tr = $(this).parent().parent();
 			let productCategoryId = tr.data('info').productCategoryId;
 			$.ajax({
@@ -280,14 +287,16 @@ $(document).ready(function() {
 				success: function() {
 					$.notify(`Xóa loại sản phẩm ${productCategoryId} thành công!`, "success", 9999);
 					tr.remove();
+					$.LoadingOverlay("hide");
 				},
 				error: function() {
 					$.notify(`Xóa loại sản phẩm ${productCategoryId} thất bại!`, "danger", 9999);
+					$.LoadingOverlay("hide");
 				}
 			})
 		});
 	});
-	
+
 	$("#show-type").on('show.bs.modal', function() {
 		$(this).find('.modal-header h5').html($(this).data('info').productName);
 		$('#product-id-lbl').html('Mã sản phẩm : ' + $(this).data('info').productId);
@@ -381,7 +390,7 @@ $(document).ready(function() {
 	});
 
 	function LoadProductCatalog(page = 0, size = 10, sort = 'productName,asc') {
-		$.getJSON(`/admin/product-list?page=${page}&size=${size}&sort=${sort}${$('input[type=search]').val()?`&containing=${$('input[type=search]').val()}`:''}`, function(json) {
+		$.getJSON(`/admin/product-list?page=${page}&size=${size}&sort=${sort}${$('input[type=search]').val() ? `&containing=${$('input[type=search]').val()}` : ''}`, function(json) {
 			var pCatalogList = json.content;
 			$("#productCatalogsTable tbody").html('');
 			pCatalogList.forEach((i) => {

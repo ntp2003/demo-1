@@ -81,7 +81,7 @@ $(document).ready(function() {
 			$.notify(err, "danger", 9999);
 			return;
 		}
-
+		$.LoadingOverlay("show");
 		$.ajax({
 			type: "POST",
 			contentType: "application/json; charset=utf-8",
@@ -92,10 +92,12 @@ $(document).ready(function() {
 				$('#add-promotion-modal').modal('hide');
 				$("#added-product-table tbody").html('');
 				document.getElementById('add-promotion-form').reset();
-				$.notify("Thêm khuyến mãi thành công!", "success", 9999);
 				loadPromotions();
+				$.LoadingOverlay("hide");
+				$.notify("Thêm khuyến mãi thành công!", "success", 9999);
 			},
 			error: function() {
+				$.LoadingOverlay("hide");
 				$.notify("Thêm khuyến mãi thất bại!", "danger", 9999);
 			}
 		});
