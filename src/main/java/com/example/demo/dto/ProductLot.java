@@ -24,6 +24,6 @@ public class ProductLot implements Serializable {
     	this.importDate = productLot.getImportDate();
     	this.confirmerName = productLot.getAdmin().getFullName();
     	this.confirmerPhoneNumber = productLot.getAdmin().getPhoneNumber();
-    	this.confirmerEmail = productLot.getAdmin().getPhoneNumber();
+    	this.confirmerEmail = productLot.getAdmin().getEmail();
     }
 }

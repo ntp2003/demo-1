@@ -11,11 +11,12 @@ import com.example.demo.model.ShoppingCart;
 import com.example.demo.repository.ShoppingCartRepo;
 
 @Controller
+@RequestMapping("/customer/Checkout")
 public class CheckoutController {
 	@Autowired
 	ShoppingCartRepo shoppingCartRepo;
 	
-    @RequestMapping(value = {"/","/Checkout"})
+    @RequestMapping("")
     public String CheckoutPage() {
         return "checkout";
     }

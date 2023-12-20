@@ -1,5 +1,3 @@
-// Generated with g9.
-
 package com.example.demo.model;
 
 import java.io.Serializable;

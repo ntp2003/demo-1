@@ -45,6 +45,8 @@ public class AdminPromotionServiceImpl implements AdminPromotionService{
 	public boolean addPromotion(Promotion promotion) {
 		com.example.demo.model.Promotion promotionModel;
 		try {
+			if(!canInsert(promotion)) 
+				throw new IllegalArgumentException();
 			promotionModel = promotionRepo.save(promotion.toModel());
 		} catch (IllegalArgumentException  e) {
 			System.out.println("Tham số không hợp lệ");
@@ -99,5 +101,18 @@ public class AdminPromotionServiceImpl implements AdminPromotionService{
 	
 	private boolean canDelete(LocalDate startTime) {
 		return startTime.isAfter(LocalDate.now());
+	}
+	
+	private boolean canInsert(Promotion promotion) {
+		if(promotion.getPromotionName() == null || promotion.getPromotionName().isBlank())
+			return false;
+		if(promotion.getStartTime() == null || promotion.getEndTime() == null)
+			return false;
+		
+		QPromotion qPromotion = QPromotion.promotion;
+		BooleanExpression predicate = qPromotion.startTime.between(promotion.getStartTime(), promotion.getEndTime());
+		predicate = predicate.or(qPromotion.endTime.between(promotion.getStartTime(), promotion.getEndTime()));
+		
+		return promotionRepo.count(predicate) == 0;
 	}
 }

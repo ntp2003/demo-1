@@ -26,22 +26,12 @@
 					id="navcol-1">
 					<ul class="navbar-nav mx-auto">
 						<li class="nav-item"><a class="nav-link" href="#sale">SALE</a></li>
-						<li class="nav-item"><a class="nav-link" href="SanPham">Sản
+						<li id="all-product-header" class="nav-item"><a class="nav-link" href="/product">Sản
 								phẩm</a></li>
-						<li class="nav-item"><a class="nav-link" href="Giay">Giày</a></li>
-						<li class="nav-item"><a class="nav-link" href="QuanAo">Quần
-								áo</a></li>
-						<li class="nav-item"><a class="nav-link" href="Balo">Balo</a></li>
-						<li class="nav-item"><a class="nav-link" href="BanChay">Sản phẩm bán chạy</a></li>
+						<li class="nav-item"><a class="nav-link" href="/product?sort=purchaseCount,desc">Sản phẩm bán chạy</a></li>
 					</ul>
 					<div class="d-flex align-items-center" style="gap: 20px;">
-						<div data-reflow-type="product-search"></div>
-							<div class="cart-icon-container">
-							<a href="Cart">
-							  <i class="fa-solid fa-cart-shopping fa-bounce fa-lg"></i>
-							  <span class="product-count">5</span>
-							</a>
-							</div>
+							
 						<sec:authorize access="!hasRole('CUSTOMER')">
 							<form id="loginForm" action="Login" method="get">
 								<button id="loginButton" type="submit"
@@ -49,6 +39,12 @@
 							</form>
 						</sec:authorize>
 						<sec:authorize access="hasRole('CUSTOMER')">
+							<div class="cart-icon-container">
+							<a href="/customer/Cart">
+							  <i class="fa-solid fa-cart-shopping fa-bounce fa-lg"></i>
+							  <span class="product-count">5</span>
+							</a>
+							</div>
 							<div class="dropdown">
 								<a style="text-decoration: none" class="dropdown-toggle"
 									href="#" role="button" id="dropdownMenuAvatar"
@@ -61,7 +57,7 @@
 								<ul class="dropdown-menu dropdown-menu-end"
 									aria-labelledby="dropdownMenuAvatar"
 									style = "margin-top: 10px;">
-									<li><a class="dropdown-item" href="#">My profile</a></li>
+									<li><a class="dropdown-item" href="/customer/Profile">My profile</a></li>
 									<li><a class="dropdown-item" href="/customer/logout">Logout</a></li>
 								</ul>
 							</div>

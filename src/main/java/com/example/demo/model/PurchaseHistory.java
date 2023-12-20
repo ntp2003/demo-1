@@ -28,7 +28,7 @@ public class PurchaseHistory implements Serializable {
     private int purchaseId;
     @Column(name="Status", nullable=false, length=10)
     private String status;
-    @OneToMany(mappedBy="purchaseHistory")
+    @OneToMany(mappedBy="feedbackId.purchaseHistory")
     private Set<Feedback> feedback;
     @ManyToOne(optional=false)
     @JoinColumn(name="AccountID", nullable=false)

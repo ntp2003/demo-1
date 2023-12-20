@@ -28,9 +28,9 @@ public class StockDetails implements Serializable {
     private int stockInventoryId;
     @Column(name="Stock", nullable=false, precision=10)
     private int stock;
-    @OneToMany(mappedBy="stockDetails")
+    @OneToMany(mappedBy="feedbackId.stockDetails")
     private Set<Feedback> feedback;
-    @OneToMany(mappedBy="stockDetails")
+    @OneToMany(mappedBy="invoiceDetailId.stockDetails")
     private Set<InvoiceDetail> invoiceDetail;
     @OneToMany(mappedBy="productLotDetailsId.stockDetails")
     private Set<ProductLotDetails> productLotDetails;

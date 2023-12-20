@@ -24,13 +24,11 @@ public class QInvoiceDetail extends EntityPathBase<InvoiceDetail> {
 
     public final NumberPath<java.math.BigDecimal> discount = createNumber("discount", java.math.BigDecimal.class);
 
+    public final com.example.demo.model.IdClass.QInvoiceDetailId invoiceDetailId;
+
     public final NumberPath<java.math.BigDecimal> originalPrice = createNumber("originalPrice", java.math.BigDecimal.class);
 
-    public final QPurchaseInvoice purchaseInvoice;
-
     public final NumberPath<Integer> quantity = createNumber("quantity", Integer.class);
-
-    public final QStockDetails stockDetails;
 
     public QInvoiceDetail(String variable) {
         this(InvoiceDetail.class, forVariable(variable), INITS);
@@ -50,8 +48,7 @@ public class QInvoiceDetail extends EntityPathBase<InvoiceDetail> {
 
     public QInvoiceDetail(Class<? extends InvoiceDetail> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.purchaseInvoice = inits.isInitialized("purchaseInvoice") ? new QPurchaseInvoice(forProperty("purchaseInvoice"), inits.get("purchaseInvoice")) : null;
-        this.stockDetails = inits.isInitialized("stockDetails") ? new QStockDetails(forProperty("stockDetails"), inits.get("stockDetails")) : null;
+        this.invoiceDetailId = inits.isInitialized("invoiceDetailId") ? new com.example.demo.model.IdClass.QInvoiceDetailId(forProperty("invoiceDetailId"), inits.get("invoiceDetailId")) : null;
     }
 
 }

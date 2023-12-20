@@ -2,13 +2,20 @@ package com.example.demo.service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.ProductDetail;
+import com.example.demo.dto.ProductFilter;
+import com.example.demo.dto.ProductSearchItem;
 import com.example.demo.dto.ProductType;
+import com.example.demo.dto.ProductView;
 import com.example.demo.dto.ProductViewItem;
+import com.example.demo.dto.ProductViewMode;
+import com.example.demo.model.Promotion;
 
 import lombok.Data;
 
@@ -20,12 +27,13 @@ public interface ProductsViewService {
 	
 	public List<String> colors();
 	
-	@Data
-	public class ProductFilter {
-		List<String> colors;
-		List<Short> productTypes;
-		String specialType;
-		BigDecimal minPrice;
-		BigDecimal maxPrice;
-	}
+	public List<String> brands();
+	
+	public List<ProductSearchItem> findItemBySearch(String searchValue);
+	
+	public List<ProductView> getProductViewMode(ProductViewMode mode);
+
+	Optional<Promotion> findCurrentPromotion();
+	
+	ProductDetail getProductDetailInfo(short productId);
 }

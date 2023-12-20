@@ -47,7 +47,7 @@ public class PurchaseInvoice implements Serializable {
     private BigDecimal total;
     @Column(name="CompletedTime")
     private LocalDateTime completedTime;
-    @OneToMany(mappedBy="purchaseInvoice")
+    @OneToMany(mappedBy="invoiceDetailId.purchaseInvoice")
     private Set<InvoiceDetail> invoiceDetail;
     @OneToMany(mappedBy="purchaseInvoice")
     private Set<PurchaseHistory> purchaseHistory;

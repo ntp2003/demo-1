@@ -35,10 +35,13 @@ input[type="checkbox"]:not(.custom-control-input) {
 
 label.bg-color {
   display: inline-block;
-  padding: 10px;
+  padding: 8px;
   margin-left: 5px;
-  border: 2px solid #ccc;
-  border-radius: 5px;
+  	border: 1px solid #424949;
+
+/*  border: 2px solid #ccc;
+
+*/  border-radius: 5px;
   cursor: pointer;
   user-select: none;
   transition: transform 0.3s;
@@ -46,16 +49,14 @@ label.bg-color {
 }
 
 label.active {
-  transform: scale(1.4);
+  
+	  border: 1px solid rgb(0, 0, 0);
+
+  transform: scale(1.2);
 }
 
-
-/*.push {
-    height: 100px;
-}*/
-
 .bg-opacity-10 {
-  --bs-bg-opacity: 0.75;
+  --bs-bg-opacity: 0.5;
 }
 .custom-control {
 	display:flex;

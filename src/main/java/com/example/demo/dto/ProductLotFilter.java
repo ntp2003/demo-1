@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductLotFilter {
+public class ProductLotFilter{
 	private LocalDate fromDate;
 	private LocalDate toDate;
 	private String searchValue;

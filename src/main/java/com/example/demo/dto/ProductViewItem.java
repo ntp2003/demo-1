@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.example.demo.model.ProductCatalog;
 import com.example.demo.model.ProductCategory;
+import com.example.demo.model.Promotion;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +21,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductViewItem implements Serializable{
-	private short productId;
-    private String productName;
-    private int purchaseCount;
+	protected short productId;
+    protected String productName;
+    protected int purchaseCount;
+    protected short discountRate;
     private List<CategoryItem> categories;
     
     @Getter
@@ -41,7 +43,7 @@ public class ProductViewItem implements Serializable{
     	this.productName = productCatalog.getProductName();
     	this.purchaseCount = productCatalog.getPurchaseCount();
     	this.categories = new ArrayList<>();
-    	
+    			
     	for (ProductCategory pCategory : productCatalog.getProductCategory()) {
     		CategoryItem categoryItem = new CategoryItem();
     		
@@ -52,5 +54,15 @@ public class ProductViewItem implements Serializable{
     		
     		this.categories.add(categoryItem);
 		}
+    }
+    
+    public ProductViewItem(ProductCatalog productCatalog, Promotion promotion) {
+    	this(productCatalog);
+    	promotion.getPromotionDetail().forEach( i -> {
+    		if(this.productId == i.getPromotionDetailId().getProductCatalog().getProductId()){
+    			this.discountRate = i.getDiscountRate();
+    			return;
+    		}
+    	});
     }
 }

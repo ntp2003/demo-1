@@ -22,13 +22,11 @@ public class QFeedback extends EntityPathBase<Feedback> {
 
     public static final QFeedback feedback = new QFeedback("feedback");
 
-    public final QPurchaseHistory purchaseHistory;
+    public final com.example.demo.model.IdClass.QFeedbackId feedbackId;
 
     public final NumberPath<Short> rating = createNumber("rating", Short.class);
 
     public final StringPath review = createString("review");
-
-    public final QStockDetails stockDetails;
 
     public final DateTimePath<java.time.LocalDateTime> time = createDateTime("time", java.time.LocalDateTime.class);
 
@@ -50,8 +48,7 @@ public class QFeedback extends EntityPathBase<Feedback> {
 
     public QFeedback(Class<? extends Feedback> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.purchaseHistory = inits.isInitialized("purchaseHistory") ? new QPurchaseHistory(forProperty("purchaseHistory"), inits.get("purchaseHistory")) : null;
-        this.stockDetails = inits.isInitialized("stockDetails") ? new QStockDetails(forProperty("stockDetails"), inits.get("stockDetails")) : null;
+        this.feedbackId = inits.isInitialized("feedbackId") ? new com.example.demo.model.IdClass.QFeedbackId(forProperty("feedbackId"), inits.get("feedbackId")) : null;
     }
 
 }

@@ -22,7 +22,7 @@ public class Admin implements Serializable {
 	private String phoneNumber;
 	private String email;
 	private String cccd;
-	private boolean creator;
+	private boolean creator = false;
 
 	public Admin(com.example.demo.model.Admin admin) {
 		this.username = admin.getUsername();
