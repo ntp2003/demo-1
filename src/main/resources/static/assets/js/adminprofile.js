@@ -119,7 +119,7 @@ $(document).ready(function() {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
-				url: "/admin/Profile/update-pasword",
+				url: "/admin/Profile/update-password",
 				data: JSON.stringify(formData),
 				cache: false,
 				success: function() {

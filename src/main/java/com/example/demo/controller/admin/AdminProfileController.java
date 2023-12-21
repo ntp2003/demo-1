@@ -38,7 +38,7 @@ public class AdminProfileController {
 		return ResponseEntity.ok(adminProfileService.chekcPassword(oldPassword, adminUserDetails.getAdmin()));
 	}
 	
-	@PostMapping("/update-pasword")
+	@PostMapping("/update-password")
 	@ResponseBody
 	public ResponseEntity<Void> updatePassword(@RequestBody Map<String, String> newPassword, @AuthenticationPrincipal AdminUserDetails adminUserDetails){
 		try {

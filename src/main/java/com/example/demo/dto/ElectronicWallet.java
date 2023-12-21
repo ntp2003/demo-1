@@ -1,5 +1,3 @@
-// Generated with g9.
-
 package com.example.demo.dto;
 
 import java.io.Serializable;
@@ -19,12 +17,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ElectronicWallet implements Serializable {
 	private int walletId;
-    private String verificationCodes;
     private BigDecimal balance;
     
     public ElectronicWallet(com.example.demo.model.ElectronicWallet electronicWallet) {
     	this.walletId = electronicWallet.getWalletId();
-    	this.verificationCodes = electronicWallet.getVerificationCodes();
     	this.balance = electronicWallet.getBalance();
     }
     
@@ -32,7 +28,6 @@ public class ElectronicWallet implements Serializable {
     	com.example.demo.model.ElectronicWallet electronicWallet = new com.example.demo.model.ElectronicWallet();
     	
     	electronicWallet.setWalletId(walletId);
-    	electronicWallet.setVerificationCodes(verificationCodes);
     	electronicWallet.setBalance(balance);
     	
     	return electronicWallet;

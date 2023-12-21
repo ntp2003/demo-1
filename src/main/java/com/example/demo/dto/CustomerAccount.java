@@ -23,7 +23,7 @@ public class CustomerAccount implements Serializable {
     private String firstName;
     private String lastName;
     private LocalDate birthDate;
-    private String address;
+    private String address = ",,:";
     private String phoneNumber;
     private String email;
     private String avatar;
@@ -59,6 +59,7 @@ public class CustomerAccount implements Serializable {
 		customerAccount.setPhoneNumber(phoneNumber);
 		customerAccount.setEmail(email);
 		customerAccount.setAvatar(avatar);
+		
 		if(electronicWallet != null)
 			customerAccount.setElectronicWallet(electronicWallet.toModel());
 		

@@ -50,7 +50,8 @@
 									href="#" role="button" id="dropdownMenuAvatar"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <img
-									src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+									src= "<sec:authentication property="principal.customerAccount.avatar"/>"
+									onerror="this.onerror=null;this.src='https://bootdey.com/img/Content/avatar/avatar7.png';"
 									class="rounded-circle" height="30"
 									alt="Black and White Portrait of a Man" loading="lazy">
 								</a>
