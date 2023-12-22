@@ -368,9 +368,12 @@
                   ><span id="Quantity" style="display: flex; gap: 10px"
                     ><h6>Quantity:</h6>
                     <h6>1</h6></span
-                  ><span id="Price" style="display: flex; gap: 10px"
+                  ><span id="Price" style="display: flex;align-items:center; gap: 10px"
                     ><h6>Price:</h6>
-                    <h6>99$</h6></span
+                    <h6>99$</h6>
+                    <h6 style="text-decoration: line-through;font-size: small">99$</h6>
+                    </span
+                    
                   >
                 </div>
 <!--                 <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">

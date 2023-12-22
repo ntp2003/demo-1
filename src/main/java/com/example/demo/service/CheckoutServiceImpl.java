@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import com.example.demo.dto.InvoiceStatus;
 import com.example.demo.model.CustomerAccount;
 import com.example.demo.model.InvoiceDetail;
 import com.example.demo.model.Payment;
+import com.example.demo.model.ProductCatalog;
 import com.example.demo.model.Promotion;
 import com.example.demo.model.PurchaseHistory;
 import com.example.demo.model.PurchaseInvoice;
@@ -23,6 +26,7 @@ import com.example.demo.model.IdClass.ShoppingCartId;
 import com.example.demo.repository.CustomerRepo;
 import com.example.demo.repository.ElectronicWalletRepo;
 import com.example.demo.repository.InvoiceDetailRepo;
+import com.example.demo.repository.ProductCatalogRepo;
 import com.example.demo.repository.PurchaseHistoryRepo;
 import com.example.demo.repository.PurchaseInvoiceRepo;
 import com.example.demo.repository.ShoppingCartRepo;
@@ -55,6 +59,9 @@ public class CheckoutServiceImpl implements CheckoutService{
 	@Autowired
 	StockDetailsRepo stockDetailsRepo;
 	
+	@Autowired
+	ProductCatalogRepo productCatalogRepo;
+	
 	@Override
 	public CheckoutInfo getCheckoutInfo(int accountId) {
 		CustomerAccount customerAccount = getAccount(accountId);
@@ -73,8 +80,11 @@ public class CheckoutServiceImpl implements CheckoutService{
 		
 		current.getItemDetails().forEach(i -> {
 			checkoutInfo.getItemDetails().forEach(j ->{
-				if(i.getPrice().compareTo(j.getPrice()) != 0 || i.getDiscount().compareTo(j.getDiscount()) != 0)
+				
+				if(i.getStockInventoryId() == j.getStockInventoryId() && (Math.abs(i.getPrice().subtract(j.getPrice()).doubleValue()) > 1e-4 || 
+						Math.abs(i.getDiscount().subtract(j.getDiscount()).doubleValue()) > 1e-4)) {
 					throw new RuntimeException("Infomation is updated. Please reload page !!!");
+				}
 			});
 		});
 		if(checkoutInfo.getPaymentMethod() == 2) {
@@ -97,6 +107,7 @@ public class CheckoutServiceImpl implements CheckoutService{
 		
 		current.getItemDetails().forEach(i -> {
 			StockDetails stockDetails = stockDetailsRepo.findById(i.getStockInventoryId()).get();
+			ProductCatalog productCatalog = productCatalogRepo.findById(stockDetails.getProductCategory().getProductCatalog().getProductId()).get();
 			InvoiceDetail invoiceDetail = new InvoiceDetail();
 			invoiceDetail.setInvoiceDetailId(new InvoiceDetailId());
 			invoiceDetail.getInvoiceDetailId().setStockDetails(stockDetails);
@@ -105,6 +116,8 @@ public class CheckoutServiceImpl implements CheckoutService{
 			invoiceDetail.setOriginalPrice(i.getPrice());
 			invoiceDetail.setDiscount(i.getDiscount());
 			invoiceDetailRepo.save(invoiceDetail);
+			productCatalog.setPurchaseCount(productCatalog.getPurchaseCount() + i.getQuantity());
+			productCatalogRepo.save(productCatalog);
 			stockDetails.setStock(stockDetails.getStock() - i.getQuantity());
 			ShoppingCartId shoppingCartId = new ShoppingCartId();
 			shoppingCartId.setCustomerAccount(customerAccount);
