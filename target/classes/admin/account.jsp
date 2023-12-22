@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Account</title>
 </head>
 <body>
 	<div class="container-fluid">
-                    <h3 class="text-dark mb-4">Account Management</h3>
+             <h3 class="text-dark mb-4">Account Management</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="fw-bold text-primary m-0">Admin Account Management</p>
@@ -174,5 +174,6 @@
                         </div>
                     </div>
                 </div>
+       <script src="/assets/js/notify.js"></script>
 </body>
 </html>

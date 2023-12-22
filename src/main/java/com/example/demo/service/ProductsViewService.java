@@ -15,6 +15,7 @@ import com.example.demo.dto.ProductType;
 import com.example.demo.dto.ProductView;
 import com.example.demo.dto.ProductViewItem;
 import com.example.demo.dto.ProductViewMode;
+import com.example.demo.dto.PromotionSimple;
 import com.example.demo.model.Promotion;
 
 import lombok.Data;
@@ -36,4 +37,8 @@ public interface ProductsViewService {
 	Optional<Promotion> findCurrentPromotion();
 	
 	ProductDetail getProductDetailInfo(short productId);
+	
+	Optional<PromotionSimple> findCurrentPromotionSimple();
+	
+	List<ProductView> findSaleProductViews();
 }

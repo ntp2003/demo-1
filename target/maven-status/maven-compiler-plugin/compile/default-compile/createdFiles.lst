@@ -6,12 +6,15 @@ com\example\demo\model\CustomerAccount.class
 com\example\demo\service\ProductsViewServiceImpl$1.class
 com\example\demo\dto\ProductCatalog.class
 com\example\demo\security\CustomerSecurityConfig.class
+com\example\demo\dto\CheckoutItemDetail.class
 com\example\demo\service\AdminProductLotService.class
 com\example\demo\model\IdClass\QFeedbackId.class
 com\example\demo\dto\Promotion.class
 com\example\demo\dto\CustomerAccount.class
 com\example\demo\dto\Size.class
 com\example\demo\security\AdminSecurityConfig.class
+com\example\demo\service\CheckoutService.class
+com\example\demo\repository\InvoiceDetailRepo.class
 com\example\demo\service\AdminServiceImpl.class
 com\example\demo\dto\ProductDetail$Stock.class
 com\example\demo\dto\ProductDetail$CategoryItem.class
@@ -31,8 +34,12 @@ com\example\demo\model\QElectronicWallet.class
 com\example\demo\model\Feedback.class
 com\example\demo\model\QImageProduct.class
 com\example\demo\repository\PromotionDetailRepo.class
+com\example\demo\dto\InvoiceStatus.class
 com\example\demo\model\QAdmin.class
+com\example\demo\controller\CustomerProfileController.class
+com\example\demo\repository\ElectronicWalletRepo.class
 com\example\demo\repository\ProductCatalogRepo.class
+com\example\demo\controller\admin\AdminOrderController.class
 com\example\demo\model\ElectronicWallet.class
 com\example\demo\service\AdminProductService.class
 com\example\demo\controller\admin\AdminLoginController.class
@@ -49,6 +56,7 @@ com\example\demo\model\QSize.class
 com\example\demo\model\IdClass\InvoiceDetailId.class
 com\example\demo\model\Payment.class
 com\example\demo\config\WebConfig.class
+com\example\demo\service\CheckoutServiceImpl.class
 com\example\demo\model\ProductLotDetails.class
 com\example\demo\controller\admin\AdminProductController.class
 com\example\demo\model\ProductCategory.class
@@ -89,6 +97,7 @@ com\example\demo\model\ProductType.class
 com\example\demo\model\QStockDetails.class
 com\example\demo\service\AdminProductLotServiceImpl$1.class
 com\example\demo\model\QPromotionDetail.class
+com\example\demo\dto\CartItem.class
 com\example\demo\service\AdminAccountManagementServiceImpl.class
 com\example\demo\repository\ProductTypeRepo.class
 com\example\demo\model\QPurchaseInvoice.class
@@ -119,6 +128,7 @@ com\example\demo\model\QProductLotDetails.class
 com\example\demo\repository\AdminRepo.class
 com\example\demo\handler\CustomAccessDeniedHandler.class
 com\example\demo\controller\admin\AdminDashboardController.class
+com\example\demo\service\CustomerProfileServiceImpl.class
 com\example\demo\dto\ProductCategory.class
 com\example\demo\controller\admin\AdminRegisterController.class
 com\example\demo\controller\ShoppingCartController.class
@@ -129,9 +139,11 @@ com\example\demo\service\AdminService.class
 com\example\demo\controller\admin\AdminAccountManagementController.class
 com\example\demo\controller\ProductsViewController.class
 com\example\demo\converter\StringToProductViewTypeConverter.class
+com\example\demo\service\CustomerProfileService.class
 com\example\demo\model\ProductLot.class
 com\example\demo\model\QPromotion.class
 com\example\demo\dto\ProductViewMode.class
+com\example\demo\repository\PurchaseHistoryRepo.class
 com\example\demo\service\CartService.class
 com\example\demo\service\ProductsViewServiceImpl$2.class
 com\example\demo\dto\Payment.class
@@ -143,6 +155,8 @@ com\example\demo\dto\Feedback.class
 com\example\demo\model\QProductCategory.class
 com\example\demo\dto\ProductView.class
 com\example\demo\model\PromotionDetail.class
+com\example\demo\service\CartServiceImpl.class
+com\example\demo\dto\CheckoutInfo.class
 com\example\demo\dto\ShoppingCart.class
 com\example\demo\controller\admin\AdminPromotionController.class
 com\example\demo\model\PurchaseHistory.class
@@ -153,4 +167,5 @@ com\example\demo\repository\SizeRepo$SizeId.class
 com\example\demo\util\Converter.class
 com\example\demo\repository\LoginHistoryRepo.class
 com\example\demo\controller\admin\AdminProductLotController.class
+com\example\demo\repository\PurchaseInvoiceRepo.class
 com\example\demo\dto\ProductViewItem$CategoryItem.class

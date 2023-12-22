@@ -35,7 +35,7 @@ public class PurchaseInvoice implements Serializable {
     private LocalDateTime createdTime;
     @Column(name="Address", nullable=false, length=100)
     private String address;
-    @Column(name="PhoneNumber", unique=true, nullable=false, length=10)
+    @Column(name="PhoneNumber", nullable=false, length=10)
     private String phoneNumber;
     @Column(name="OriginalPrice", nullable=false, precision=19, scale=4)
     private BigDecimal originalPrice;

@@ -93,7 +93,7 @@
 											style="width: 80%; height: 100%; object-fit: cover; border-radius: 100%; overflow: hidden; padding: 0px; margin: 0px;"
 											width="120" height="150">
 									</div>
-									<input type="file" id="fileInput" style="display: none;">
+									<input type="file" id="fileInput" accept="image/*" style="display: none;">
 									<div class="mt-3">
 										<h4>User</h4>
 										<button id="update-avatar" class="btn btn-primary">Change
@@ -154,6 +154,7 @@
 		      var citis = document.getElementById("city");
 		      var districts = document.getElementById("district");
 		      var wards = document.getElementById("ward");
+		      let value = JSON.parse(`${info.address}`);
 		      var Parameter = {
 		        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
 		        method: "GET",
@@ -162,25 +163,12 @@
 		      var promise = axios(Parameter);
 		      promise.then(function (result) {
 		        renderCity(result.data);
-		        let value = "${info.address}";
-			      let address = value.split(':')[0];
-			      let detail = value.split(':')[1];
-			      $("#address-detail").val(detail);
-			     
-			      address.split(',').forEach((e, i) => {
-				      if(i == 0){
-					      if(e != "" && e != null)
-						      $("#city").val(e);
-					   }
-				      else if(i == 1){
-					      if(e != "" && e != null)
-						      $("#district").val(e);
-					   } else if(i == 1){
-						      if(e != "" && e != null)
-							      $("#ward").val(e);
-						   }
-					      
-				   });
+			      $("#city").val(value.city);
+			      citis.onchange();
+			      $("#district").val(value.district);
+			      district.onchange();
+			      $("#ward").val(value.ward);
+			      $("#address-detail").val(value.detail);
 		      });
 		
 		      function renderCity(data) {
@@ -371,78 +359,7 @@
 			</div>
 		</div>
 	</div>
-	<script>
-        /* var isLinked = false;
-        var balance = 0;
-        var walletStatus = document.getElementById('walletStatus');
-        var walletBalance = document.getElementById('walletBalance');
-        var linkButton = document.getElementById('linkButton');
-        var unlinkButton = document.getElementById('unlinkButton');
-    
-        function updateDisplay() {
-            if (isLinked) {
-                walletStatus.textContent = 'Status: Linked';
-                walletBalance.textContent = 'Balance: ' + balance;
-                linkButton.style.display = 'none';
-                unlinkButton.style.display = 'inline';
-            } else {
-                walletStatus.textContent = 'Status: Not Linked';
-                walletBalance.textContent = '';
-                linkButton.style.display = 'inline';
-                unlinkButton.style.display = 'none';
-            }
-        }
-
-        var database = {
-            walletID: '123',
-            verificationCodes: 'abc',
-            balance: 100
-        };
-    
-        var walletIDInput = document.getElementById('walletID');
-        var verificationCodesInput = document.getElementById('verificationCodes');
-        var balanceInput = document.getElementById('balance');
-
-        var linkWalletForm = document.getElementById('linkWalletForm');
-        linkWalletForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            if (walletIDInput.value === database.walletID && verificationCodesInput.value === database.verificationCodes && parseFloat(balanceInput.value) === database.balance) {
-                isLinked = true;
-                balance = parseFloat(balanceInput.value);
-                updateDisplay();
- 
-                var linkWalletModal = bootstrap.Modal.getInstance(document.getElementById('linkWalletModal'));
-                linkWalletModal.hide();
-            } else {
-   
-                alert('The entered information does not match our records. Please try again.');
-            }
-        });
-    
-        unlinkButton.addEventListener('click', function() {
-
-            var confirmUnlink = confirm("Are you sure you want to unlink your wallet?");
-            if (confirmUnlink) {
-               
-                isLinked = false;
-                balance = 0;
-                updateDisplay();
-            }
-        });
-    
-        updateDisplay(); */
-	    </script>
 	 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-	<!-- <script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js">
-	    </script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js">
-	    </script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script
@@ -451,6 +368,5 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 	<script src="/assets/js/notify.js"></script>
 	<script src="/assets/js/customerprofile.js"></script>
-
 </body>
 </html>

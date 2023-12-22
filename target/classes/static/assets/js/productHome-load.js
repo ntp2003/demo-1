@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	const ViewBoxMode = {
 		BESTSELLER: { key: 0, href: "/product?sort=purchaseCount,desc" },
-		SALE: { key: 1, href: "#" },
+		SALE: { key: 1, href: "/Sale" },
 		NEWLYRELEASED: { key: 2, href: "/product?sort=releaseDate,desc" },
 	};
 	function productElement(product) {

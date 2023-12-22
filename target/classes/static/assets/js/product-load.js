@@ -178,8 +178,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: `/product/filter?page=${page}&size=${$("#page-size option:selected").val()}&sort=${$("#sort-option option:selected").val()}`,
 			method: "POST",
-			contentType: "application/json; charset=utf-8", // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
-
+			contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(currentFilter),
 			success: function(page) {
 				var pCatalogList1 = page.content;

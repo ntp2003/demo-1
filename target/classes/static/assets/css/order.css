@@ -1,0 +1,26 @@
+.discount-rate-input {
+  width: 100px;
+}
+
+.product-name-th {
+  width: 250px !important;
+}
+
+.discount-rate-th {
+  width: 130px !important;
+}
+
+.product-id-td {
+  width: 100px !important;
+}
+
+.table td {
+  min-height: 50px;
+  vertical-align: middle;
+}
+
+.table td {
+  min-height: 50px;
+  vertical-align: middle;
+}
+

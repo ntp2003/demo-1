@@ -9,6 +9,7 @@ import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,14 +27,14 @@ public class PurchaseHistory implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="PurchaseID", unique=true, nullable=false, precision=10)
     private int purchaseId;
-    @Column(name="Status", nullable=false, length=10)
+    @Column(name="Status", nullable=false, length=30)
     private String status;
     @OneToMany(mappedBy="feedbackId.purchaseHistory")
     private Set<Feedback> feedback;
     @ManyToOne(optional=false)
     @JoinColumn(name="AccountID", nullable=false)
     private CustomerAccount customerAccount;
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.EAGER)
     @JoinColumn(name="InvoiceID", nullable=false)
     private PurchaseInvoice purchaseInvoice;
 

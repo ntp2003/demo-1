@@ -93,7 +93,7 @@ ul, li {
 			</div>
 		</nav>
 		<div class="d-flex flex-column" id="content-wrapper">
-			<div id="content">
+			<div id="content" class="mb-4" style = "min-height: 70px;max-height: 70px;">
 				<nav
 					class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
 					<div class="container-fluid">

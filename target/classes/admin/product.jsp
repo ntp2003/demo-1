@@ -413,7 +413,7 @@
 		class="fas fa-angle-up"></i></a>
 	</div>
 	
-	
+	<script src="/assets/js/notify.js"></script>
 	<script src="/assets/js/product-type-action.js" type="module"></script>
 </body>
 

@@ -68,6 +68,7 @@ translateY(
 </head>
 <body>
 	<%@ include file="/common/header.jsp"%>
+	
 	<sitemesh:write property='body'></sitemesh:write>
 	<%@ include file="/common/footer.jsp"%>
 	<script src="/assets/js/header_load.js"></script>

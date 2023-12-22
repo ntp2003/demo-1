@@ -32,6 +32,6 @@ public class HomeController {
     @GetMapping("/promotion/exists")
     @ResponseBody
     public ResponseEntity<Boolean> promotionExists(){
-    	return ResponseEntity.ok(productsViewService.findCurrentPromotion().isPresent());
+    	return ResponseEntity.ok(productsViewService.findCurrentPromotionSimple().isPresent());
     }
 }

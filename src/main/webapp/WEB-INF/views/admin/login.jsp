@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -7,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>admin-login</title>
+<title>Admin login</title>
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
 </head>
@@ -43,6 +44,11 @@
 									<input class="form-control" type="password" name="password"
 										placeholder="Password">
 								</div>
+								<p class="text-danger">
+									<c:if test="${not empty param.error}">
+					    	Email or password is not correctly.
+					    </c:if>
+								</p>
 								<div class="mb-3">
 									<button class="btn btn-primary d-block w-100" type="submit">Login</button>
 								</div>

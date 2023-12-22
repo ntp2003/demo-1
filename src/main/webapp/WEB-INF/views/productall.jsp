@@ -11,6 +11,7 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
 	rel="stylesheet" />
+<title>Product</title>
 <style>
 #searchResults {
 	margin-top: 20px;

@@ -8,18 +8,19 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Untitled</title>
+<title>Login</title>
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
-    <style>
-	    .bg-opacity-10 {
-	  --bs-bg-opacity: 0.75;
-	}
-    </style>
+<style>
+.bg-opacity-10 {
+	--bs-bg-opacity: 0.75;
+}
+</style>
 </head>
 
-<body  style="background-color:rgb(231, 238, 243);">
-	<section class="position-relative py-4 py-xl-5" style="margin-top: 50px;">
+<body style="background-color: rgb(231, 238, 243);">
+	<section class="position-relative py-4 py-xl-5"
+		style="margin-top: 50px;">
 		<div class="container">
 			<div class="row mb-5">
 				<div class="col-md-8 col-xl-6 text-center mx-auto">
@@ -37,9 +38,10 @@
 								class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
 								<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
 									fill="currentColor" viewBox="0 0 16 16" class="bi bi-person">
-                                    <path
-										d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"></path>
-                                </svg>
+											<path
+										d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z">
+											</path>
+										</svg>
 							</div>
 							<form class="text-center" action="/Login" method="post">
 								<div class="mb-3">
@@ -53,12 +55,11 @@
 								<div class="mb-3">
 									<button class="btn btn-primary d-block w-100" type="submit">Login</button>
 								</div>
-								<div>
-									<p class="text-danger">${messagelogin}</p>
-									<c:if test="${messagelogin != \"\"}">
-										<c:set var="messagelogin" value="${\"\"}" />
-									</c:if>
-								</div>
+								<p class="text-danger">
+									<c:if test="${not empty param.error}">
+												Email or password is not correctly.
+											</c:if>
+								</p>
 								<p class="text-muted">
 									Please <a href="Register">register</a> if you don't have an
 									account

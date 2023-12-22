@@ -27,6 +27,7 @@ import com.example.demo.dto.ProductSearchItem;
 import com.example.demo.dto.ProductView;
 import com.example.demo.dto.ProductViewItem;
 import com.example.demo.dto.ProductViewMode;
+import com.example.demo.dto.PromotionSimple;
 import com.example.demo.model.ProductCatalog;
 import com.example.demo.model.ProductType;
 import com.example.demo.model.Promotion;
@@ -74,14 +75,14 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 
 	@Autowired
 	PromotionRepo promotionRepo;
-	
+
 	@Override
-	public Optional<Promotion> findCurrentPromotion(){
+	public Optional<Promotion> findCurrentPromotion() {
 		QPromotion qPromotion = QPromotion.promotion;
 		return promotionRepo
 				.findOne((qPromotion.startTime.loe(LocalDate.now())).and(qPromotion.endTime.goe(LocalDate.now())));
 	}
-	
+
 	@Override
 	public Page<ProductViewItem> findFilteredProduct(ProductFilter productFilter, Pageable pageable) {
 		QProductCatalog qProductCatalog = QProductCatalog.productCatalog;
@@ -107,7 +108,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 			predicate = predicate
 					.and(qProductCatalog.productCategory.any().price.loe(productFilter.getMaxPrice().get()));
 		}
-		
+
 		return getFiltered(predicate, pageable)
 				.map(i -> promotion.isPresent() ? new ProductViewItem(i, promotion.get()) : new ProductViewItem(i));
 	}
@@ -126,7 +127,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 	public List<String> brands() {
 		return productCatalogRepo.findDistinctBrand();
 	}
-	
+
 	private Page<ProductCatalog> getFiltered(Predicate predicate, Pageable pageable) {
 		QProductCatalog qProductCatalog = QProductCatalog.productCatalog;
 
@@ -135,8 +136,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 
 		JPAQuery<ProductCatalog> query = jpaQueryFactory.selectFrom(qProductCatalog).innerJoin(qProductCategory)
 				.on(qProductCatalog.productId.eq(qProductCategory.productCatalog.productId)).groupBy(qProductCatalog)
-				.where(predicate)
-				;
+				.where(predicate);
 
 		if (pageable != null) {
 			query.offset(pageable.getOffset());
@@ -144,11 +144,11 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 			for (Sort.Order o : pageable.getSort()) {
 				PathBuilder<Object> orderByExpression = new PathBuilder<Object>(Object.class, "productCatalog");
 				Expression expression;
-				if(o.getProperty().equals("price"))
+				if (o.getProperty().equals("price"))
 					expression = qProductCategory.price.min();
-				else 
+				else
 					expression = Expressions.path(Object.class, o.getProperty());
-					
+
 				qProductCategory.price.min();
 				query.orderBy(new OrderSpecifier(o.isAscending() ? Order.ASC : Order.DESC, expression));
 			}
@@ -156,7 +156,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 
 		long countQuery = jpaQueryFactory.from(qProductCatalog).where(predicate)
 				.select(qProductCatalog.productId.count().as("long")).fetchFirst();
-		
+
 		return PageableExecutionUtils.getPage(query.fetch(), pageable, new LongSupplier() {
 
 			@Override
@@ -170,10 +170,12 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 	public List<ProductSearchItem> findItemBySearch(String searchValue) {
 		Optional<Promotion> promotion = findCurrentPromotion();
 		QProductCatalog qProductCatalog = QProductCatalog.productCatalog;
-		BooleanExpression predicate = (qProductCatalog.productCategory.isNotEmpty()).and(qProductCatalog.productName.contains(searchValue));
-		
+		BooleanExpression predicate = (qProductCatalog.productCategory.isNotEmpty())
+				.and(qProductCatalog.productName.contains(searchValue));
+
 		return jpaQueryFactory.selectFrom(qProductCatalog).where(predicate).limit(4).fetch().stream()
-				.map(i -> promotion.isPresent() ? new ProductSearchItem(i, promotion.get()) : new ProductSearchItem(i)).toList();
+				.map(i -> promotion.isPresent() ? new ProductSearchItem(i, promotion.get()) : new ProductSearchItem(i))
+				.toList();
 	}
 
 	@Override
@@ -186,20 +188,18 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 			ProductView view = new ProductView();
 			BooleanExpression predicate = qProductCatalog.productType.productTypeId.eq(i.getProductTypeId());
 			OrderSpecifier orderSpecifier = null;
-			
+
 			view.setProductType(i);
 			switch (mode) {
 			case BESTSELLER:
 				orderSpecifier = new OrderSpecifier<Integer>(Order.DESC, qProductCatalog.purchaseCount);
 				break;
 			case SALE:
-				if(promotion.isPresent()) {
-					predicate = predicate
-							.and(qProductCatalog.productId
-									.in(promotion.get().getPromotionDetail().stream()
-											.map(p -> p.getPromotionDetailId().getProductCatalog().getProductId()).toList()));
-				}
-				else throw new IllegalArgumentException("Promotion is not found !!!");
+				if (promotion.isPresent()) {
+					predicate = predicate.and(qProductCatalog.productId.in(promotion.get().getPromotionDetail().stream()
+							.map(p -> p.getPromotionDetailId().getProductCatalog().getProductId()).toList()));
+				} else
+					throw new IllegalArgumentException("Promotion is not found !!!");
 				break;
 			case NEWLYRELEASED:
 				orderSpecifier = new OrderSpecifier<LocalDate>(Order.DESC, qProductCatalog.releaseDate);
@@ -208,23 +208,64 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 				throw new IllegalStateException("Unknown argument value !!!");
 			}
 			query.where(predicate);
-			if(orderSpecifier != null)
+			if (orderSpecifier != null)
 				query.orderBy(orderSpecifier);
 			query.limit(4);
-			view.setProductViewItems(query.fetch()
-					.stream().map(pi -> promotion.isPresent() ? new ProductViewItem(pi, promotion.get()) : new ProductViewItem(pi)).toList());
+			view.setProductViewItems(query.fetch().stream().map(
+					pi -> promotion.isPresent() ? new ProductViewItem(pi, promotion.get()) : new ProductViewItem(pi))
+					.toList());
 			result.add(view);
 		});
-		
+
 		return result;
 	}
 
 	@Override
 	public ProductDetail getProductDetailInfo(short productId) {
 		Optional<Promotion> promotion = findCurrentPromotion();
-		return productCatalogRepo.findOne((QProductCatalog.productCatalog.productId.eq(productId))
-				.and(QProductCatalog.productCatalog.productCategory.isNotEmpty()))
+		return productCatalogRepo
+				.findOne((QProductCatalog.productCatalog.productId.eq(productId))
+						.and(QProductCatalog.productCatalog.productCategory.isNotEmpty()))
 				.map(i -> new ProductDetail(i, promotion))
 				.orElseThrow(() -> new NotFoundException("Product not found !!!"));
+	}
+
+	@Override
+	public Optional<PromotionSimple> findCurrentPromotionSimple() {
+		Optional<Promotion> promotion = findCurrentPromotion();
+
+		if (promotion.isEmpty())
+			return Optional.empty();
+		return Optional.of(new PromotionSimple(promotion.get()));
+	}
+
+	@Override
+	public List<ProductView> findSaleProductViews() {
+		Optional<Promotion> promotion = findCurrentPromotion();
+		QProductCatalog qProductCatalog = QProductCatalog.productCatalog;
+		List<ProductView> result = new ArrayList<>();
+		productTypes().forEach(i -> {
+			JPAQuery<ProductCatalog> query = jpaQueryFactory.selectFrom(qProductCatalog);
+			ProductView view = new ProductView();
+			BooleanExpression predicate = qProductCatalog.productType.productTypeId.eq(i.getProductTypeId());
+			OrderSpecifier orderSpecifier = null;
+
+			view.setProductType(i);
+			if (promotion.isPresent()) {
+				predicate = predicate.and(qProductCatalog.productId.in(promotion.get().getPromotionDetail().stream()
+						.map(p -> p.getPromotionDetailId().getProductCatalog().getProductId()).toList()));
+			} else
+				throw new IllegalArgumentException("Promotion is not found !!!");
+
+			query.where(predicate);
+			if (orderSpecifier != null)
+				query.orderBy(orderSpecifier);
+			view.setProductViewItems(query.fetch().stream().map(
+					pi -> promotion.isPresent() ? new ProductViewItem(pi, promotion.get()) : new ProductViewItem(pi))
+					.toList());
+			result.add(view);
+		});
+
+		return result;
 	}
 }

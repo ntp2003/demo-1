@@ -5,7 +5,13 @@ $(document).ready(function() {
 			firstName: $('#firstName').val(),
 			lastName: $('#lastName').val(),
 			phoneNumber: $('#phoneNumber').val(),
-			address: `${$('#city').val()},${$('#district').val()},${$('#ward').val()}:${$('#address-detail').val()}`,
+			address: JSON.stringify(
+				{
+					city : $('#city').val(), 
+					district : $('#district').val(), 
+					ward : $('#ward').val(), 
+					detail : $('#address-detail').val()
+				}),
 			birthDate: $('#dob').val()
 		}
 
@@ -113,7 +119,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		let formData = {
 			walletId: $("#walletID").val(),
-			verificationCodes : $("#verificationCodes").val()
+			verificationCodes: $("#verificationCodes").val()
 		}
 		$.ajax({
 			type: "PUT",
@@ -128,7 +134,7 @@ $(document).ready(function() {
 			}
 		});
 	});
-	$("#unlink-btn").click(function(){
+	$("#unlink-btn").click(function() {
 		$.ajax({
 			type: "PUT",
 			url: "/customer/Profile/unlink-wallet",

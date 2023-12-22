@@ -3,6 +3,9 @@ package com.example.demo.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,12 @@ public class LoginController {
 
 	@GetMapping(value = {"/Login","/customer/Login"})
 	public String loginPage() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			authentication.getAuthorities().forEach(i -> System.out.println(i.getAuthority()));
+			if (authentication.getAuthorities().stream().filter(i -> i.getAuthority().equals("ROLE_CUSTOMER")).count() > 0)
+				return "redirect:/Home";
+		}
 		return "login";
 	}
 	
@@ -33,7 +42,7 @@ public class LoginController {
 
 	@PostMapping("/login_failure_handler")
 	public String loginFailureHandler() {
-		System.out.println("Fail");
-		return "redirect:/Login";
+	    System.out.println("Fail");
+	    return "redirect:/Login?error=true";
 	}
 }

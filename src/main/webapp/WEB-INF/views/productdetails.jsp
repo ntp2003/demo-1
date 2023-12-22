@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+<title>Product detail</title>
 <link rel="stylesheet" href="/assets/css/productdetails.css" />
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/filterTemplate.css">
@@ -66,37 +66,36 @@
 									<div class="d-flex form-outline" style="width: 10rem">
 										<label class="form-label me-2" for="typeNumber">Quantity</label>
 										<input min="1" type="number" id="typeNumber"
+											form="update-cart-form"
 											value="1" onkeypress="return isNumber(event)"
-											onpaste="return false;" class="form-control form-control-sm" />
+											onpaste="return false;" class="form-control form-control-sm" required/>
 
 									</div>
 									<span id="stock-item"></span>
 								</div>
 								<hr class="decription" />
-
+								<form id="update-cart-form">
 								<div class="cart mt-4 align-items-center">
 									<button id="add-to-cart" style="min-width: 150px; margin: 10px"
-										class="btn btn-success btn-md text-uppercase mr-2 px-4">
+										type="submit"
+										class="btn btn-success btn-md text-uppercase mr-2 px-4" disabled>
 										Add to cart</button>
-									<button
+								
+									<a
 										style="min-width: 30px; margin: 10px; border: 1px solid #42dca3"
-										class="btn">
+										class="btn" href="/customer/Cart" type="button">
 										<i class="fa-solid fa-cart-shopping fa-lg"
 											style="color: #42dca3"></i>
-									</button>
+									</a>
 								</div>
+								</form>
 							</div>
 						</div>
 
 						<div class="decriptionProduct mb-4" style="margin-left: 30px">
 							<hr style="width: 90%" class="decription" />
 							<h5 class="text-uppercase">Decription Product</h5>
-							<p class="about" style="margin-right: 30px">Shop from a wide
-								range of t-shirt from orianz. Pefect for your everyday use, you
-								could pair it with a stylish pair of jeans or trousers complete
-								the look. Shop from a wide range of t-shirt from orianz. Pefect
-								for your everyday use, you could pair it with a stylish pair of
-								jeans</p>
+							<p class="about" style="margin-right: 30px"></p>
 						</div>
 					</div>
 				</div>
@@ -106,6 +105,8 @@
 	<script src="/assets/js/numberinput.js"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	
+	<script src="/assets/js/notify.js"></script>
 	<script src="/assets/js/productdetail-load.js"></script>
 </body>
 </html>

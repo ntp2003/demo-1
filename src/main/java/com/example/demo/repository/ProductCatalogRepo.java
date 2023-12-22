@@ -22,17 +22,4 @@ public interface ProductCatalogRepo extends JpaRepository<ProductCatalog, Short>
 	
 	@Query("SELECT DISTINCT p.brand FROM ProductCatalog p")
 	List<String> findDistinctBrand();
-	
-	/*
-	 * @Query(value =
-	 * "SELECT p.ProductID , p.ReleaseDate , p.ProductName , p.ProductTypeID , p.Origin , p.Brand , p.PurchaseCount , p.Description  "
-	 * + "FROM ProductCatalog p " + "INNER JOIN " +
-	 * "(SELECT p2.ProductID, MIN(c.price) AS price " + "FROM ProductCatalog p2 " +
-	 * "INNER JOIN ProductCategory c " + "ON p2.ProductID = c.ProductID " +
-	 * "GROUP BY p2.ProductID) AS min_cata " +
-	 * "ON p.ProductID = min_cata.ProductID", nativeQuery = true)
-	 * 
-	 * @Override Page<ProductCatalog> findAll(Predicate predicate, Pageable
-	 * pageable);
-	 */
 }

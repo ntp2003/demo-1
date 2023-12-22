@@ -29,6 +29,22 @@ label.bg-color {
 	transition: transform 0.3s;
 	border-radius: 50%;
 }
+
+.product-image2 {
+	position: relative;
+}
+
+.sale-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(255, 0, 0, 0.8);
+	/* Màu nền overlay (ở đây là màu đỏ) */
+	color: #fff; /* Màu chữ */
+	padding: 3px 5px;
+	font-size: 16px;
+	border-radius: 8px;
+} /* Bo tròn góc hình */
 </style>
 <script src="/assets/js/productHome-load.js"></script>
 <script src="/assets/js/Simple-Slider-swiper-bundle.min.js"></script>
@@ -68,106 +84,6 @@ label.bg-color {
 			<div class="swiper-button-next"></div>
 		</div>
 	</div>
-
-	<!-- <div class="container" style="margin-top: 50px">
-		<div class="row" style="margin-bottom: 50px">
-			<div class="col-md-8 col-xl-6 text-center mx-auto bordered-container">
-				<h4 class="text-uppercase text-center link-dark">Sản phẩm bán
-					chạy</h4>
-				<hr style="border-top: 2px dashed #616A6B;">
-				<nav class="navbar navbar-expand-md navbar-light">
-					<div class="container">
-						Thêm nút cho menu khi màn hình nhỏ hơn md
-						<button class="navbar-toggler" type="button"
-							data-toggle="collapse" data-target="#navbarNav"
-							aria-controls="navbarNav" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="navbarNav">
-							<ul class="navbar-nav mx-auto">
-								<li class="nav-item"><a class="nav-link"
-									href="javascript:void(0);">Giày</a>
-								</li>
-								<li class="nav-item"><a class="nav-link"
-									href="javascript:void(0);">Balo</a>
-								</li>
-								<li class="nav-item"><a class="nav-link"
-									href="javascript:void(0);">Quần
-										áo</a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</div>
-		<div class="container" id="container-giay">
-			<div class="row" id="row-banchay-giay"></div>
-		</div>
-
-
-		<div class="container" id="container-balo">
-			<div class="row" id="row-banchay-balo"></div>
-		</div>
-		<div class="container" id="container-quanao">
-			<div class="row" id="row-banchay-quanao"></div>
-		</div>
-		<div class="text-center" id="more-xemthem-1">
-			<a class="text-uppercase text-center link-dark" href="#">Xem thêm</a>
-		</div>
-	</div>
-	<hr style="border-top: 1px solid #616A6B"> -->
-	<!-- <section>
-		<div class="container" style="margin-bottom: 30px;">
-			<div class="text-center">
-				<a class="text-uppercase fw-semibold" href="#"
-					style="text-decoration: none;">
-					<p class="fs-4 fw-normal text-dark">Giày nam</p>
-				</a>
-			</div>
-			<div class="container">
-				<div class="row" id="row-giay"></div>
-			</div>
-			<div class="text-center" id="more-xemthem-1">
-				<a class="text-uppercase text-center link-dark" href="Sale">Xem
-					thêm</a>
-			</div>
-		</div>
-		<hr style="border-top: 1px solid #616A6B">
-
-
-		<div class="container" style="margin-bottom: 30px;">
-			<div class="text-center">
-				<a class="text-uppercase fw-semibold" href="Sale"
-					style="text-decoration: none;">
-					<p class="fs-4 fw-normal text-dark">Balo</p>
-				</a>
-			</div>
-			<div class="container">
-				<div class="row" id="row-balo"></div>
-			</div>
-			<div class="text-center" id="more-xemthem-1">
-				<a class="text-uppercase text-center link-dark" href="Sale">Xem
-					thêm</a>
-			</div>
-		</div>
-
-		<div class="container" style="margin-bottom: 30px;">
-			<div class="text-center">
-				<a class="text-uppercase fw-semibold" href="Sale"
-					style="text-decoration: none;">
-					<p class="fs-4 fw-normal text-dark">Quần áo</p>
-				</a>
-			</div>
-			<div class="container">
-				<div class="row" id="row-quanao"></div>
-			</div>
-			<div class="text-center" id="more-xemthem-1">
-				<a class="text-uppercase text-center link-dark" href="Sale">Xem
-					thêm</a>
-			</div>
-		</div>
-	</section> -->
 
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script

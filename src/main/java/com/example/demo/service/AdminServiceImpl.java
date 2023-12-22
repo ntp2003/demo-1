@@ -20,7 +20,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean registerAdminAccount(Admin admin){
 		try {
-			adminRepo.save(admin.toModel());
+			com.example.demo.model.Admin newAccount = admin.toModel();
+			newAccount.setCreator(false);
+			newAccount.setPassword(adminPasswordEncoder.encode(admin.getPassword()));
+			adminRepo.save(newAccount);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

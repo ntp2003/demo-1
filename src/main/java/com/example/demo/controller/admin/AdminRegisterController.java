@@ -59,7 +59,7 @@ public class AdminRegisterController {
 	
 	@GetMapping("/check-user-name-exists")
 	@ResponseBody
-	public boolean checkUserName(@RequestParam("userName") String userName) {
+	public boolean checkUserName(@RequestParam("username") String userName) {
 		return adminService.userNameNotExists(userName);
 	}
 }

@@ -58,6 +58,8 @@ public class CustomerProfileServiceImpl implements CustomerProfileService{
 	public CustomerUserDetails updateAvatar(String avatar, int accountId) {
 		return customerRepo.findById(accountId).map(i -> {
 			try {
+				if(!i.getAvatar().isBlank() && i.getAvatar() != null)
+					FirebaseUtil.Delete(i.getAvatar());
 				i.setAvatar(FirebaseUtil.Upload(Converter.DataURLImagetoFile(avatar)));
 			} catch (IOException e) {
 				e.printStackTrace();

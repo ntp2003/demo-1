@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Untitled</title>
+<title>Register</title>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/Login-Form-Basic-icons.css">
 <link rel="stylesheet"
@@ -40,28 +40,33 @@
 								<form:input class="form-control form-control form-control-user"
 									type="text" name="firstName" path="firstName"
 									placeholder="First Name" />
+								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-sm-6">
 								<form:input class="form-control form-control form-control-user"
 									type="text" name="lastName" path="lastName"
 									placeholder="Last Name" />
+								<div class="invalid-feedback"></div>
 							</div>
 						</div>
 						<div class="mb-3">
 							<form:input class="form-control form-control form-control-user"
 								type="email" name="email" id="email" path="email"
 								placeholder="Email Address" />
+							<div class="invalid-feedback"></div>
 						</div>
 						<div class="row mb-3">
 							<div class="col-sm-6 mb-3 mb-sm-0">
 								<form:input class="form-control form-control form-control-user"
 									type="password" name="password" id="password" path="password"
 									placeholder="Password" />
+								<div class="invalid-feedback"></div>
 							</div>
 							<div class="col-sm-6">
 								<input class="form-control form-control form-control-user"
 									type="password" id="verifyPassword" name="re-password"
 									placeholder="Repeat Password">
+								<div class="invalid-feedback"></div>
 							</div>
 						</div>
 						<div class="row mb-3">
@@ -132,7 +137,7 @@
 			    
 			    errorPlacement: function(error, element) {
 			          error.insertAfter(element);
-			   }
+			   } 
 		    });
 	});
 	</script>
