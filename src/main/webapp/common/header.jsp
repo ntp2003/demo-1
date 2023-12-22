@@ -13,7 +13,7 @@
 						onclick="submitForm()"> <span
 						class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon">
 							<i class="far fa-smile"></i>
-					</span> <span>Conbo</span>
+					</span> <span>COOL</span>
 					</a>
 				<!-- </form> -->
 				<button data-bs-toggle="collapse" class="navbar-toggler"
@@ -26,9 +26,10 @@
 					id="navcol-1">
 					<ul class="navbar-nav mx-auto">
 						<li class="nav-item"><a class="nav-link" href="/Sale">SALE</a></li>
-						<li id="all-product-header" class="nav-item"><a class="nav-link" href="/product">Sản
-								phẩm</a></li>
-						<li class="nav-item"><a class="nav-link" href="/product?sort=purchaseCount,desc">Sản phẩm bán chạy</a></li>
+						<li id="all-product-header" class="nav-item"><a class="nav-link" href="/product">ALL products</a></li>
+						<li class="nav-item"><a class="nav-link" href="/product?sort=purchaseCount,desc">Best sale</a></li>
+						<li id="About-header" class="nav-item"><a class="nav-link" href="/About">About</a></li>
+						
 					</ul>
 					<div class="d-flex align-items-center" style="gap: 20px;">
 							

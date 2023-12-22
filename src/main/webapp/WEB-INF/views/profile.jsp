@@ -28,7 +28,7 @@
 					<div class="card mt-3" style="width: 306.325px;">
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item"><a class="nav-link"
-								href="Profile"><div
+								href="/customer/Profile"><div
 										style="display: flex; align-items: center;">
 										<svg xmlns="http://www.w3.org/2000/svg" width="1em"
 											height="1em" viewbox="0 0 20 20" fill="none"
@@ -39,7 +39,7 @@
 										<span>Account Information</span>
 									</div></a></li>
 							<li class="list-group-item"><a class="nav-link"
-								href="OrderHistory"><div
+								href="/customer/OrderHistory"><div
 										style="display: flex; align-items: center;">
 										<svg class="bi bi-cart-fill"
 											xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"

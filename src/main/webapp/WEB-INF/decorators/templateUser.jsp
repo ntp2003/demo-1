@@ -67,8 +67,8 @@ translateY(
 
 </head>
 <body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"> </script>
 	<%@ include file="/common/header.jsp"%>
-	
 	<sitemesh:write property='body'></sitemesh:write>
 	<%@ include file="/common/footer.jsp"%>
 	<script src="/assets/js/header_load.js"></script>

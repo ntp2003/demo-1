@@ -21,12 +21,9 @@ $(document).ready(function() {
 	
 	function loadOrderStatusStatistic(){
 		$.getJSON(`/admin/Order/status-statistic`, function(info) {
-			console.log(info);
 			$("span[data-count]").each(function(){
 				let flag = 0;
 				info.forEach(i => {
-					console.log(i.status)
-					console.log($(this).data("count"))
 					if(i.status == $(this).data("count")){
 						$(this).html(i.count);
 						flag = 1;

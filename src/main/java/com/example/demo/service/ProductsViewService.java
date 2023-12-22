@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ProductDetail;
+import com.example.demo.dto.ProductDetailFeedBack;
 import com.example.demo.dto.ProductFilter;
 import com.example.demo.dto.ProductSearchItem;
 import com.example.demo.dto.ProductType;
@@ -41,4 +42,6 @@ public interface ProductsViewService {
 	Optional<PromotionSimple> findCurrentPromotionSimple();
 	
 	List<ProductView> findSaleProductViews();
+	
+	List<ProductDetailFeedBack> findFeedback(short productId);
 }

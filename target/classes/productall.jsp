@@ -159,12 +159,12 @@
 
 				<div class="form-inline">
 					<select id="sort-option" class="mr-2 form-control">
-						<option value="productName,asc" selected="selected">Theo tên A-Z</option>
-						<option value="productName,desc">Theo tên Z-A</option>
-						<option value="price,asc">Giá từ thấp đến cao</option>
-						<option value="price,desc">Giá từ cao đến thấp</option>
+						<option value="productName,asc" selected="selected">Name ASC A-Z</option>
+						<option value="productName,desc">Name DESC Z-A</option>
+						<option value="price,asc">Price Low to High</option>
+						<option value="price,desc">Price High to Low</option>
 						<option value="purchaseCount,desc">Hot</option>
-						<option value="releaseDate,desc">Mới nhất</option>
+						<option value="releaseDate,desc">New</option>
 					</select>
 				</div>
 			</div>
@@ -214,6 +214,8 @@
 	<script type="text/javascript"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"> </script>
+		
 	<script src="/assets/js/product-load.js" type="module"></script>
 	<script src="/assets/js/theme.js"></script>
 </body>

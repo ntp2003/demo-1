@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.ProductDetail;
+import com.example.demo.dto.ProductDetailFeedBack;
 import com.example.demo.dto.ProductFilter;
 import com.example.demo.dto.ProductSearchItem;
 import com.example.demo.dto.ProductType;
@@ -79,5 +80,11 @@ public class ProductsViewController {
     @ResponseBody
     public ResponseEntity<ProductDetail> getProductDetailInfo(@PathVariable("id") short id) {
     	return ResponseEntity.ok(productsViewService.getProductDetailInfo(id));
+    }
+    
+    @GetMapping("/product/detail/feedback/{id}")
+    @ResponseBody
+    public ResponseEntity<List<ProductDetailFeedBack>> getFeedback(@PathVariable("id") short id) {
+    	return ResponseEntity.ok(productsViewService.findFeedback(id));
     }
 }

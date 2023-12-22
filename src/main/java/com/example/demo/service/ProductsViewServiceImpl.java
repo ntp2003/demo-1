@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.LongSupplier;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.eclipse.tags.shaded.org.apache.bcel.generic.NEW;
 import org.hibernate.query.criteria.JpaSubQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ProductDetail;
+import com.example.demo.dto.ProductDetailFeedBack;
 import com.example.demo.dto.ProductFilter;
 import com.example.demo.dto.ProductSearchItem;
 import com.example.demo.dto.ProductView;
@@ -31,13 +33,19 @@ import com.example.demo.dto.PromotionSimple;
 import com.example.demo.model.ProductCatalog;
 import com.example.demo.model.ProductType;
 import com.example.demo.model.Promotion;
+import com.example.demo.model.QFeedback;
 import com.example.demo.model.QProductCatalog;
 import com.example.demo.model.QProductCategory;
 import com.example.demo.model.QPromotion;
+import com.example.demo.model.QStockDetails;
+import com.example.demo.model.StockDetails;
+import com.example.demo.repository.FeedbackRepo;
 import com.example.demo.repository.ProductCatalogRepo;
 import com.example.demo.repository.ProductCategoryRepo;
 import com.example.demo.repository.ProductTypeRepo;
 import com.example.demo.repository.PromotionRepo;
+import com.example.demo.repository.StockDetailsRepo;
+import com.google.common.collect.Iterables;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.core.types.Expression;
@@ -75,7 +83,13 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 
 	@Autowired
 	PromotionRepo promotionRepo;
-
+	
+	@Autowired
+	FeedbackRepo feedbackRepo;
+	
+	@Autowired
+	StockDetailsRepo stockDetailsRepo;
+	
 	@Override
 	public Optional<Promotion> findCurrentPromotion() {
 		QPromotion qPromotion = QPromotion.promotion;
@@ -267,5 +281,14 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 		});
 
 		return result;
+	}
+
+	@Override
+	public List<ProductDetailFeedBack> findFeedback(short productId) {
+		return IterableUtils.toList(feedbackRepo
+				.findAll(QFeedback.feedback.feedbackId.stockDetails
+						.in(IterableUtils.toList(stockDetailsRepo.findAll(QStockDetails.stockDetails.productCategory
+								.in(IterableUtils.toList(productCategoryRepo.findAll(QProductCategory.productCategory.productCatalog.productId.eq(productId)))))))))
+				.stream().map(ProductDetailFeedBack::new).toList();
 	}
 }

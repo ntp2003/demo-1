@@ -60,7 +60,7 @@ ul, li {
 						<i class="fas fa-laugh-wink"></i>
 					</div>
 					<div class="sidebar-brand-text mx-3">
-						<span>Brand</span>
+						<span>COOL</span>
 					</div>
 				</a>
 				<hr class="sidebar-divider my-0" />
