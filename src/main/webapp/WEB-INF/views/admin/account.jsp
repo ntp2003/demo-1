@@ -9,14 +9,15 @@
 <body>
 	<div class="container-fluid">
              <h3 class="text-dark mb-4">Account Management</h3>
-                    <div class="card shadow">
+                    <div id="admin" class="card shadow">
                         <div class="card-header py-3">
                             <p class="fw-bold text-primary m-0">Admin Account Management</p>
                         </div>
                         <div class="card-body">
                             <div class="row d-flex justify-content-between gap-2">
                                 <div class="col text-nowrap d-flex justify-content-start align-items-center">
-                                    <div class="ms-2"><label class="form-label" style="margin: 0px;">Show&nbsp; </label><select class="form-select-sm d-inline-block form-select" style="width: 100px;">
+                                    <div class="ms-2"><label class="form-label" style="margin: 0px;">Show&nbsp; </label>
+                                    <select class="form-select-sm d-inline-block form-select" style="width: 100px;">
                                             <option value="10" selected="">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
@@ -25,18 +26,21 @@
                                     <div></div>
                                 </div>
                                 <div class="col-md-6 col-xl-7 d-flex justify-content-end flex-wrap gap-2">
-                                    <div class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
-                                            <option value="" selected="">Name</option>
-                                            <option value="">Phone Number</option>
-                                            <option value="">Email</option>
-                                            <option value="">CCCD</option>
-                                            <option value="">User Name</option>
+                                    <div class="d-flex align-items-center" style="padding: 0px 8px;">
+                                    <select id="admin-type-op" class="form-select-sm d-inline-block form-select">
+                                            <option value="0" selected="">Name</option>
+                                            <option value="1">Phone Number</option>
+                                            <option value="2">Email</option>
+                                            <option value="3">CCCD</option>
+                                            <option value="4">User Name</option>
                                         </select></div>
                                     <div class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
-                                            <option value="">ASC</option>
-                                            <option value="">DESC</option>
+                                            <option value=",asc">ASC</option>
+                                            <option value=",desc">DESC</option>
                                         </select></div>
-                                    <div class="d-flex align-items-center" style="padding: 0px 8px;"><input class="form-control-sm form-control" type="search" aria-controls="dataTable" placeholder="Search" style="max-height: 31px;"></div>
+                                    <div class="d-flex align-items-center" style="padding: 0px 8px;">
+                                    <input id="admin-search-value" class="form-control-sm form-control" type="search" aria-controls="dataTable" placeholder="Search" style="max-height: 31px;">
+                                    </div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="producttable" role="grid" aria-describedby="dataTable_info">
@@ -100,14 +104,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card shadow mt-4">
+                    <div id="customer" class="card shadow mt-4">
                         <div class="card-header py-3">
                             <p class="fw-bold text-primary m-0">Customer Account Management</p>
                         </div>
                         <div class="card-body">
                             <div class="row d-flex justify-content-between gap-2">
                                 <div class="col text-nowrap d-flex justify-content-start align-items-center align-items-xl-center column-gap-3">
-                                    <div><label class="form-label" style="margin: 0px;">Show&nbsp; </label><select class="form-select-sm d-inline-block form-select" style="width: 100px;">
+                                    <div><label class="form-label" style="margin: 0px;">Show&nbsp; </label>
+                                    <select class="form-select-sm d-inline-block form-select" style="width: 100px;">
                                             <option value="10" selected="">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
@@ -115,20 +120,22 @@
                                         </select></div>
                                 </div>
                                 <div class="col-md-6 col-xl-7 d-flex justify-content-end flex-wrap gap-2">
-                                    <div class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
-                                            <option value="" selected="">Email</option>
-                                            <option value="">Name</option>
-                                            <option value="">Phone number</option>
+                                    <div class="d-flex align-items-center" style="padding: 0px 8px;">
+                                    <select id="customer-type-op" class="form-select-sm d-inline-block form-select">
+                                            <option sort="email" value="2" selected="">Email</option>
+                                            <option sort="" value="0">Name</option>
+                                            <option sort="" value="1">Phone number</option>
                                         </select></div>
                                     <div class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
-                                            <option value="" selected="">ASC</option>
-                                            <option value="">DESC</option>
+                                            <option value=",asc" selected="">ASC</option>
+                                            <option value=",desc">DESC</option>
                                         </select></div>
-                                    <div class="d-flex align-items-center align-items-xl-center" style="padding: 0px 8px;"><input class="form-control-sm form-control" type="search" aria-controls="dataTable" placeholder="Search" style="max-height: 31px;"></div>
+                                    <div class="d-flex align-items-center align-items-xl-center" style="padding: 0px 8px;">
+                                    <input id="customer-search-value" class="form-control-sm form-control" type="search" aria-controls="dataTable" placeholder="Search" style="max-height: 31px;"></div>
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="producttable-1" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0 align-middle table-hover" id="dataTable">
+                                <table class="table my-0 align-middle table-hover" id="customer-tb">
                                     <thead>
                                         <tr>
                                             <th>Account ID</th>
@@ -155,7 +162,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-xl-4 col-xxl-2 d-flex" style="margin-top: 4px;">
-                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
                                 </div>
                                 <div class="col">
                                     <nav class="d-lg-flex justify-content-lg-end">
@@ -175,5 +182,6 @@
                     </div>
                 </div>
        <script src="/assets/js/notify.js"></script>
+       <script src="/assets/js/adminaccount.js"></script>
 </body>
 </html>

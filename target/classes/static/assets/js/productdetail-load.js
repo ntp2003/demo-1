@@ -41,6 +41,7 @@ $(document).ready(function() {
 					let size = $(`<label class="radio"> <input type="radio" name="size"
 										value="${stock.stockInventoryId}"/> <span>${stock.sizeName}</span>
 									</label>`);
+
 					if (stock.stock <= 0) {
 						size.attr('disabled', true);
 						size.find('input').attr('disabled', true);
@@ -49,10 +50,17 @@ $(document).ready(function() {
 					else {
 						$("#add-to-cart").prop('disabled', false);
 					}
+
 					sizes.append(size);
 					size.click(function() {
 						$("#typeNumber").attr('max', stock.stock);
 						$("#stock-item").html(`<small>Stock: ${stock.stock}</small>`);
+						if (stock.stock <= 0) {
+							$("#add-to-cart").prop('disabled', true);
+						}
+						else {
+							$("#add-to-cart").prop('disabled', false);
+						}
 					})
 				});
 
