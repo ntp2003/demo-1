@@ -17,7 +17,7 @@
                             <div class="row d-flex justify-content-between gap-2">
                                 <div class="col text-nowrap d-flex justify-content-start align-items-center">
                                     <div class="ms-2"><label class="form-label" style="margin: 0px;">Show&nbsp; </label>
-                                    <select class="form-select-sm d-inline-block form-select" style="width: 100px;">
+                                    <select id="admin-page-size" class="form-select-sm d-inline-block form-select" style="width: 100px;">
                                             <option value="10" selected="">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
@@ -28,13 +28,13 @@
                                 <div class="col-md-6 col-xl-7 d-flex justify-content-end flex-wrap gap-2">
                                     <div class="d-flex align-items-center" style="padding: 0px 8px;">
                                     <select id="admin-type-op" class="form-select-sm d-inline-block form-select">
-                                            <option value="0" selected="">Name</option>
-                                            <option value="1">Phone Number</option>
-                                            <option value="2">Email</option>
-                                            <option value="3">CCCD</option>
-                                            <option value="4">User Name</option>
+                                            <option sort="fullName" value="0" selected="">Name</option>
+                                            <option sort="phoneNumber" value="1">Phone Number</option>
+                                            <option sort="email" value="2">Email</option>
+                                            <option sort="cccd" value="3">CCCD</option>
+                                            <option sort="username" value="4">User Name</option>
                                         </select></div>
-                                    <div class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
+                                    <div class="d-flex align-items-center" style="padding: 0px 8px;"><select id="admin-sort-op" class="form-select-sm d-inline-block form-select">
                                             <option value=",asc">ASC</option>
                                             <option value=",desc">DESC</option>
                                         </select></div>
@@ -44,11 +44,10 @@
                                 </div>
                             </div>
                             <div class="table-responsive table mt-2" id="producttable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0 align-middle table-hover" id="dataTable">
+                                <table class="table my-0 align-middle table-hover" id="admin-tb">
                                     <thead>
                                         <tr>
                                             <th>User Name</th>
-                                            <th>Password</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Phone Numer</th>
@@ -59,45 +58,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>admin</td>
-                                            <td><input class="border-0 form-control-sm" type="password" disabled="" value="jkdjakdjkakdsa;" style="background: transparent;"></td>
-                                            <td>Nguyen</td>
-                                            <td>Phat</td>
-                                            <td>0777166027</td>
-                                            <td>89278177109903218</td>
-                                            <td>2113918309189831983091901</td>
-                                            <td style="text-align: center;">1</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>admin</td>
-                                            <td><input class="border-0 form-control-sm" type="text" value="dajalksjkdjalkda" disabled="" style="background: transparent;"></td>
-                                            <td>Nguyen</td>
-                                            <td>Phat</td>
-                                            <td>0777166027</td>
-                                            <td>89278177109903218</td>
-                                            <td>2113918309189831983091901</td>
-                                            <td style="text-align: center;">1</td>
-                                            <td><button class="btn btn-danger btn-sm btn-circle ms-1" type="button" style="width: 33px;height: 33px;"><i class="fas fa-trash text-white"></i></button></td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-xl-4 col-xxl-2 d-flex" style="margin-top: 4px;">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="admin-dt-info" class="dataTables_info" role="status" aria-live="polite"></p>
                                 </div>
                                 <div class="col">
                                     <nav class="d-lg-flex justify-content-lg-end">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        <ul id="admin-pg" class="pagination">
                                         </ul>
                                     </nav>
                                 </div>
@@ -112,7 +82,7 @@
                             <div class="row d-flex justify-content-between gap-2">
                                 <div class="col text-nowrap d-flex justify-content-start align-items-center align-items-xl-center column-gap-3">
                                     <div><label class="form-label" style="margin: 0px;">Show&nbsp; </label>
-                                    <select class="form-select-sm d-inline-block form-select" style="width: 100px;">
+                                    <select id="customer-page-size" class="form-select-sm d-inline-block form-select" style="width: 100px;">
                                             <option value="10" selected="">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
@@ -123,10 +93,10 @@
                                     <div class="d-flex align-items-center" style="padding: 0px 8px;">
                                     <select id="customer-type-op" class="form-select-sm d-inline-block form-select">
                                             <option sort="email" value="2" selected="">Email</option>
-                                            <option sort="" value="0">Name</option>
-                                            <option sort="" value="1">Phone number</option>
+                                            <option sort="customerName" value="0">Name</option>
+                                            <option sort="phoneNumber" value="1">Phone number</option>
                                         </select></div>
-                                    <div class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
+                                    <div id="customer-sort-op" class="d-flex align-items-center" style="padding: 0px 8px;"><select class="form-select-sm d-inline-block form-select">
                                             <option value=",asc" selected="">ASC</option>
                                             <option value=",desc">DESC</option>
                                         </select></div>
@@ -140,7 +110,6 @@
                                         <tr>
                                             <th>Account ID</th>
                                             <th>Email</th>
-                                            <th>Password</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Phone Numer</th>
@@ -148,32 +117,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td style="text-align: center;">1</td>
-                                            <td class="text-break">idajidjslkadlkajjlkdjalkjdlkajdlkajlkk</td>
-                                            <td>nkznlczklcxlkzczczc</td>
-                                            <td>Phat</td>
-                                            <td>Nguyen Tan</td>
-                                            <td>0777166027</td>
-                                            <td class="py-1"><button class="btn btn-danger btn-sm btn-circle ms-1" type="button" style="width: 33px;height: 33px;"><i class="fas fa-trash text-white"></i></button></td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-xl-4 col-xxl-2 d-flex" style="margin-top: 4px;">
-                                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                    <p id="customer-dt-info" class="dataTables_info" role="status" aria-live="polite"></p>
                                 </div>
                                 <div class="col">
                                     <nav class="d-lg-flex justify-content-lg-end">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                        <ul id="customer-pg" class="pagination">
                                         </ul>
                                     </nav>
                                 </div>

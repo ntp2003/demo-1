@@ -33,6 +33,7 @@ public class ProductsViewController {
     public String SanPhamPage() {
         return "productall";
     }
+
     
     @GetMapping("/product/color")
     @ResponseBody

@@ -162,13 +162,13 @@
 		      };
 		      var promise = axios(Parameter);
 		      promise.then(function (result) {
-		        renderCity(result.data);
+		        	renderCity(result.data);
 			      $("#city").val(value.city);
 			      citis.onchange();
 			      $("#district").val(value.district);
 			      district.onchange();
 			      $("#ward").val(value.ward);
-			      $("#address-detail").val(value.detail);
+			      $("#address-detail").val(value.detail); 
 		      });
 		
 		      function renderCity(data) {

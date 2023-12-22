@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.AccountFilter;
@@ -22,6 +24,14 @@ public class AdminAccountManagementServiceImpl implements AdminAccountManagement
 	
 	@Autowired
 	CustomerRepo customerRepo;
+	
+	@Autowired
+	@Qualifier("adminPasswordEncoder")
+	PasswordEncoder adminPasswordEncoder;
+	
+	@Autowired
+	@Qualifier("customerPasswordEncoder")
+	private PasswordEncoder customerPasswordEncoder;
 	
 	@Override
 	public Page<Admin> findAdminAccount(AccountFilter accountFilter, Pageable pageable) {
