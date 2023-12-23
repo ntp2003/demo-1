@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderItem implements Serializable{
 	int stockInventoryId;
+	short productId;
 	String productName;
 	String color;
 	String sizeName;
@@ -27,6 +28,7 @@ public class OrderItem implements Serializable{
 		StockDetails stockDetails = invoiceDetail.getInvoiceDetailId().getStockDetails();
 		stockInventoryId = stockDetails.getStockInventoryId();
 		productName = stockDetails.getProductCategory().getProductCatalog().getProductName();
+		productId = stockDetails.getProductCategory().getProductCatalog().getProductId();
 		color = stockDetails.getProductCategory().getColor();
 		sizeName = stockDetails.getSize().getSizeName();
 		image = stockDetails.getProductCategory().getImageProduct().stream().findFirst().map(i -> i.getImage()).orElse(null);

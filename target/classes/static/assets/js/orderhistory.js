@@ -47,15 +47,13 @@ $(document).ready(function() {
 		              <div class="d-flex justify-content-between align-items-center">
 		                <div>
 		                  <p class="text-muted mb-2">
-		                    Invoice ID <span class="fw-bold text-body">${order.invoiceId}</span>
+		                    <span class="fw-bold text-body">Invoice ID:</span> ${order.invoiceId}
 		                  </p>
 		                  <p class="text-muted mb-0">
-		                    Created time:
-		                    <span class="fw-bold text-body">${formatDate(order.createdTime)} </span>
+		                    <span class="fw-bold text-body">Created time:</span> ${formatDate(order.createdTime)} 
 		                  </p>
 		                  <p class="text-muted mb-0">
-		                    Completed time:
-		                    <span class="fw-bold text-body">${order.completedTime != null ? formatDate(order.completedTime) : ''}</span>
+		                    <span class="fw-bold text-body">Completed time:</span> ${order.completedTime != null ? formatDate(order.completedTime) : ''}
 		                  </p>
 		                </div>
 		                <div class="d-flex flex-wrap">
@@ -94,7 +92,7 @@ $(document).ready(function() {
 		                </div>
 		                <div class="col-md-6 col-lg-5 mb-4 mb-lg-0">
 		                  <p>
-		                    <strong>${it.productName}</strong>
+		                    <strong><a class="h6" href="/product/detail/${it.productId}" style="text-decoration:none" >${it.productName}</a></strong>
 		                  </p>
 		                  <span id="Color" style="display: flex; gap: 10px">
 		                    <h6>Color:</h6>
@@ -139,7 +137,7 @@ $(document).ready(function() {
 								</div>
 								<div>
 									<div>
-										<span>Product Name: ${it.productName}</span>
+										<span>${it.productName}</span>
 									</div>
 									<div>
 									<span style="font-size: 14px; color: #797D7F">Color: ${color}</span>

@@ -200,7 +200,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 		productTypes().forEach(i -> {
 			JPAQuery<ProductCatalog> query = jpaQueryFactory.selectFrom(qProductCatalog);
 			ProductView view = new ProductView();
-			BooleanExpression predicate = qProductCatalog.productType.productTypeId.eq(i.getProductTypeId());
+			BooleanExpression predicate = qProductCatalog.productType.productTypeId.eq(i.getProductTypeId()).and(qProductCatalog.productCategory.isNotEmpty());;
 			OrderSpecifier orderSpecifier = null;
 
 			view.setProductType(i);
@@ -261,7 +261,7 @@ public class ProductsViewServiceImpl implements ProductsViewService {
 		productTypes().forEach(i -> {
 			JPAQuery<ProductCatalog> query = jpaQueryFactory.selectFrom(qProductCatalog);
 			ProductView view = new ProductView();
-			BooleanExpression predicate = qProductCatalog.productType.productTypeId.eq(i.getProductTypeId());
+			BooleanExpression predicate = qProductCatalog.productType.productTypeId.eq(i.getProductTypeId()).and(qProductCatalog.productCategory.isNotEmpty());
 			OrderSpecifier orderSpecifier = null;
 
 			view.setProductType(i);

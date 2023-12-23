@@ -9,7 +9,7 @@ $(document).ready(function() {
 	function loadPrice() {
 		$("#price-or").html(formatter.format(price));
 		$("#discount").html(formatter.format(discount));
-		$("#total").html(formatter.format(price + discount));
+		$("#total").html(formatter.format(price - discount));
 	}
 	let count = loadNumberItem();
 	$.ajaxSetup({ async: false });
@@ -88,22 +88,25 @@ $(document).ready(function() {
                   </div>
                 </div>`);
 			price += Math.round(i.price * i.quantity * 100) / 100;
-			function loadPriceItem(){
 			if (i.discountRate > 0) {
-				newItem.find('.price').html(`
+				discount += Math.round(i.price * i.quantity * i.discountRate) / 100;
+			}
+			function loadPriceItem() {
+				if (i.discountRate > 0) {
+					newItem.find('.price').html(`
 				<p class="text-end text-md-center">
                       <strong>${formatter.format(Math.round(Math.round(i.price * i.quantity * (100 - i.discountRate)) / 100))}</strong>
                     </p>
 				<p class="text-start text-md-center">
 					  <del>${formatter.format(Math.round(i.price * i.quantity * 100) / 100)}</del>
 					</p>`);
-				discount += Math.round(i.price * i.quantity * (100 - i.discountRate)) / 100;
-			}
-			else{
-				newItem.find('.price').html(`<p class="text-end text-md-center">
+
+				}
+				else {
+					newItem.find('.price').html(`<p class="text-end text-md-center">
                       <strong>${formatter.format(Math.round(i.price * i.quantity * 100) / 100)}</strong>
                     </p>`);
-			}
+				}
 			}
 			loadPriceItem();
 			function quantityChange() {
@@ -120,7 +123,7 @@ $(document).ready(function() {
 							newItem.find(".alert-err").html("");
 							price += Math.round(i.price * change * 100) / 100;
 							if (i.discountRate > 0) {
-								discount += Math.round(i.price * change * (100 - i.discountRate)) / 100;
+								discount += Math.round(i.price * change * i.discountRate) / 100;
 							}
 							i.quantity = val;
 							loadPrice();
@@ -150,12 +153,12 @@ $(document).ready(function() {
 				$.ajax({
 					type: "DELETE",
 					url: "/customer/Cart/delete",
-					data: { stockInventoryId: i.stockInventoryId},
+					data: { stockInventoryId: i.stockInventoryId },
 					cache: false,
 					success: function() {
 						price -= Math.round(i.price * i.quantity * 100) / 100;
 						if (i.discountRate > 0) {
-							discount -= Math.round(i.price * i.quantity * (100 - i.discountRate)) / 100;
+							discount -= Math.round(i.price * i.quantity * i.discountRate) / 100;
 						}
 						newItem.remove();
 						line.remove();
@@ -173,22 +176,22 @@ $(document).ready(function() {
 		loadPrice();
 	});
 	$.ajaxSetup({ async: true });
-	$("#go-checkout").click(function(){
-		if(count == null || count == 0){
+	$("#go-checkout").click(function() {
+		if (count == null || count == 0) {
 			alert("There are no items in the cart");
 		}
-		else{
+		else {
 			window.location.href = window.location.protocol + "//" + window.location.host + "/customer/Checkout"
 		}
 	});
 });
 
-function loadNumberItem(){
+function loadNumberItem() {
 	let a;
 	$.ajaxSetup({ async: false });
 	$.getJSON("/customer/Cart/count", function(count) {
 		$("#number-item").html(`Cart - ${count} items`);
-		a =count; 
+		a = count;
 	});
 	$.ajaxSetup({ async: true });
 	return a;
